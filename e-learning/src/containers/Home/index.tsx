@@ -1,16 +1,16 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
+import AppMenu from '../../components/AppBar';
 import './_homepage.scss';
 
-const HomePage: React.FunctionComponent = () => {
+function HomePage(): JSX.Element {
   return (
-    <div>
-      <Grid className='home-page'>
-        <Typography component='div' />
-      </Grid>
-    </div>
+    <Grid className='home-page'>
+      <AppMenu />
+      <Typography component='div' />
+    </Grid>
   );
-};
+}
 
 export default HomePage;

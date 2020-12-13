@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import HomePage from './containers/Home/HomePage';
+import HomePage from './containers/Home';
 
 function App(): JSX.Element {
   return (

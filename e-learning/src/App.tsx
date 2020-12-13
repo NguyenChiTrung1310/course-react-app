@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import HomePage from './containers/HomePage';
+import HomePage from './containers/Home/HomePage';
 
 function App(): JSX.Element {
   return (

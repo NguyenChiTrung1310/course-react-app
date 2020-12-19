@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
+import { useTheme } from '@material-ui/core/styles';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {
@@ -13,22 +18,43 @@ import {
   Typography,
   InputBase,
   Badge,
+  Drawer,
+  List,
+  Divider,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
 } from '@material-ui/core';
 
-import useStyles from './useStyles';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
-
 import HideOnScroll from './HideOnScroll';
+
+import useStyles from './useStyles';
 import './index.scss';
 
-function AppMenu(props: any) {
+interface PropsAppMenu {
+  children: React.ReactElement | any;
+}
+
+export default function AppMenu(props: PropsAppMenu) {
+  const { children } = props;
   const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
   const menuId = 'search-menu';
   const mobileMenuId = 'search-menu-mobile';
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
   const handleProfileMenuOpen = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -48,15 +74,21 @@ function AppMenu(props: any) {
   };
 
   return (
-    <div className={classes.grow}>
+    <div className={classes.root}>
       <HideOnScroll {...props}>
-        <AppBar className={classes.appBar}>
+        <AppBar
+          position='fixed'
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
           <Toolbar>
             <IconButton
-              edge='start'
-              className={classes.menuButton}
               color='inherit'
               aria-label='open drawer'
+              onClick={handleDrawerOpen}
+              edge='start'
+              className={clsx(classes.menuButton, open && classes.hide)}
             >
               <MenuIcon />
             </IconButton>
@@ -76,7 +108,7 @@ function AppMenu(props: any) {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </div>
-            <div className={classes.grow} />
+            <div className={classes.root} />
             <div className={classes.sectionDesktop}>
               <IconButton aria-label='show 4 new mails' color='inherit'>
                 <Badge badgeContent={4}>
@@ -129,8 +161,55 @@ function AppMenu(props: any) {
         />
       </HideOnScroll>
       <Toolbar />
+      <Drawer
+        className={classes.drawer}
+        variant='persistent'
+        anchor='left'
+        open={open}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'ltr' ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      <main
+        className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}
+      >
+        <div className={classes.drawerHeader} />
+        {children}
+      </main>
     </div>
   );
 }
-
-export default AppMenu;

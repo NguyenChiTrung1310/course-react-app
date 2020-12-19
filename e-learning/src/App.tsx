@@ -9,8 +9,9 @@ function App() {
     <div className='App'>
       <CssBaseline />
 
-      <AppMenu />
-      <HomePage />
+      <AppMenu>
+        <HomePage />
+      </AppMenu>
     </div>
   );
 }

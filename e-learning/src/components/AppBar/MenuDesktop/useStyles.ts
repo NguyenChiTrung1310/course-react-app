@@ -17,8 +17,6 @@ string> = makeStyles((theme: Theme) =>
     },
     menuItem: {
       display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
     },
     linkItem: {
       paddingTop: '5px !important',

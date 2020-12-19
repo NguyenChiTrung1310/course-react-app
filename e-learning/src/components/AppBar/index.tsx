@@ -160,11 +160,11 @@ export default function HideAppBar(props: Props) {
           </Toolbar>
         </AppBar>
       </HideOnScroll>
-      <Toolbar />
+      {/* <Toolbar /> */}
       <MenuMobile
         mobileMenuId={mobileMenuId}
         mobileMoreAnchorEl={mobileMoreAnchorEl}
-        handleMobileMenuClose={handleProfileMenuOpen}
+        handleMobileMenuClose={handleMobileMenuClose}
         handleProfileMenuOpen={handleProfileMenuOpen}
       />
       <MenuDesktop

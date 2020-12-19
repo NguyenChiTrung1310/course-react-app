@@ -1,8 +1,0 @@
-/lambda/
-/scripts
-/config
-.history
-src/reportWebVitals.ts
-**/*.js
-node_modules
-build

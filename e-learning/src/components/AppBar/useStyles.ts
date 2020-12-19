@@ -43,7 +43,7 @@ const useStyles: () => Record<
       marginLeft: theme.spacing(3),
       width: 'auto',
     },
-    border: '1px solid #f50357'
+    border: '1px solid #fff'
   },
   searchIcon: {
     padding: theme.spacing(0, 2),

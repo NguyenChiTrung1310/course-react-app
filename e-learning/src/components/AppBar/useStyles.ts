@@ -17,8 +17,11 @@ const useStyles: () => Record<
     flexGrow: 1,
   },
   appBar: {
-    background: 'transparent',
-    color: 'black'
+    background: 'black',
+    color: 'white'
+  },
+  '& .MuiBadge-colorPrimary': {
+    backgroundColor: '#f50357 !important'
   },
   menuButton: {
     marginRight: theme.spacing(2),

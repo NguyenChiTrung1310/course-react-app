@@ -7,8 +7,6 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {
-  Slide,
-  useScrollTrigger,
   AppBar,
   Toolbar,
   IconButton,
@@ -21,21 +19,8 @@ import useStyles from './useStyles';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 
-interface Props {
-  window?: () => Window;
-  children: React.ReactElement;
-}
-
-function HideOnScroll(props: Props): JSX.Element {
-  const { children, window } = props;
-  const trigger = useScrollTrigger({ target: window ? window() : undefined });
-
-  return (
-    <Slide appear={false} direction='down' in={!trigger}>
-      <div>{children}</div>
-    </Slide>
-  );
-}
+import HideOnScroll from './HideOnScroll';
+import './index.scss';
 
 function AppMenu(props: any) {
   const classes = useStyles();
@@ -65,7 +50,7 @@ function AppMenu(props: any) {
   return (
     <div className={classes.grow}>
       <HideOnScroll {...props}>
-        <AppBar position='static' className={classes.appBar}>
+        <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton
               edge='start'
@@ -94,7 +79,7 @@ function AppMenu(props: any) {
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <IconButton aria-label='show 4 new mails' color='inherit'>
-                <Badge badgeContent={4} color='secondary'>
+                <Badge badgeContent={4}>
                   <MailIcon />
                 </Badge>
               </IconButton>
@@ -102,7 +87,7 @@ function AppMenu(props: any) {
                 aria-label='show 17 new notifications'
                 color='inherit'
               >
-                <Badge badgeContent={17} color='secondary'>
+                <Badge badgeContent={17}>
                   <NotificationsIcon />
                 </Badge>
               </IconButton>

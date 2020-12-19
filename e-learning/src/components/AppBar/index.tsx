@@ -24,20 +24,33 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Slide,
+  useScrollTrigger,
 } from '@material-ui/core';
 
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
-import HideOnScroll from './HideOnScroll';
 
 import useStyles from './useStyles';
 import './index.scss';
 
-interface PropsAppMenu {
+interface Props {
+  window?: () => Window;
   children: React.ReactElement | any;
 }
 
-export default function AppMenu(props: PropsAppMenu) {
+function HideOnScroll(props: Props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({ target: window ? window() : undefined });
+
+  return (
+    <Slide appear={false} direction='down' in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
+export default function HideAppBar(props: Props) {
   const { children } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -77,7 +90,6 @@ export default function AppMenu(props: PropsAppMenu) {
     <div className={classes.root}>
       <HideOnScroll {...props}>
         <AppBar
-          position='fixed'
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
           })}
@@ -147,20 +159,19 @@ export default function AppMenu(props: PropsAppMenu) {
             </div>
           </Toolbar>
         </AppBar>
-
-        <MenuMobile
-          mobileMenuId={mobileMenuId}
-          mobileMoreAnchorEl={mobileMoreAnchorEl}
-          handleMobileMenuClose={handleProfileMenuOpen}
-          handleProfileMenuOpen={handleProfileMenuOpen}
-        />
-        <MenuDesktop
-          menuId={menuId}
-          anchorEl={anchorEl}
-          handleMenuClose={handleMenuClose}
-        />
       </HideOnScroll>
       <Toolbar />
+      <MenuMobile
+        mobileMenuId={mobileMenuId}
+        mobileMoreAnchorEl={mobileMoreAnchorEl}
+        handleMobileMenuClose={handleProfileMenuOpen}
+        handleProfileMenuOpen={handleProfileMenuOpen}
+      />
+      <MenuDesktop
+        menuId={menuId}
+        anchorEl={anchorEl}
+        handleMenuClose={handleMenuClose}
+      />
       <Drawer
         className={classes.drawer}
         variant='persistent'

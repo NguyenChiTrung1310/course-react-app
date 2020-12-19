@@ -20,9 +20,6 @@ const useStyles: () => Record<
     background: 'black',
     color: 'white'
   },
-  '& .MuiBadge-colorPrimary': {
-    backgroundColor: '#f50357 !important'
-  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -46,6 +43,7 @@ const useStyles: () => Record<
       marginLeft: theme.spacing(3),
       width: 'auto',
     },
+    border: '1px solid #f50357'
   },
   searchIcon: {
     padding: theme.spacing(0, 2),

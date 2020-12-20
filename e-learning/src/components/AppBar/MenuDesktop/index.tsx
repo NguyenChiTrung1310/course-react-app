@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Menu, MenuItem, Typography } from '@material-ui/core';
 import useStyles from './useStyles';
 
-import RegisterIcon from '../../../assets/signup.svg';
+import RegisterIcon from '../../../assets/registration.svg';
 import LoginIcon from '../../../assets/signin.svg';
 
 type MenuProps = {

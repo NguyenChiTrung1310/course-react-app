@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { Menu, MenuItem, Typography } from '@material-ui/core';
-import PersonIcon from '@material-ui/icons/Person';
-import OndemandVideoRoundedIcon from '@material-ui/icons/OndemandVideoRounded';
 import useStyles from './useStyles';
+
+import RegisterIcon from '../../../assets/signup.svg';
+import LoginIcon from '../../../assets/signin.svg';
 
 type MenuProps = {
   menuId: string;
@@ -30,15 +31,15 @@ const MenuDesktop: FunctionComponent<MenuProps> = ({
       className={classes.menu}
     >
       <MenuItem onClick={handleMenuClose} className={classes.menuItem}>
-        <PersonIcon className={classes.iconItem} />
+        <img src={LoginIcon} alt='register' className={classes.iconItem} />
         <Typography component='span' className={classes.linkItem}>
-          Profile
+          Login
         </Typography>
       </MenuItem>
       <MenuItem onClick={handleMenuClose} className={classes.menuItem}>
-        <OndemandVideoRoundedIcon className={classes.iconItem} />
+        <img src={RegisterIcon} alt='register' className={classes.iconItem} />
         <Typography component='span' className={classes.linkItem}>
-          My courses
+          Register
         </Typography>
       </MenuItem>
     </Menu>

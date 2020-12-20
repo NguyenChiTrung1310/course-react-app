@@ -9,5 +9,10 @@
         background-color: $red !important;
         color: $white;
         transition: all .2s ease-in-out !important;
+
+        img{
+            filter: invert(1) !important;
+            transition: all .2s ease-in-out !important;
+        }
     }
 }

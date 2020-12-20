@@ -26,7 +26,7 @@ export default function RegisterPage() {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component='h1' variant='h5'>
+          <Typography component='h1' variant='h5' className={classes.title}>
             Register
           </Typography>
           <Grid item xs={12} sm={8} md={6} className={classes.formRegistration}>
@@ -45,6 +45,7 @@ export default function RegisterPage() {
                 name='email'
                 autoComplete='email'
                 autoFocus
+                className={classes.field}
               />
               <TextField
                 variant='outlined'
@@ -56,29 +57,21 @@ export default function RegisterPage() {
                 type='password'
                 id='password'
                 autoComplete='current-password'
-              />
-              <FormControlLabel
-                control={<Checkbox value='remember' color='primary' />}
-                label='Remember me'
+                className={classes.field}
               />
               <Button
                 type='submit'
                 fullWidth
                 variant='contained'
-                color='primary'
+                // color='primary'
                 className={classes.submit}
               >
-                Sign In
+                Sign up
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href='#' variant='body2'>
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item>
-                  <Link href='#' variant='body2'>
-                    {"Don't have an account? Sign Up"}
+                  <Link href='#' variant='body2' className={classes.noteText}>
+                    {'Have an account? Sign In'}
                   </Link>
                 </Grid>
               </Grid>

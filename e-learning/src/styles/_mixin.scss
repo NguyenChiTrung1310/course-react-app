@@ -1,0 +1,23 @@
+@mixin MediaQuery($type) {
+  @if $type== $xs {
+    @media screen and (max-width: $xs) {
+      @content;
+    }
+  } @else if $if == $sm {
+    @media screen and (max-width: $sm) {
+      @media screen and (max-width: $sm) {
+        @content;
+      }
+    }
+  } @else {
+    @media screen and (max-width: $lg) {
+      @content;
+    }
+  }
+}
+
+@mixin text($color, $fs, $fw) {
+  color: $color;
+  font-size: $fs;
+  font-weight: $fw;
+}

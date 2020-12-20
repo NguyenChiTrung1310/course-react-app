@@ -59,13 +59,18 @@ const useStyles: () => Record<
     '&:hover .MuiInputLabel-outlined': {
       color: '#f50357',
     },
+
+    // TextField select
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+    },
   },
   noteText: {
       color: '#f50357'
   },
   title: {
       fontSize: '40px'
-  }
+  },
 }));
 
 export { useStyles as default };

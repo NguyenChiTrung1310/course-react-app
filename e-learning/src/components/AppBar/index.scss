@@ -1,0 +1,13 @@
+@import '../../styles/styles.scss';
+
+.MuiBadge-anchorOriginTopRightRectangle{
+    background-color: $red !important
+}
+
+.MuiButtonBase-root{
+    &:hover {
+        background-color: $red !important;
+        color: $white;
+        transition: all .2s ease-in-out !important;
+    }
+}

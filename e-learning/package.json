@@ -50,6 +50,8 @@
     ]
   },
   "devDependencies": {
-    "@types/material-ui": "^0.21.8"
+    "@types/material-ui": "^0.21.8",
+    "@types/react-redux": "^7.1.12",
+    "@types/react-router-dom": "^5.1.6"
   }
 }

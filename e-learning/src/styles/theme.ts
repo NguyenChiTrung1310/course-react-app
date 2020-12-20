@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { red, blue, blueGrey, yellow, green } from '@material-ui/core/colors';
 const white = '#FFF';
 const black = '#000';

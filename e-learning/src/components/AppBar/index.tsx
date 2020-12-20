@@ -6,11 +6,16 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 import MailIcon from '@material-ui/icons/Mail';
+import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import PersonIcon from '@material-ui/icons/Person';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import VideoLibraryRoundedIcon from '@material-ui/icons/VideoLibraryRounded';
+import NotInterestedRoundedIcon from '@material-ui/icons/NotInterestedRounded';
 import {
   AppBar,
   Toolbar,
@@ -57,6 +62,36 @@ export default function HideAppBar(props: Props) {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+
+  const [firstMenu] = useState([
+    {
+      name: 'My Profile',
+      value: 'profile',
+    },
+    {
+      name: 'My Courses',
+      value: 'courses',
+    },
+    {
+      name: 'My Order',
+      value: 'order',
+    },
+  ]);
+
+  const [secondMenu] = useState([
+    {
+      name: 'All Email',
+      value: 'email',
+    },
+    {
+      name: 'Trash',
+      value: 'trash',
+    },
+    {
+      name: 'Spam',
+      value: 'spam',
+    },
+  ]);
 
   const menuId = 'search-menu';
   const mobileMenuId = 'search-menu-mobile';
@@ -160,7 +195,7 @@ export default function HideAppBar(props: Props) {
           </Toolbar>
         </AppBar>
       </HideOnScroll>
-      {/* <Toolbar /> */}
+
       <MenuMobile
         mobileMenuId={mobileMenuId}
         mobileMoreAnchorEl={mobileMoreAnchorEl}
@@ -192,23 +227,43 @@ export default function HideAppBar(props: Props) {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+          {firstMenu.map((text, index) => (
+            <ListItem button key={text.name}>
+              {index === 0 ? (
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+              ) : (
+                <ListItemIcon>
+                  {index === 1 ? (
+                    <VideoLibraryRoundedIcon />
+                  ) : (
+                    <ShoppingCartIcon />
+                  )}
+                </ListItemIcon>
+              )}
+              <ListItemText primary={text.name} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+          {secondMenu.map((text, index) => (
+            <ListItem button key={text.name}>
+              {index === 0 ? (
+                <ListItemIcon>
+                  <EmailRoundedIcon />
+                </ListItemIcon>
+              ) : (
+                <ListItemIcon>
+                  {index === 1 ? (
+                    <DeleteForeverRoundedIcon />
+                  ) : (
+                    <NotInterestedRoundedIcon />
+                  )}
+                </ListItemIcon>
+              )}
+              <ListItemText primary={text.name} />
             </ListItem>
           ))}
         </List>

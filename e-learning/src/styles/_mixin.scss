@@ -1,0 +1,11 @@
+@import './_variables';
+
+// Appbar: hover menu and drawer menu
+$bg: $red;
+$color: $white;
+$bg: 'all .2s ease-in-out';
+@mixin hoverAppBar($bg, $color, $trans) {
+    background-color: $bg !important;
+    color: $color;
+    transition: $bg !important;
+}

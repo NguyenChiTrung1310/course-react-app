@@ -3,25 +3,29 @@ import {
   Avatar,
   Button,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Box,
   Grid,
   Typography,
 } from '@material-ui/core';
+import clsx from 'clsx';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import CopyRight from './components/CopyRight';
 import useStyles from './useStyles';
+import './_register.scss';
 
 export default function RegisterPage() {
   const classes = useStyles();
 
   return (
-    <Grid container component='main' className={classes.root}>
-      <Grid item xs={12} sm={12} md={6} className={classes.image} />
-      <Grid item xs={12} sm={8} md={6}>
+    <Grid
+      container
+      component='main'
+      className={clsx(classes.root && 'register-page')}
+    >
+      <Grid item xs={12} sm={12} md={6} className='imageBanner' />
+      <Grid item xs={12} sm={12} md={6}>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />

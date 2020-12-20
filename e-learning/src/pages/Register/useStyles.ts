@@ -2,11 +2,9 @@ import {
   makeStyles,
   Theme,
 } from '@material-ui/core/styles';
-import RegisterBanner from '../../assets/register-page.svg';
 
 const useStyles: () => Record<
 'root' 
-| 'image' 
 | 'title' 
 | 'paper' 
 | 'formRegistration' 
@@ -21,12 +19,6 @@ const useStyles: () => Record<
     height: '90vh',
     display: 'flex',
     flexDirection: 'row',
-  },
-  image: {
-    backgroundImage: `url(${RegisterBanner})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-    backgroundPosition: 'center',
   },
   paper: {
     margin: theme.spacing(8, 4),

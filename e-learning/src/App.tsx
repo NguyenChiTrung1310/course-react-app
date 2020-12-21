@@ -1,19 +1,27 @@
 import React from 'react';
 import AppMenu from './components/AppBar';
 import HomePage from './pages/Home';
-import { CssBaseline } from '@material-ui/core';
-import './App.scss';
 import LoginPage from './pages/Login';
-
+import { CssBaseline } from '@material-ui/core';
+import { BrowserRouter,Route, Switch} from 'react-router-dom';  
+import './App.scss';
+import './constants';
+import { LOGIN_PAGE } from './constants';
 function App() {
-  return (
-    <div className='App'>
-      <CssBaseline />
+  return ( 
+      <BrowserRouter>  
       <AppMenu>
-        {/* <HomePage /> */}
-        <LoginPage/>
       </AppMenu>
-    </div>
+        {/* <HomePage /> */} 
+      <Switch>
+        {/* <LoginPage/> */}
+        <Route 
+          component={LoginPage}
+          exact
+          path={LOGIN_PAGE}
+         />
+      </Switch>
+      </BrowserRouter> 
   );
 }
 

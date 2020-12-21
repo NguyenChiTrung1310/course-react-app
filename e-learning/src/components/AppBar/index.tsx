@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
-
+import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -104,9 +104,11 @@ export default function HideAppBar(props: Props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} variant='h6' noWrap>
+           <Link to="/">
+           <Typography className={classes.title} variant='h6' noWrap>
               Courses E-learning
             </Typography>
+           </Link>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />

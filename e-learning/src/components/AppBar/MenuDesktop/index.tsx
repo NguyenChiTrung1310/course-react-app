@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, MenuItem, Typography } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
 import OndemandVideoRoundedIcon from '@material-ui/icons/OndemandVideoRounded';
 import useStyles from './useStyles';
-
+import {LOGIN_PAGE} from '../../../constants'
 type MenuProps = {
   menuId: string;
   anchorEl: any;
@@ -29,16 +30,18 @@ const MenuDesktop: FunctionComponent<MenuProps> = ({
       onClose={handleMenuClose}
       className={classes.menu}
     >
-      <MenuItem onClick={handleMenuClose} className={classes.menuItem}>
+     <Link to={LOGIN_PAGE} style={{textDecoration: 'none', color: 'black'}}>
+     <MenuItem onClick={handleMenuClose} className={classes.menuItem}>
         <PersonIcon className={classes.iconItem} />
         <Typography component='span' className={classes.linkItem}>
-          Profile
+          Login
         </Typography>
       </MenuItem>
+     </Link>
       <MenuItem onClick={handleMenuClose} className={classes.menuItem}>
         <OndemandVideoRoundedIcon className={classes.iconItem} />
         <Typography component='span' className={classes.linkItem}>
-          My courses
+          Register
         </Typography>
       </MenuItem>
     </Menu>

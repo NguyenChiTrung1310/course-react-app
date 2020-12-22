@@ -4,17 +4,17 @@ import { Typography,
     Grid, 
     Container,
     Avatar,
-    Button,
-    CssBaseline,
+    Button, 
     TextField,
     FormControlLabel,
     Checkbox,
     Link,
     InputAdornment, 
  } from '@material-ui/core';
+import clsx from 'clsx';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'; 
 import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined'; 
-import {useStyles} from './useStyles';
+import useStyles from './useStyles';
 import './_loginpage.scss'
  
  function LoginPage() {
@@ -39,8 +39,13 @@ import './_loginpage.scss'
   }
 
     return ( 
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+    <Grid 
+    container
+    component='main'
+    className={clsx(classes.root && 'login-page')}
+    > 
+      <Grid item xs={12} sm={12} md={6} className='imageBanner' />
+      <Grid item xs={12} sm={12} md={6}>
       <div className={classes.paper}> 
         <Typography component="h1" variant="h5">
          Log in your account!
@@ -123,7 +128,8 @@ import './_loginpage.scss'
       </div>
       <Box mt={8}> 
       </Box>
-    </Container> 
+      </Grid>
+    </Grid> 
     )
 }
  

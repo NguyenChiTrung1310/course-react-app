@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Typography, 
     Box, 
     Grid, 
@@ -18,7 +18,26 @@ import {useStyles} from './useStyles';
 import './_loginpage.scss'
  
  function LoginPage() {
-    const classes = useStyles();
+    
+  const classes = useStyles();
+  const [field, setfield]= useState({
+    taiKhoan: '',
+    matKhau: '',
+  })
+
+  const handleChange= (e: any)=>{
+    setfield({
+      ...field,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit= (e: any)=>{
+    e.preventDefault(); 
+   console.log("taikhoan",field.taiKhoan)
+   console.log("matKhau",field.matKhau)
+  }
+
     return ( 
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -26,18 +45,23 @@ import './_loginpage.scss'
         <Typography component="h1" variant="h5">
          Log in your account!
         </Typography> 
-        <form className={classes.form} noValidate>
+        <form 
+        className={classes.form} 
+        noValidate 
+        onSubmit={handleSubmit}
+        >
           <TextField
            className={classes.field}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
+            id="taiKhoan"
             placeholder="Your Account"
-            name="email"
-            autoComplete="email"
+            name="taiKhoan"
+            autoComplete="taiKhoan"
             autoFocus
+            onChange={(event)=> handleChange(event)}
             InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -54,11 +78,12 @@ import './_loginpage.scss'
             margin="normal"
             required
             fullWidth
-            name="password"
+            name="matKhau"
             placeholder="Password"
             type="password"
-            id="password"
-            autoComplete="current-password"
+            id="matKhau"
+            autoComplete="matKhau"
+            onChange={(event)=> handleChange(event)}
             InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

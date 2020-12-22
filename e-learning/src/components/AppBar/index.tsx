@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import {HOME_PAGE} from '../../constants'
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -104,7 +105,7 @@ export default function HideAppBar(props: Props) {
             >
               <MenuIcon />
             </IconButton>
-           <Link to="/">
+           <Link to={HOME_PAGE}  style={{textDecoration: 'none', color: 'white'}}>
            <Typography className={classes.title} variant='h6' noWrap>
               Courses E-learning
             </Typography>

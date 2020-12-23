@@ -7,7 +7,7 @@
   background-size: contain;
 }
 
-@media (max-width: 768px) {
+@include MediaQuery($sm) {
   .login-page {
     flex-direction: column;
     align-items: center;

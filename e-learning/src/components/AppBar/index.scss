@@ -1,4 +1,4 @@
-@import '../../styles/styles.scss';
+@import '../../styles/styles';
 
 .MuiBadge-anchorOriginTopRightRectangle{
     background-color: $red !important
@@ -6,8 +6,15 @@
 
 .MuiButtonBase-root{
     &:hover {
-        background-color: $red !important;
-        color: $white;
-        transition: all .2s ease-in-out !important;
+        @include hoverAppBar($red, $white, 'all .2s ease-in-out');
+
+        img{
+            filter: invert(1) !important;
+            transition: all .2s ease-in-out !important;
+        }
+
+        .MuiListItemIcon-root .MuiSvgIcon-root{
+            @include hoverAppBar('none', $white, 'all .2s ease-in-out');
+        }
     }
 }

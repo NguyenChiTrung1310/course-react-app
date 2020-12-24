@@ -1,0 +1,16 @@
+@import '../../styles/styles';
+
+
+.imageBanner{
+    background-image: url('../../assets/register-page.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+@media (max-width: 768px) {
+  .register-page{
+    flex-direction: column;
+    align-items: center;
+  }
+}

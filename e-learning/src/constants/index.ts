@@ -1,4 +1,5 @@
 /* =============* LINKS ROUTER *============= */
 const HOME_PAGE = '/';
 const LOGIN_PAGE = '/login';
-export {HOME_PAGE, LOGIN_PAGE}
+const REGISTER_PAGE='/register';
+export {HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE}

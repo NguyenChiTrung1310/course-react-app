@@ -44,12 +44,13 @@ import './_loginpage.scss'
     component='main'
     className={clsx(classes.root && 'login-page')}
     > 
-      <Grid item xs={12} sm={12} md={6} className='imageBanner' />
+      <Grid item xs={12} sm={12} md={6} className='imageBannerLogin' />
       <Grid item xs={12} sm={12} md={6}>
       <div className={classes.paper}> 
         <Typography component="h1" variant="h5">
          Log in your account!
         </Typography> 
+        <Grid item xs={12} sm={8} md={6}>
         <form 
         className={classes.form} 
         noValidate 
@@ -125,7 +126,8 @@ import './_loginpage.scss'
             </Grid>
           </Grid>
         </form>
-      </div>
+        </Grid>     
+        </div>
       <Box mt={8}> 
       </Box>
       </Grid>

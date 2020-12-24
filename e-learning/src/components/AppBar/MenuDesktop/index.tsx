@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, MenuItem, Typography } from '@material-ui/core';
-import PersonIcon from '@material-ui/icons/Person';
-import OndemandVideoRoundedIcon from '@material-ui/icons/OndemandVideoRounded';
 import useStyles from './useStyles';
-import {LOGIN_PAGE} from '../../../constants'
+import {LOGIN_PAGE, REGISTER_PAGE} from '../../../constants'
+import RegisterIcon from '../../../assets/registration.svg';
+import LoginIcon from '../../../assets/signin.svg';
+import PersonIcon from '@material-ui/icons/Person';
 type MenuProps = {
   menuId: string;
   anchorEl: any;
@@ -33,17 +34,21 @@ const MenuDesktop: FunctionComponent<MenuProps> = ({
      <Link to={LOGIN_PAGE} style={{textDecoration: 'none', color: 'black'}}>
      <MenuItem onClick={handleMenuClose} className={classes.menuItem}>
         <PersonIcon className={classes.iconItem} />
+      {/* <MenuItem onClick={handleMenuClose} className={classes.menuItem}> */}
+        <img src={LoginIcon} alt='register' className={classes.iconItem} />
         <Typography component='span' className={classes.linkItem}>
           Login
         </Typography>
       </MenuItem>
      </Link>
+      <Link to={REGISTER_PAGE} style={{textDecoration: 'none', color: 'black'}}>
       <MenuItem onClick={handleMenuClose} className={classes.menuItem}>
-        <OndemandVideoRoundedIcon className={classes.iconItem} />
+        <img src={RegisterIcon} alt='register' className={classes.iconItem} />
         <Typography component='span' className={classes.linkItem}>
           Register
         </Typography>
       </MenuItem>
+      </Link>
     </Menu>
   );
 };

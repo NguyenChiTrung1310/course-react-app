@@ -53,7 +53,7 @@ const MenuMobile: FunctionComponent<MenuProps> = ({
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>User</p>
       </MenuItem>
     </Menu>
   );

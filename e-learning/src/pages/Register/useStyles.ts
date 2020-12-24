@@ -4,11 +4,14 @@ import {
 } from '@material-ui/core/styles';
 
 const useStyles: () => Record<
-'root'  
-| 'paper'  
+'root' 
+| 'title' 
+| 'paper' 
+| 'formRegistration' 
 | 'avatar' 
 | 'form' 
-| 'field'  
+| 'field' 
+| 'noteText' 
 | 'submit', string>
  = makeStyles((theme: Theme) => ({
   root: {
@@ -22,7 +25,8 @@ const useStyles: () => Record<
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  }, 
+  },
+  formRegistration: {},
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -60,7 +64,13 @@ const useStyles: () => Record<
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
     },
-  } 
+  },
+  noteText: {
+      color: '#f50357'
+  },
+  title: {
+      fontSize: '40px'
+  },
 }));
 
 export { useStyles as default };

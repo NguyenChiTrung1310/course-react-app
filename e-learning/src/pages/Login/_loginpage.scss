@@ -13,3 +13,9 @@
     align-items: center;
   }
 }
+
+.MuiButtonBase-root.MuiIconButton-root.PrivateSwitchBase-root-32.MuiCheckbox-root.MuiCheckbox-colorSecondary.PrivateSwitchBase-checked-33.Mui-checked.MuiIconButton-colorSecondary{
+  &:hover{
+    background-color: transparent !important;
+  }
+}

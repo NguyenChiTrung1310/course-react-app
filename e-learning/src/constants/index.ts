@@ -11,3 +11,8 @@ const AUTH_REDUCER = {
 };
 
 export {AUTH_REDUCER}
+
+/* =============* LOCALSTORAGE KEY CONSTANTS *============= */
+const LOCAL_STORAGE_TOKEN_KEY= '@token';
+
+export {LOCAL_STORAGE_TOKEN_KEY}

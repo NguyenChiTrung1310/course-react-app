@@ -4,9 +4,20 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { SnackbarProvider } from 'notistack';
+
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <SnackbarProvider
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      maxSnack={3}
+      className='snack-bar'
+    >
+      <App />
+    </SnackbarProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );

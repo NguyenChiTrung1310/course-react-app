@@ -13,11 +13,15 @@ import clsx from 'clsx';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import CopyRight from './components/CopyRight';
+import HandleRegisterForm from '../../utils/Validation';
+import { useSnackbar } from 'notistack';
+
 import useStyles from './useStyles';
 import './_register.scss';
 
 export default function RegisterPage() {
   const classes = useStyles();
+  const { enqueueSnackbar } = useSnackbar();
   const [group, setGroup] = useState('');
   const [checkField, setCheckField] = useState(true);
   const [field, setField] = useState({
@@ -103,7 +107,6 @@ export default function RegisterPage() {
   useEffect(() => {
     const { taiKhoan, matKhau, hoTen, soDt, email, maNhom } = field;
     let check = true;
-    console.log('fields: ', field);
 
     if (
       taiKhoan.trim() !== '' &&
@@ -135,9 +138,14 @@ export default function RegisterPage() {
     });
   };
 
-  const handleSubmit = () => {
-    // event.preventDefault();
-    console.log('Fields: ', field);
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const validate = HandleRegisterForm(field, enqueueSnackbar);
+    if (validate === 1) {
+      console.log('Fields: ', field);
+    } else {
+      console.log('ERROR !');
+    }
   };
 
   return (

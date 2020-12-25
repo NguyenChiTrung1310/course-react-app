@@ -4,15 +4,24 @@ import {AUTH_REDUCER} from '../../constants';
 const registerSlice = createSlice({
     name: AUTH_REDUCER.REGISTER,
     initialState:{
-        registerResponse: {}
+        registerResponse: {
+            status: 0,
+            response: {}
+        }
     },
     reducers:{
         // contains reducer function name
         registerSuccess: (state, {payload}) => {
-            state.registerResponse = payload;
+            state.registerResponse = {
+                status: payload.status,
+                response: payload.data,
+            };
         },
         registerFail: (state, {payload}) => {
-            state.registerResponse = payload;
+            state.registerResponse = {
+                status: payload.status,
+                response: payload.data,
+            };
         }
     }
 });

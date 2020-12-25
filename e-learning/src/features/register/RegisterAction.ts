@@ -8,13 +8,12 @@ export const registerAction = (
     successCallback = () => {},
     failureCallback = (msg: string) => {},
     ) => async (dispatch: Dispatch) => {
-
     try {
         const response = await registerService(dataRegister);
         console.log('response: ', response);
         const {data = {}, status = ''} = response;
         if(status === 200) {
-            dispatch(registerSuccess(data));  
+            dispatch(registerSuccess({data, status}));  
             successCallback();
         }
     }catch (error){

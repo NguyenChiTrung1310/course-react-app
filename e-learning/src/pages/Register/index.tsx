@@ -3,23 +3,24 @@ import {
   Avatar,
   Button,
   TextField,
-  Link,
   Box,
   Grid,
   Typography,
   MenuItem,
 } from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import clsx from 'clsx';
 
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import CopyRight from './components/CopyRight';
 import HandleRegisterForm from '../../utils/Validation';
 import { useSnackbar } from 'notistack';
+import { Link, useHistory } from 'react-router-dom';
 import { registerAction } from '../../features/register/RegisterAction';
 
 import useStyles from './useStyles';
 import './_register.scss';
 import { useDispatch } from 'react-redux';
+import { LOGIN_PAGE } from '../../constants';
 
 type FieldStates = {
   taiKhoan: string;
@@ -34,6 +35,8 @@ type FieldStates = {
 export default function RegisterPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const { enqueueSnackbar } = useSnackbar();
   const [group, setGroup] = useState('');
   const [checkField, setCheckField] = useState(true);
@@ -163,10 +166,12 @@ export default function RegisterPage() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const dataRegister = field;
+
     const successCallback = () => {
       enqueueSnackbar('Register Success !!!', {
         variant: 'success',
       });
+      history.push(LOGIN_PAGE);
     };
 
     const failureCallback = (msg: string) => {
@@ -248,7 +253,7 @@ export default function RegisterPage() {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link href='#' variant='body2' className={classes.noteText}>
+                  <Link to={LOGIN_PAGE} className={classes.noteText}>
                     {'Have an account? Sign In'}
                   </Link>
                 </Grid>

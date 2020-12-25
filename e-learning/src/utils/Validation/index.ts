@@ -48,7 +48,7 @@ function HandleRegisterForm (field: any, enqueueSnackbar: any){
     validateEmail(field['email']) === true &&
     validatePhoneNumber(field['soDt']) === true
   ) {
-    return notification('Registration success !', status.SUCCESS);
+    return 1;
   } else {
     //Email
     if (!validateEmail(field['email'])) {

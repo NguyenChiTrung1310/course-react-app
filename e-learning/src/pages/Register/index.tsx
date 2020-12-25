@@ -15,16 +15,28 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import CopyRight from './components/CopyRight';
 import HandleRegisterForm from '../../utils/Validation';
 import { useSnackbar } from 'notistack';
+import { registerAction } from '../../features/register/RegisterAction';
 
 import useStyles from './useStyles';
 import './_register.scss';
+import { useDispatch } from 'react-redux';
+
+type FieldStates = {
+  taiKhoan: string;
+  matKhau: string;
+  hoTen: string;
+  soDt: string;
+  email: string;
+  maNhom: string;
+};
 
 export default function RegisterPage() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const [group, setGroup] = useState('');
   const [checkField, setCheckField] = useState(true);
-  const [field, setField] = useState({
+  const [field, setField] = useState<FieldStates>({
     taiKhoan: '',
     matKhau: '',
     hoTen: '',
@@ -140,11 +152,22 @@ export default function RegisterPage() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    const validate = HandleRegisterForm(field, enqueueSnackbar);
+    const dataRegister = field;
+    const successCallback = () => {
+      enqueueSnackbar('Register Success !!!', {
+        variant: 'success',
+      });
+    };
+
+    const failureCallback = (msg: string) => {
+      enqueueSnackbar(msg, {
+        variant: 'error',
+      });
+    };
+
+    const validate = HandleRegisterForm(dataRegister, enqueueSnackbar);
     if (validate === 1) {
-      console.log('Fields: ', field);
-    } else {
-      console.log('ERROR !');
+      dispatch(registerAction(dataRegister, successCallback, failureCallback));
     }
   };
 

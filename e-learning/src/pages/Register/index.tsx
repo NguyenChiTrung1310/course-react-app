@@ -28,6 +28,7 @@ type FieldStates = {
   soDt: string;
   email: string;
   maNhom: string;
+  maLoaiNguoiDung: string;
 };
 
 export default function RegisterPage() {
@@ -43,7 +44,7 @@ export default function RegisterPage() {
     soDt: '',
     email: '',
     maNhom: '',
-    // maLoaiNguoiDung: 'KhachHang',
+    maLoaiNguoiDung: 'HV',
   });
 
   const groups = [
@@ -117,7 +118,15 @@ export default function RegisterPage() {
   ];
 
   useEffect(() => {
-    const { taiKhoan, matKhau, hoTen, soDt, email, maNhom } = field;
+    const {
+      taiKhoan,
+      matKhau,
+      hoTen,
+      soDt,
+      email,
+      maNhom,
+      maLoaiNguoiDung,
+    } = field;
     let check = true;
 
     if (
@@ -126,6 +135,7 @@ export default function RegisterPage() {
       hoTen.trim() !== '' &&
       soDt.trim() !== '' &&
       email.trim() !== '' &&
+      maLoaiNguoiDung.trim() !== '' &&
       maNhom !== ''
     ) {
       check = false;

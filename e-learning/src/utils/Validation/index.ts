@@ -19,7 +19,6 @@ function HandleRegisterForm (field: any, enqueueSnackbar: any){
     email: '',
     soDt: '',
     maNhom: '',
-    maLoaiNguoiDung: '',
     hoTen: '',
   };
 
@@ -44,7 +43,6 @@ function HandleRegisterForm (field: any, enqueueSnackbar: any){
     field['matKhau'] !== '' &&
     field['soDt'] !== '' &&
     field['maNhom'] !== '' &&
-    // field['maLoaiNguoiDung'] !== '' &&
     validateEmail(field['email']) === true &&
     validatePhoneNumber(field['soDt']) === true
   ) {

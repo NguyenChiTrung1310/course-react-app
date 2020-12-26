@@ -46,14 +46,15 @@ const useStyles: () => Record<
    cardList: {
        display: 'flex',
        flexDirection: 'row',
-       justifyContent: 'space-between',
+       justifyContent: 'space-around',
    },
    card: {
        maxWidth: 700,
+       width: 500,
        border: '1px solid #f50357',
        display: 'flex',
        borderRadius: '30px',
-       boxShadow: '5px 8px 20px -8px rgba(82,82,82,1) !important'
+      //  boxShadow: '5px 8px 20px -8px rgba(82,82,82,1) !important'
    },
    cardContent:{
    },

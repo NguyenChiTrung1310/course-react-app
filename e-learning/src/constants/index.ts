@@ -10,7 +10,11 @@ const AUTH_REDUCER = {
     REGISTER: 'register',
 };
 
-export {AUTH_REDUCER}
+const COURSE_REDUCER = {
+    COURSE_LIST: 'course_list',
+}
+
+export {AUTH_REDUCER, COURSE_REDUCER}
 
 /* =============* LOCALSTORAGE KEY CONSTANTS *============= */
 const LOCAL_STORAGE_TOKEN_KEY= '@token';

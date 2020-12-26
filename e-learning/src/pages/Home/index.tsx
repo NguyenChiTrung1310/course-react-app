@@ -14,6 +14,7 @@ import AccessAlarmOutlinedIcon from '@material-ui/icons/AccessAlarmOutlined';
 
 import useStyles from './useStyles';
 import './_homepage.scss';
+import CourseList from './components/CourseList';
 
 function HomePage() {
   const classes = useStyles();
@@ -66,42 +67,43 @@ function HomePage() {
           </Grid>
         </Container>
       </Grid>
-      <Container>
-        <Grid className={classes.cardList}>
-          {cardItem.map((item) => {
-            const { title, content, icon } = item;
-            return (
-              <Card className={classes.card} key={icon}>
-                <CardContent className={classes.cardContent}>
-                  <Typography
-                    className={classes.titleCard}
-                    color='textSecondary'
-                    gutterBottom
-                  >
-                    {title}
-                  </Typography>
-                  <Typography variant='body2' component='p'>
-                    {content}
-                  </Typography>
-                </CardContent>
-                <CardMedia className={classes.imgCard}>
-                  {icon === 1 ? (
-                    <VideoLibraryOutlinedIcon className={classes.iconCard} />
-                  ) : (
-                    <>
-                      {icon === 2 ? (
-                        <PeopleAltOutlinedIcon className={classes.iconCard} />
-                      ) : (
-                        <AccessAlarmOutlinedIcon className={classes.iconCard} />
-                      )}
-                    </>
-                  )}
-                </CardMedia>
-              </Card>
-            );
-          })}
-        </Grid>
-      </Container>
+      {/* <Container> */}
+      <Grid className={classes.cardList}>
+        {cardItem.map((item) => {
+          const { title, content, icon } = item;
+          return (
+            <Card className={classes.card} key={icon}>
+              <CardContent className={classes.cardContent}>
+                <Typography
+                  className={classes.titleCard}
+                  color='textSecondary'
+                  gutterBottom
+                >
+                  {title}
+                </Typography>
+                <Typography variant='body2' component='p'>
+                  {content}
+                </Typography>
+              </CardContent>
+              <CardMedia className={classes.imgCard}>
+                {icon === 1 ? (
+                  <VideoLibraryOutlinedIcon className={classes.iconCard} />
+                ) : (
+                  <>
+                    {icon === 2 ? (
+                      <PeopleAltOutlinedIcon className={classes.iconCard} />
+                    ) : (
+                      <AccessAlarmOutlinedIcon className={classes.iconCard} />
+                    )}
+                  </>
+                )}
+              </CardMedia>
+            </Card>
+          );
+        })}
+      </Grid>
+      {/* </Container> */}
+      <CourseList />
     </Grid>
   );
 }

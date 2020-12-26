@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import registerReducer from './features/register/RegisterSlice';
 
 const reducer = combineReducers({
-  // here we will be adding reducers
+  // [13] here we will be adding reducers
   register: registerReducer
 })
 const store = configureStore({

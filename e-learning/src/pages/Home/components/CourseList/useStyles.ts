@@ -3,17 +3,19 @@ import {
   Theme,
   createStyles
 } from '@material-ui/core/styles';
-import { red, blue } from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors';
 
 const useStyles: () => Record<
 'root'
 | 'titleCourse'
+| 'cardContainer'
 | 'listCard'
 | 'rootCard'
 | 'avatar'
 | 'media'
 | 'expandOpen'
 | 'expand'
+| 'actionCard'
 , string>
  = makeStyles((theme: Theme) => createStyles({
     root: {
@@ -26,11 +28,31 @@ const useStyles: () => Record<
         textAlign: 'center'
     },
     listCard: {
-        maxWidth: '90%'
+        display: 'grid',
+        gridTemplateColumns: 'auto auto auto auto',
+        gridRowGap: '50px',
+        gridColumnGap: '100px',
+    },
+    cardContainer:{
+        maxWidth: '100%',
     },
     rootCard: {
         maxWidth: 345,
-        boxShadow: '5px 8px 20px -8px rgba(82,82,82,1) !important'
+        width: 345,
+        height: 420,
+        overflow: 'scroll',
+        boxShadow: '5px 8px 20px -8px rgba(82,82,82,1) !important',
+        position: 'relative'
+    },
+    actionCard: {
+        position: 'absolute',
+        bottom: 0,
+        left: '50%',
+        transform: 'translate(-50%)',
+        display: 'flex',
+        width: '90%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     media: {
         height: 0,

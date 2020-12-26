@@ -10,7 +10,6 @@ export const registerAction = (
     ) => async (dispatch: Dispatch) => {
     try {
         const response = await registerService(payload); // [2] always named variable is "response"
-        console.log('response: ', response);
         const {data = {}, status = ''} = response; // [3] always destructure data,...
         if(status === 200) {
             dispatch(registerSuccess({data, status}));  // [4] dispatch data to reducer to store data

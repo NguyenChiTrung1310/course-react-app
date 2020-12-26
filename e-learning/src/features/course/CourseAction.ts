@@ -5,7 +5,6 @@ import { fetchCoursesFail, fetchCoursesSuccess } from './CourseSlice';
 export const fetchCourseList = () => async (dispatch: Dispatch) => {
     try {
         const response = await courseService();
-        console.log('response: ', response);
         const {data = {}, status = ''} = response; 
         if(status === 200) {
             dispatch(fetchCoursesSuccess({data, status}));  

@@ -105,7 +105,7 @@ function HomePage() {
         })}
       </Grid>
       {/* </Container> */}
-      {/* <CourseList /> */}
+      <CourseList />
     </Grid>
   );
 }

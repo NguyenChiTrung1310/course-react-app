@@ -8,14 +8,12 @@ import { red } from '@material-ui/core/colors';
 const useStyles: () => Record<
 'root'
 | 'titleCourse'
-| 'cardContainer'
 | 'listCard'
-| 'rootCard'
+| 'cardItem'
 | 'avatar'
 | 'media'
-| 'expandOpen'
-| 'expand'
 | 'actionCard'
+| 'moreCard'
 , string>
  = makeStyles((theme: Theme) => createStyles({
     root: {
@@ -28,19 +26,10 @@ const useStyles: () => Record<
         textAlign: 'center'
     },
     listCard: {
-        display: 'grid',
-        gridTemplateColumns: 'auto auto auto auto',
-        gridRowGap: '50px',
-        gridColumnGap: '100px',
+      flexGrow: 1
     },
-    cardContainer:{
-        maxWidth: '100%',
-    },
-    rootCard: {
-        maxWidth: 345,
-        width: 345,
-        height: 420,
-        overflow: 'scroll',
+    cardItem: {
+        height: 450,
         boxShadow: '5px 8px 20px -8px rgba(82,82,82,1) !important',
         position: 'relative'
     },
@@ -58,19 +47,14 @@ const useStyles: () => Record<
         height: 0,
         paddingTop: '56.25%', // 16:9
     },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
     avatar: {
         backgroundColor: red[500],
     },
+    moreCard: {
+        textDecoration: 'none',
+        color: '#6C63FF',
+        fontWeight: 600
+    }
 }));
 
 export { useStyles as default };

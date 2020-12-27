@@ -10,9 +10,9 @@
 
 @include MediaQuery ($sm){
   .home-page{
-    background-image: url('../../assets/banner.svg');
+    background-image: url('../../assets/onl-video.svg');
     background-position: right;
-  background-size: cover;
-  width: 100%;
+    background-size: cover;
+    width: 100%;
   }
 }

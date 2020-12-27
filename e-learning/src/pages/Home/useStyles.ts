@@ -50,6 +50,7 @@ const useStyles: () => Record<
       padding: theme.spacing(4,2),
       textAlign: 'left',
       display: 'flex',
+      justifyContent: 'center',
       boxShadow: '5px 8px 20px -8px rgba(82,82,82,1) !important'
    },
    cardContent:{

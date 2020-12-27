@@ -6,7 +6,6 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
-  Container,
   Grid,
   IconButton,
   Typography,
@@ -20,6 +19,7 @@ import imgContent from '../../../../assets/logo.png';
 import Loading from '../../../../components/Loading';
 import useStyles from './useStyles';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchCourseList } from '../../../../features/course/CourseAction';
 
 const CourseList = () => {
@@ -47,21 +47,22 @@ const CourseList = () => {
       >
         Our featured courses
       </Typography>
-      <Container maxWidth='lg' className={classes.cardContainer}>
-        {fetchCourseStatus ? (
-          <Grid className={classes.listCard}>
-            {courseList.map((item: any, index: number) => {
-              const {
-                tenKhoaHoc = 'ReactJs',
-                moTa = 'abc...',
-                hinhAnh = 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201811/online-3412473_1920_1.jpeg?tz.RfsTe_UTLHiDqxmpG7PY_nTIBjwF7',
-                ngayTao = '',
-                luotXem = '',
-                biDanh = '',
-              } = item;
+      {fetchCourseStatus ? (
+        <Grid className={classes.listCard} container spacing={3}>
+          {courseList.map((item: any) => {
+            const {
+              tenKhoaHoc = 'ReactJs',
+              maKhoaHoc = '',
+              moTa = 'abc...',
+              hinhAnh = 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201811/online-3412473_1920_1.jpeg?tz.RfsTe_UTLHiDqxmpG7PY_nTIBjwF7',
+              ngayTao = '',
+              luotXem = '',
+              biDanh = '',
+            } = item;
 
-              return (
-                <Card className={classes.rootCard} key={index}>
+            return (
+              <Grid item xs={12} sm={12} md={3}>
+                <Card className={classes.cardItem} key={maKhoaHoc}>
                   <CardHeader
                     avatar={
                       <Avatar aria-label='recipe' className={classes.avatar}>
@@ -76,19 +77,21 @@ const CourseList = () => {
                     title={tenKhoaHoc}
                     subheader={ngayTao}
                   />
-                  {hinhAnh.includes('.string') ? (
-                    <CardMedia
-                      className={classes.media}
-                      image={imgContent}
-                      title={biDanh}
-                    />
-                  ) : (
-                    <CardMedia
-                      className={classes.media}
-                      image={hinhAnh}
-                      title={biDanh}
-                    />
-                  )}
+                  <Link to={`#imgDetail ${maKhoaHoc}`}>
+                    {hinhAnh.includes('.string') ? (
+                      <CardMedia
+                        className={classes.media}
+                        image={imgContent}
+                        title={biDanh}
+                      />
+                    ) : (
+                      <CardMedia
+                        className={classes.media}
+                        image={hinhAnh}
+                        title={biDanh}
+                      />
+                    )}
+                  </Link>
                   <CardContent>
                     <Typography
                       variant='body2'
@@ -96,6 +99,15 @@ const CourseList = () => {
                       component='p'
                     >
                       {moTa.slice(0, 100)}
+                      <Typography
+                        variant='body2'
+                        color='textSecondary'
+                        component='span'
+                      >
+                        <Link to='#detail' className={classes.moreCard}>
+                          ...more
+                        </Link>
+                      </Typography>
                     </Typography>
                   </CardContent>
                   <CardActions disableSpacing className={classes.actionCard}>
@@ -127,13 +139,13 @@ const CourseList = () => {
                     </Grid>
                   </CardActions>
                 </Card>
-              );
-            })}
-          </Grid>
-        ) : (
-          <Loading />
-        )}
-      </Container>
+              </Grid>
+            );
+          })}
+        </Grid>
+      ) : (
+        <Loading />
+      )}
     </Grid>
   );
 };

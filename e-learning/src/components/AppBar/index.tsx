@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import {HOME_PAGE} from '../../constants'
+import { HOME_PAGE } from '../../constants';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 import MailIcon from '@material-ui/icons/Mail';
-import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
+import CategoryIcon from '@material-ui/icons/Category';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -17,6 +17,11 @@ import PersonIcon from '@material-ui/icons/Person';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import VideoLibraryRoundedIcon from '@material-ui/icons/VideoLibraryRounded';
 import NotInterestedRoundedIcon from '@material-ui/icons/NotInterestedRounded';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import StarBorder from '@material-ui/icons/StarBorder';
+import Collapse from '@material-ui/core/Collapse';
+
 import {
   AppBar,
   Toolbar,
@@ -61,6 +66,11 @@ export default function HideAppBar(props: Props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const [openListItem, setOpenListItem] = useState(true);
+
+  const handleClickListItem = () => {
+    setOpenListItem(!openListItem);
+  };
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -80,10 +90,6 @@ export default function HideAppBar(props: Props) {
   ]);
 
   const [secondMenu] = useState([
-    {
-      name: 'All Email',
-      value: 'email',
-    },
     {
       name: 'Trash',
       value: 'trash',
@@ -140,11 +146,14 @@ export default function HideAppBar(props: Props) {
             >
               <MenuIcon />
             </IconButton>
-           <Link to={HOME_PAGE}  style={{textDecoration: 'none', color: 'white'}}>
-           <Typography className={classes.title} variant='h6' noWrap>
-              Courses E-learning
-            </Typography>
-           </Link>
+            <Link
+              to={HOME_PAGE}
+              style={{ textDecoration: 'none', color: 'white' }}
+            >
+              <Typography className={classes.title} variant='h6' noWrap>
+                Courses E-learning
+              </Typography>
+            </Link>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -251,19 +260,32 @@ export default function HideAppBar(props: Props) {
         </List>
         <Divider />
         <List>
+          <ListItem button onClick={handleClickListItem}>
+            <ListItemIcon>
+              <CategoryIcon />
+            </ListItemIcon>
+            <ListItemText primary='Caterogy' />
+            {openListItem ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={openListItem} timeout='auto' unmountOnExit>
+            <List component='div' disablePadding>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary='Starred' />
+              </ListItem>
+            </List>
+          </Collapse>
           {secondMenu.map((text, index) => (
             <ListItem button key={text.name}>
               {index === 0 ? (
                 <ListItemIcon>
-                  <EmailRoundedIcon />
+                  <DeleteForeverRoundedIcon />
                 </ListItemIcon>
               ) : (
                 <ListItemIcon>
-                  {index === 1 ? (
-                    <DeleteForeverRoundedIcon />
-                  ) : (
-                    <NotInterestedRoundedIcon />
-                  )}
+                  <NotInterestedRoundedIcon />
                 </ListItemIcon>
               )}
               <ListItemText primary={text.name} />

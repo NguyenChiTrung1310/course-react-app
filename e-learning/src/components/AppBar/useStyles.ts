@@ -24,6 +24,7 @@ const useStyles: () => Record<
 |'sectionDesktop' 
 |'content' 
 |'contentShift' 
+|'nested' 
 |'sectionMobile',
 string> = makeStyles((theme: Theme) =>
   createStyles({
@@ -143,6 +144,9 @@ string> = makeStyles((theme: Theme) =>
       }),
       marginLeft: 0,
     },
+    nested: {
+      paddingLeft: theme.spacing(4),
+    }
   })
 );
 

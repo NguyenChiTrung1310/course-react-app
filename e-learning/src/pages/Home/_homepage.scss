@@ -7,3 +7,12 @@
   width: 100%;
   height: 100vh;
 }
+
+@include MediaQuery ($sm){
+  .home-page{
+    background-image: url('../../assets/banner.svg');
+    background-position: right;
+  background-size: cover;
+  width: 100%;
+  }
+}

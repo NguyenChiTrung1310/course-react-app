@@ -3,10 +3,10 @@ import {
   Typography,
   Grid,
   Container,
-  Card,
   CardMedia,
   CardContent,
   Button,
+  Paper,
 } from '@material-ui/core';
 import VideoLibraryOutlinedIcon from '@material-ui/icons/VideoLibraryOutlined';
 import PeopleAltOutlinedIcon from '@material-ui/icons/PeopleAltOutlined';
@@ -68,42 +68,44 @@ function HomePage() {
         </Container>
       </Grid>
       {/* <Container> */}
-      <Grid className={classes.cardList}>
+      <Grid className={classes.cardList} container spacing={3}>
         {cardItem.map((item) => {
           const { title, content, icon } = item;
           return (
-            <Card className={classes.card} key={icon}>
-              <CardContent className={classes.cardContent}>
-                <Typography
-                  className={classes.titleCard}
-                  color='textSecondary'
-                  gutterBottom
-                >
-                  {title}
-                </Typography>
-                <Typography variant='body2' component='p'>
-                  {content}
-                </Typography>
-              </CardContent>
-              <CardMedia className={classes.imgCard}>
-                {icon === 1 ? (
-                  <VideoLibraryOutlinedIcon className={classes.iconCard} />
-                ) : (
-                  <>
-                    {icon === 2 ? (
-                      <PeopleAltOutlinedIcon className={classes.iconCard} />
-                    ) : (
-                      <AccessAlarmOutlinedIcon className={classes.iconCard} />
-                    )}
-                  </>
-                )}
-              </CardMedia>
-            </Card>
+            <Grid item xs={12} sm={12} md={4}>
+              <Paper className={classes.paperItem}>
+                <CardContent className={classes.cardContent}>
+                  <Typography
+                    className={classes.titleCard}
+                    color='textSecondary'
+                    gutterBottom
+                  >
+                    {title}
+                  </Typography>
+                  <Typography variant='body2' component='p'>
+                    {content}
+                  </Typography>
+                </CardContent>
+                <CardMedia className={classes.imgCard}>
+                  {icon === 1 ? (
+                    <VideoLibraryOutlinedIcon className={classes.iconCard} />
+                  ) : (
+                    <>
+                      {icon === 2 ? (
+                        <PeopleAltOutlinedIcon className={classes.iconCard} />
+                      ) : (
+                        <AccessAlarmOutlinedIcon className={classes.iconCard} />
+                      )}
+                    </>
+                  )}
+                </CardMedia>
+              </Paper>
+            </Grid>
           );
         })}
       </Grid>
       {/* </Container> */}
-      <CourseList />
+      {/* <CourseList /> */}
     </Grid>
   );
 }

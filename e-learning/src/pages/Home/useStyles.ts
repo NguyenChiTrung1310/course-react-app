@@ -10,7 +10,7 @@ const useStyles: () => Record<
 | 'learnMore'
 | 'btn'
 | 'cardList'
-| 'card'
+| 'paperItem'
 | 'cardContent'
 | 'titleCard'
 | 'imgCard'
@@ -44,17 +44,13 @@ const useStyles: () => Record<
     }
    },
    cardList: {
-       display: 'flex',
-       flexDirection: 'row',
-       justifyContent: 'space-around',
+      flexGrow: 1
    },
-   card: {
-       maxWidth: 700,
-       width: 500,
-       border: '1px solid #f50357',
-       display: 'flex',
-       borderRadius: '30px',
-      //  boxShadow: '5px 8px 20px -8px rgba(82,82,82,1) !important'
+   paperItem: {
+      padding: theme.spacing(4,2),
+      textAlign: 'left',
+      display: 'flex',
+      boxShadow: '5px 8px 20px -8px rgba(82,82,82,1) !important'
    },
    cardContent:{
    },

@@ -1,4 +1,5 @@
 /* eslint-disable no-useless-escape */
+import { toast } from 'react-toastify';
 
 const validateEmail = (email: any) => {
   const re = /^(([^<>()[\]\\.,;:\s@\']+(\.[^<>()[\]\\.,;:\s@\']+)*)|(\'.+\'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -11,7 +12,7 @@ const validatePhoneNumber = (soDt: any) => {
 };
 
 
-function HandleRegisterForm (field: any, enqueueSnackbar: any){
+function HandleRegisterForm (field: any){
   
   var errors = {    
     taiKhoan: '',
@@ -21,20 +22,6 @@ function HandleRegisterForm (field: any, enqueueSnackbar: any){
     maNhom: '',
     hoTen: '',
   };
-
-  const status = {
-    SUCCESS: 'success',
-    ERROR: 'error',
-    WARNING: 'warning',
-    INFO: 'info',
-  }
-
-  const notification = (message: string, variantType: string) => enqueueSnackbar(
-    message, 
-    { 
-        variant: variantType,
-    },
-    );
 
   if (
     field['taiKhoan'] !== '' &&
@@ -50,14 +37,14 @@ function HandleRegisterForm (field: any, enqueueSnackbar: any){
   } else {
     //Email
     if (!validateEmail(field['email'])) {
-        errors['email'] = 'Invalid Email';
-        return notification(errors['email'], status.ERROR)
+      errors['email'] = 'Invalid Email';
+      toast.warn(errors['email']);
     }
 
     //soDt
     if (!validatePhoneNumber(field['soDt'])) {
-    errors['soDt'] = 'Phone number at least 10-15 numbers';
-    return notification(errors['soDt'], status.ERROR)
+      errors['soDt'] = 'Phone number at least 10-15 numbers';
+      toast.warn(errors['soDt']);
     }
   }
 };

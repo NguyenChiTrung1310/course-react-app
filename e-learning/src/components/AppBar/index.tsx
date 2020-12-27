@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -45,7 +45,6 @@ import MenuMobile from './MenuMobile';
 import useStyles from './useStyles';
 import './index.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { useSnackbar } from 'notistack';
 import { fetchCourseCategory } from '../../features/course/CourseAction';
 
 interface Props {
@@ -68,7 +67,6 @@ export default function HideAppBar(props: Props) {
   const { children } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const { enqueueSnackbar } = useSnackbar();
 
   const [open, setOpen] = useState(false);
   const [openListItem, setOpenListItem] = useState(false);
@@ -81,18 +79,9 @@ export default function HideAppBar(props: Props) {
     (state: any) => state.course.courseCategoryResponse.status
   );
 
-  const failureCallback = useCallback(
-    (msg: string) => {
-      enqueueSnackbar(msg, {
-        variant: 'error',
-      });
-    },
-    [enqueueSnackbar]
-  );
-
   useEffect(() => {
-    dispatch(fetchCourseCategory(failureCallback));
-  }, [dispatch, failureCallback]);
+    dispatch(fetchCourseCategory());
+  }, [dispatch]);
 
   const handleClickListItem = () => {
     setOpenListItem(!openListItem);

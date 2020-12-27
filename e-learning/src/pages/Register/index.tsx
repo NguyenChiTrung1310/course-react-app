@@ -13,7 +13,6 @@ import clsx from 'clsx';
 
 import CopyRight from './components/CopyRight';
 import HandleRegisterForm from '../../utils/Validation';
-import { useSnackbar } from 'notistack';
 import { Link, useHistory } from 'react-router-dom';
 import { registerAction } from '../../features/register/RegisterAction';
 
@@ -37,7 +36,6 @@ export default function RegisterPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { enqueueSnackbar } = useSnackbar();
   const [group, setGroup] = useState('');
   const [checkField, setCheckField] = useState(true);
   const [field, setField] = useState<FieldStates>({
@@ -167,22 +165,13 @@ export default function RegisterPage() {
     e.preventDefault();
     const dataRegister = field;
 
-    const successCallback = () => {
-      enqueueSnackbar('Register Success !!!', {
-        variant: 'success',
-      });
-      history.push(LOGIN_PAGE);
+    const redirect = () => {
+      return history.push(LOGIN_PAGE);
     };
 
-    const failureCallback = (msg: string) => {
-      enqueueSnackbar(msg, {
-        variant: 'error',
-      });
-    };
-
-    const validate = HandleRegisterForm(dataRegister, enqueueSnackbar);
+    const validate = HandleRegisterForm(dataRegister);
     if (validate === 1) {
-      dispatch(registerAction(dataRegister, successCallback, failureCallback));
+      dispatch(registerAction(dataRegister, redirect));
     }
   };
 

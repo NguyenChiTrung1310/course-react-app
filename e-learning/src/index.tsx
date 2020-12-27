@@ -4,7 +4,6 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { SnackbarProvider } from 'notistack';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -12,16 +11,7 @@ import store from './store';
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <SnackbarProvider
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        maxSnack={3}
-        className='snack-bar'
-      >
-        <App />
-      </SnackbarProvider>
+      <App />
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

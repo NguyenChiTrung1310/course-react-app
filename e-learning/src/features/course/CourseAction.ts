@@ -5,6 +5,7 @@ import {
     fetchCoursesSuccess,
     fetchCoursesCategory
 } from './CourseSlice';
+import { toast } from 'react-toastify';
 
 export const fetchCourseList = () => async (dispatch: Dispatch) => {
     try {
@@ -16,10 +17,11 @@ export const fetchCourseList = () => async (dispatch: Dispatch) => {
     }catch (error){
         const {response: {data = {}} = {}, } = error;
         dispatch(fetchCoursesFail(data));
+        toast.error(data);
     }
 }
 
-export const fetchCourseCategory = (failureCallback = (msg: string) => {},) => async (dispatch: Dispatch) => {
+export const fetchCourseCategory = () => async (dispatch: Dispatch) => {
     try {
         const response = await getCourseCategory();
         const {data = {}, status = ''} = response; 
@@ -28,7 +30,7 @@ export const fetchCourseCategory = (failureCallback = (msg: string) => {},) => a
         } 
     }catch (error){
         const {response: {data = {}} = {}, } = error;
-        failureCallback(data);
+        toast.error(data);
     }
 }
 

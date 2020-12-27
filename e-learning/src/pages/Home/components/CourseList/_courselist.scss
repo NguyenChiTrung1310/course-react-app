@@ -1,0 +1,8 @@
+@import '../../../../styles/styles';
+
+.card-item {
+    &:hover{
+        transition: all .3s ease-in-out;
+        box-shadow: 4px 10px 23px -2px rgba(82,82,82,1) !important;
+    }
+}

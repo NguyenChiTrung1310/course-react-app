@@ -15,9 +15,11 @@ import ShareIcon from '@material-ui/icons/Share';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import imgContent from '../../../../assets/logo.png';
+import clsx from 'clsx';
 
 import Loading from '../../../../components/Loading';
 import useStyles from './useStyles';
+import './_courselist.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCourseList } from '../../../../features/course/CourseAction';
@@ -62,7 +64,7 @@ const CourseList = () => {
 
             return (
               <Grid item xs={12} sm={12} md={3} key={maKhoaHoc}>
-                <Card className={classes.cardItem}>
+                <Card className={clsx(classes.cardItem, 'card-item')}>
                   <CardHeader
                     avatar={
                       <Avatar aria-label='recipe' className={classes.avatar}>

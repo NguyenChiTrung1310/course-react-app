@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -44,6 +44,9 @@ import MenuMobile from './MenuMobile';
 
 import useStyles from './useStyles';
 import './index.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
+import { fetchCourseCategory } from '../../features/course/CourseAction';
 
 interface Props {
   window?: () => Window;
@@ -65,8 +68,31 @@ export default function HideAppBar(props: Props) {
   const { children } = props;
   const classes = useStyles();
   const theme = useTheme();
+  const { enqueueSnackbar } = useSnackbar();
+
   const [open, setOpen] = useState(false);
-  const [openListItem, setOpenListItem] = useState(true);
+  const [openListItem, setOpenListItem] = useState(false);
+  const dispatch = useDispatch();
+  const category = useSelector(
+    (state: any) => state.course.courseCategoryResponse.response
+  );
+
+  const statusCategory = useSelector(
+    (state: any) => state.course.courseCategoryResponse.status
+  );
+
+  const failureCallback = useCallback(
+    (msg: string) => {
+      enqueueSnackbar(msg, {
+        variant: 'error',
+      });
+    },
+    [enqueueSnackbar]
+  );
+
+  useEffect(() => {
+    dispatch(fetchCourseCategory(failureCallback));
+  }, [dispatch, failureCallback]);
 
   const handleClickListItem = () => {
     setOpenListItem(!openListItem);
@@ -267,16 +293,32 @@ export default function HideAppBar(props: Props) {
             <ListItemText primary='Caterogy' />
             {openListItem ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={openListItem} timeout='auto' unmountOnExit>
+          {statusCategory ? (
+            <Collapse in={openListItem} timeout='auto' unmountOnExit>
+              {category.map((item: any, index: number) => {
+                const { maDanhMuc = '', tenDanhMuc = '' } = item;
+                return (
+                  <List component='div' disablePadding key={index}>
+                    <ListItem button className={classes.nested}>
+                      <ListItemIcon>
+                        <StarBorder />
+                      </ListItemIcon>
+                      <ListItemText key={maDanhMuc} primary={tenDanhMuc} />
+                    </ListItem>
+                  </List>
+                );
+              })}
+            </Collapse>
+          ) : (
             <List component='div' disablePadding>
               <ListItem button className={classes.nested}>
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
-                <ListItemText primary='Starred' />
+                <ListItemText primary='Item' />
               </ListItem>
             </List>
-          </Collapse>
+          )}
           {secondMenu.map((text, index) => (
             <ListItem button key={text.name}>
               {index === 0 ? (

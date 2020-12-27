@@ -61,8 +61,8 @@ const CourseList = () => {
             } = item;
 
             return (
-              <Grid item xs={12} sm={12} md={3}>
-                <Card className={classes.cardItem} key={maKhoaHoc}>
+              <Grid item xs={12} sm={12} md={3} key={maKhoaHoc}>
+                <Card className={classes.cardItem}>
                   <CardHeader
                     avatar={
                       <Avatar aria-label='recipe' className={classes.avatar}>

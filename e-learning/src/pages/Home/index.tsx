@@ -72,7 +72,7 @@ function HomePage() {
         {cardItem.map((item) => {
           const { title, content, icon } = item;
           return (
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={12} sm={12} md={4} key={icon}>
               <Paper className={classes.paperItem}>
                 <CardContent className={classes.cardContent}>
                   <Typography

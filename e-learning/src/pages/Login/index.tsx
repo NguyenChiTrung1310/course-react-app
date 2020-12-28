@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginAction } from '../../features/login/LoginAction';
 import {
   Typography,
   Box,
   Grid,
-  Container,
   Avatar,
   Button,
   TextField,
@@ -18,9 +19,16 @@ import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
 import useStyles from './useStyles';
 import './_loginpage.scss';
 
+type FieldStates = {
+  taiKhoan: string;
+  matKhau: string;
+};
+
 function LoginPage() {
   const classes = useStyles();
-  const [field, setfield] = useState({
+  const dispatch = useDispatch();
+
+  const [field, setfield] = useState<FieldStates>({
     taiKhoan: '',
     matKhau: '',
   });
@@ -34,6 +42,7 @@ function LoginPage() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    const dataLogin = field;
     console.log('taikhoan', field.taiKhoan);
     console.log('matKhau', field.matKhau);
   };
@@ -42,8 +51,7 @@ function LoginPage() {
     <Grid
       container
       component='main'
-      className={clsx(classes.root && 'login-page')}
-    >
+      className={clsx(classes.root && 'login-page')}>
       <Grid item xs={12} sm={12} md={6} className='imageBannerLogin' />
       <Grid item xs={12} sm={12} md={6}>
         <div className={classes.paper}>
@@ -105,8 +113,7 @@ function LoginPage() {
                 fullWidth
                 variant='contained'
                 color='secondary'
-                className={classes.submit}
-              >
+                className={classes.submit}>
                 Log In
               </Button>
               <Grid container>

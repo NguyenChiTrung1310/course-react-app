@@ -1,4 +1,4 @@
-import {loginSucess} from './LoginSlice';
+import {loginSucess, loginFail} from './LoginSlice';
 import {Dispatch} from '@reduxjs/toolkit';
 import {loginService} from '../../services/auth';
 
@@ -18,6 +18,7 @@ export const loginAction= (dataLogin: object)=>async(
         }
     }catch(error){
         const {response: {data= {}}= {}, }= error;
+        dispatch(loginFail(data));
         failureCallback(data);
     }
 }

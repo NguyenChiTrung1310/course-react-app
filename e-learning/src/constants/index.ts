@@ -6,13 +6,17 @@ export {HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE}
 
 
 /* =============* REDUCER + ACTION *============= */
+ 
 const AUTH_REDUCER = {
+    LOGIN: 'login',
     REGISTER: 'register',
 };
 
 const COURSE_REDUCER = {
     COURSE_LIST: 'course_list',
 }
+
+
 
 export {AUTH_REDUCER, COURSE_REDUCER}
 

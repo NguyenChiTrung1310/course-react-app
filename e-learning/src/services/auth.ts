@@ -1,4 +1,4 @@
-import {REGISTER_API} from '../apis/index';
+import {LOGIN_API ,REGISTER_API} from '../apis/index';
 import request from '../configs/request';
 
 export async function registerService(payload: any) {
@@ -9,4 +9,14 @@ export async function registerService(payload: any) {
             payload
         )
     );
+}
+
+export async function loginService(payload:any) {
+    return(
+        request(
+            LOGIN_API,
+            'POST',
+            payload
+        )
+    )
 }

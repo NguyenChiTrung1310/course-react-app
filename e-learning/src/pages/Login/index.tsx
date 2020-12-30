@@ -43,8 +43,8 @@ function LoginPage() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const dataLogin = field;
-    console.log('taikhoan', field.taiKhoan);
-    console.log('matKhau', field.matKhau);
+    console.log('Enter', dataLogin);
+    dispatch(loginAction(dataLogin));
   };
 
   return (

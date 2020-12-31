@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../features/login/LoginAction';
+import { useHistory } from 'react-router-dom';
 import {
   Typography,
   Box,
@@ -18,6 +19,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
 import useStyles from './useStyles';
 import './_loginpage.scss';
+import { HOME_PAGE } from '../../constants';
 
 type FieldStates = {
   taiKhoan: string;
@@ -27,6 +29,18 @@ type FieldStates = {
 function LoginPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
+  const loginStatus = useSelector(
+    (state: any) => state.login.loginResponse.status
+  );
+
+  console.log('STATUS LOGIN', loginStatus);
+
+  useEffect(() => {
+    if (loginStatus === 200) {
+      history.push(HOME_PAGE);
+    }
+  }, [loginStatus]);
 
   const [field, setfield] = useState<FieldStates>({
     taiKhoan: '',

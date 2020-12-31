@@ -4,15 +4,24 @@ import {AUTH_REDUCER} from '../../constants'
 const loginSlice= createSlice({
     name: AUTH_REDUCER.LOGIN,
     initialState:{
-        loginResponse: {}
+        loginResponse: {
+            status: 0,
+            response: {}
+        }
     },
     reducers:{
         //contains reducerfunction name
-        loginSucess: (state, action)=>{
-            state.loginResponse= action.payload;
+        loginSucess: (state, {payload})=>{
+            state.loginResponse= {
+                status: payload.status,
+                response: payload.data,
+            };
         },
-        loginFail:(state, action)=>{
-            state.loginResponse= action.payload;
+        loginFail:(state, {payload})=>{
+            state.loginResponse= {
+                status: payload.status,
+                response: payload.data,
+            };
         }
     }
 });

@@ -34,8 +34,6 @@ function LoginPage() {
     (state: any) => state.login.loginResponse.status
   );
 
-  console.log('STATUS LOGIN', loginStatus);
-
   useEffect(() => {
     if (loginStatus === 200) {
       history.push(HOME_PAGE);

@@ -7,6 +7,7 @@ import { LOGIN_PAGE, REGISTER_PAGE, HOME_PAGE } from '../../../constants';
 import RegisterIcon from '../../../assets/registration.svg';
 import LoginIcon from '../../../assets/signin.svg';
 import PersonIcon from '@material-ui/icons/Person';
+import { logoutAction } from '../../../features/login/LoginAction';
 type MenuProps = {
   menuId: string;
   anchorEl: any;
@@ -20,12 +21,19 @@ const MenuDesktop: FunctionComponent<MenuProps> = ({
 }) => {
   const isMenuOpen = Boolean(anchorEl);
   const classes = useStyles();
+  const dispatch = useDispatch();
   const loginStatus = useSelector(
     (state: any) => state.login.loginResponse.status
   );
+  console.log('loginstatus', loginStatus);
   const loginData = useSelector(
     (state: any) => state.login.loginResponse.response
   );
+
+  const onClickLogout = (e: any) => {
+    e.preventDefault();
+    dispatch(logoutAction());
+  };
 
   return (
     <Menu
@@ -43,7 +51,7 @@ const MenuDesktop: FunctionComponent<MenuProps> = ({
             to={LOGIN_PAGE}
             style={{ textDecoration: 'none', color: 'black' }}>
             <MenuItem onClick={handleMenuClose} className={classes.menuItem}>
-              <PersonIcon className={classes.iconItem} />
+              {/* <PersonIcon className={classes.iconItem} /> */}
               {/* <MenuItem onClick={handleMenuClose} className={classes.menuItem}> */}
               <img
                 src={LoginIcon}
@@ -56,7 +64,8 @@ const MenuDesktop: FunctionComponent<MenuProps> = ({
             </MenuItem>
           </Link>
           <Link
-            to={HOME_PAGE} //TODO
+            to={HOME_PAGE}
+            onClick={onClickLogout}
             style={{ textDecoration: 'none', color: 'black' }}>
             <MenuItem onClick={handleMenuClose} className={classes.menuItem}>
               <img

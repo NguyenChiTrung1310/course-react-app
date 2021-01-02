@@ -21,6 +21,7 @@ import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 
 import useStyles from './useStyle';
+import { COURSE_CATEGORY_PAGE } from '../../constants';
 
 function CourseCategory(props: any) {
   const classes = useStyles();
@@ -79,7 +80,7 @@ function CourseCategory(props: any) {
                       title={tenKhoaHoc}
                       subheader={ngayTao}
                     />
-                    <Link to={`#imgDetail ${maKhoaHoc}`}>
+                    <Link to={`${maDanhMuc}/${maKhoaHoc}`}>
                       {hinhAnh.includes('.string') ? (
                         <CardMedia
                           className={classes.media}

@@ -18,6 +18,7 @@ import { toast } from 'react-toastify';
 import { getDataFromCredentials } from './utils/LocalStorage/LocalStorage';
 import { loginSucess } from './features/login/LoginSlice';
 import CourseCategory from './pages/CourseCategory';
+import CourseDetail from './pages/CourseCategory/Detail';
 
 toast.configure({
   autoClose: 2000,
@@ -50,6 +51,11 @@ function App() {
           component={CourseCategory}
           exact
           path={`${COURSE_CATEGORY_PAGE}/:maDanhMuc`}
+        />
+        <Route
+          component={CourseDetail}
+          exact
+          path={`${COURSE_CATEGORY_PAGE}/:maDanhMucKhoahoc/:maKhoaHoc`}
         />
       </Switch>
     </AppMenu>

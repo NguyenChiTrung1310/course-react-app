@@ -3,57 +3,56 @@ import {
   Theme,
   createStyles
 } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
 
 const useStyles: () => Record<
 'root'
-| 'titleCourse'
-| 'listCard'
-| 'cardItem'
-| 'avatar'
+| 'title'
+| 'courseDetail'
 | 'media'
-| 'actionCard'
-| 'moreCard'
+| 'paper'
+| 'content'
+| 'subtitle'
+| 'information'
 , string>
  = makeStyles((theme: Theme) => createStyles({
     root: {
         minWidth: 200,
         paddingTop: 100,
+        height: '100vh'
     },
-    titleCourse: {
+    title: {
         fontSize: 50,
         fontWeight: 'bold',
         textAlign: 'center'
     },
-    listCard: {
-      flexGrow: 1
-    },
-    cardItem: {
-        height: 450,
-        boxShadow: '5px 8px 20px -8px rgba(82,82,82,1) !important',
-        position: 'relative'
-    },
-    actionCard: {
-        position: 'absolute',
-        bottom: 0,
-        left: '50%',
-        transform: 'translate(-50%)',
-        display: 'flex',
-        width: '90%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+    courseDetail: {
+        flexGrow: 1
     },
     media: {
         height: 0,
         paddingTop: '56.25%', // 16:9
+        marginTop: '12px',
     },
-    avatar: {
-        backgroundColor: red[500],
+    paper: {
+        height: '80vh',
+        display: 'flex',
+        flexWrap: 'wrap'
     },
-    moreCard: {
-        textDecoration: 'none',
-        color: '#6C63FF',
-        fontWeight: 600
+    content: {
+        // marginRight: '400px'
+    },
+    subtitle: {
+        color: 'black',
+        fontWeight: 'bold',
+        paddingLeft: '50px',
+        textTransform: 'uppercase'
+    },
+    information: {
+        height: '5vh',
+        display: 'flex',
+        marginTop: '10px',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 }));
 

@@ -8,6 +8,7 @@ import RegisterIcon from '../../../assets/registration.svg';
 import LoginIcon from '../../../assets/signin.svg';
 import PersonIcon from '@material-ui/icons/Person';
 import { logoutAction } from '../../../features/login/LoginAction';
+import { toast } from 'react-toastify';
 type MenuProps = {
   menuId: string;
   anchorEl: any;
@@ -29,10 +30,15 @@ const MenuDesktop: FunctionComponent<MenuProps> = ({
   const loginData = useSelector(
     (state: any) => state.login.loginResponse.response
   );
-
+  const logOut = () => {
+    return {
+      type: 'CLEAR_STORE',
+    };
+  };
   const onClickLogout = (e: any) => {
     e.preventDefault();
-    dispatch(logoutAction());
+    dispatch(logOut());
+    toast.success('Đăng xuất thành công');
   };
 
   return (

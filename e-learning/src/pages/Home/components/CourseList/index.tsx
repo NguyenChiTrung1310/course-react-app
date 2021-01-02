@@ -38,15 +38,17 @@ const CourseList = () => {
 
   useEffect(() => {
     dispatch(fetchCourseList());
-  }, [dispatch]);
+    if (!fetchCourseStatus) {
+      dispatch(fetchCourseList());
+    }
+  }, [dispatch, fetchCourseStatus]);
 
   return (
     <Grid className={classes.root}>
       <Typography
         className={classes.titleCourse}
         color='textSecondary'
-        gutterBottom
-      >
+        gutterBottom>
         Our featured courses
       </Typography>
       {fetchCourseStatus ? (
@@ -98,14 +100,12 @@ const CourseList = () => {
                     <Typography
                       variant='body2'
                       color='textSecondary'
-                      component='p'
-                    >
+                      component='p'>
                       {moTa.slice(0, 100)}
                       <Typography
                         variant='body2'
                         color='textSecondary'
-                        component='span'
-                      >
+                        component='span'>
                         <Link to='#detail' className={classes.moreCard}>
                           ...more
                         </Link>
@@ -118,13 +118,11 @@ const CourseList = () => {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                      }}
-                    >
+                      }}>
                       <Typography
                         variant='body2'
                         color='textSecondary'
-                        component='p'
-                      >
+                        component='p'>
                         {luotXem}
                       </Typography>
                       <IconButton aria-label='add to favorites'>

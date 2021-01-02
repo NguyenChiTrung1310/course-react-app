@@ -50,13 +50,13 @@ const {
     fetchCoursesSuccess, 
     fetchCoursesFail,
     fetchCoursesCategory,
-    fetchCoursesByCategory
+    fetchCoursesByCategory,
 } = actions;
 
 export {
     fetchCoursesSuccess, 
     fetchCoursesFail,
     fetchCoursesCategory,
-    fetchCoursesByCategory
+    fetchCoursesByCategory,
 };
 export default reducer; 

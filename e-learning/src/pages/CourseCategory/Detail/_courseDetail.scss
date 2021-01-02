@@ -1,0 +1,15 @@
+@import '../../../styles/styles.scss';
+
+@include MediaQuery ($md){
+    .subtitle, .content, .description{
+        font-size: 14px !important;
+    }
+
+    .content{
+        padding-left: 20px;
+    }
+
+    .description {
+        padding: 20px;
+    }
+}

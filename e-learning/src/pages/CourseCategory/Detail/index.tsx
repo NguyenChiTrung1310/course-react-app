@@ -3,16 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCourseDetail } from '../../../features/course/CourseAction';
 import Loading from '../../../components/Loading';
 
-import {
-  CardMedia,
-  Grid,
-  Typography,
-  Paper,
-  Container,
-} from '@material-ui/core';
+import { CardMedia, Grid, Typography, Paper } from '@material-ui/core';
+import clsx from 'clsx';
 
 import imgContent from '../../../assets/logo.png';
 import useStyles from './useStyles';
+import './_courseDetail.scss';
 
 const CourseDetail = (props: any) => {
   const classes = useStyles();
@@ -128,11 +124,11 @@ const CourseDetail = (props: any) => {
                           sm={12}
                           md={12}
                           key={index + 1}
-                          className={classes.information}
+                          className={clsx(classes.information, 'information')}
                         >
                           <Grid xs={12} sm={12} md={6}>
                             <Typography
-                              className={classes.subtitle}
+                              className={clsx(classes.subtitle, 'subtitle')}
                               color='textSecondary'
                               gutterBottom
                               variant='h6'
@@ -142,7 +138,7 @@ const CourseDetail = (props: any) => {
                           </Grid>
                           <Grid xs={12} sm={12} md={6}>
                             <Typography
-                              className={classes.content}
+                              className={clsx(classes.content, 'content')}
                               gutterBottom
                               variant='h6'
                             >
@@ -154,17 +150,13 @@ const CourseDetail = (props: any) => {
                     </Grid>
                     <Grid xs={12} sm={12} md={1} />
                     <Grid xs={12} sm={12} md={10}>
-                      {/* <Grid xs={12} sm={12} md={1} />
-                      <Grid xs={12} sm={12} md={10}> */}
                       <Typography
-                        // className={classes.content}
                         gutterBottom
                         variant='h6'
+                        className='description'
                       >
                         {moTa}
                       </Typography>
-                      {/* </Grid>
-                      <Grid xs={12} sm={12} md={1} /> */}
                     </Grid>
                   </Paper>
                 </Grid>

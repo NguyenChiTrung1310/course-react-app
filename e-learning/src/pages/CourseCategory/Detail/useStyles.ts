@@ -34,7 +34,7 @@ const useStyles: () => Record<
         marginTop: '12px',
     },
     paper: {
-        height: '80vh',
+        height: 'auto',
         display: 'flex',
         flexWrap: 'wrap'
     },

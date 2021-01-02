@@ -6,11 +6,15 @@ const registerSlice = createSlice({
     initialState:{ 
         courseListResponse: { 
             status: 0,
-            response: {}
+            response: []
         },
         courseCategoryResponse: { 
             status: 0,
-            response: {}
+            response: []
+        },
+        coursesListByCategory: { 
+            status: 0,
+            response: []
         },
     },
     reducers:{
@@ -32,6 +36,12 @@ const registerSlice = createSlice({
                 response: payload.data,
             };
         },
+        fetchCoursesByCategory: (state, {payload}) => {
+            state.coursesListByCategory = {
+                status: payload.status,
+                response: payload.data,
+            };
+        },
     }
 });
 
@@ -39,12 +49,14 @@ const {actions, reducer} = registerSlice;
 const {
     fetchCoursesSuccess, 
     fetchCoursesFail,
-    fetchCoursesCategory
+    fetchCoursesCategory,
+    fetchCoursesByCategory
 } = actions;
 
 export {
     fetchCoursesSuccess, 
     fetchCoursesFail,
-    fetchCoursesCategory
+    fetchCoursesCategory,
+    fetchCoursesByCategory
 };
 export default reducer; 

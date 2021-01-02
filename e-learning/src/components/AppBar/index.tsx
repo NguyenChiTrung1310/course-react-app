@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { HOME_PAGE } from '../../constants';
+import { COURSE_CATEGORY_PAGE, HOME_PAGE } from '../../constants';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -144,28 +144,6 @@ export default function HideAppBar(props: Props) {
 
   const handleMobileMenuOpen = (event: any) => {
     setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const handleClickCategory = (index: number, value: string) => {
-    switch (value) {
-      case 'BackEnd':
-        break;
-      case 'Design':
-        console.log(index);
-        break;
-      case 'DiDong':
-        console.log(index);
-        break;
-      case 'FrontEnd':
-        console.log(index);
-        break;
-      case 'FullStack':
-        console.log(index);
-        break;
-      default:
-        console.log(index);
-        break;
-    }
   };
 
   return (
@@ -318,14 +296,10 @@ export default function HideAppBar(props: Props) {
                         <StarBorder />
                       </ListItemIcon>
                       <Link
-                        to={`tendDanhMuc-${maDanhMuc}`}
+                        to={`${COURSE_CATEGORY_PAGE}/${maDanhMuc}`}
                         className={classes.categoryLink}
                       >
-                        <ListItemText
-                          key={maDanhMuc}
-                          primary={tenDanhMuc}
-                          onClick={() => handleClickCategory(index, maDanhMuc)}
-                        />
+                        <ListItemText key={maDanhMuc} primary={tenDanhMuc} />
                       </Link>
                     </ListItem>
                   </List>

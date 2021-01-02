@@ -2,7 +2,8 @@
 const HOME_PAGE = '/';
 const LOGIN_PAGE = '/login';
 const REGISTER_PAGE='/register';
-export {HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE}
+const COURSE_CATEGORY_PAGE='/course-category';
+export {HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE, COURSE_CATEGORY_PAGE}
 
 
 /* =============* REDUCER + ACTION *============= */

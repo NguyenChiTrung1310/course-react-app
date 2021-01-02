@@ -12,10 +12,12 @@ import {
   REGISTER_PAGE,
   HOME_PAGE,
   LOCAL_STORAGE_CREDENTIALS_KEY,
+  COURSE_CATEGORY_PAGE,
 } from './constants';
 import { toast } from 'react-toastify';
 import { getDataFromCredentials } from './utils/LocalStorage/LocalStorage';
 import { loginSucess } from './features/login/LoginSlice';
+import CourseCategory from './pages/CourseCategory';
 
 toast.configure({
   autoClose: 2000,
@@ -44,6 +46,11 @@ function App() {
           {loginStatus === '' ? <RegisterPage /> : <Redirect to={HOME_PAGE} />}
         </Route>
         <Route component={HomePage} exact path={HOME_PAGE} />
+        <Route
+          component={CourseCategory}
+          exact
+          path={`${COURSE_CATEGORY_PAGE}/:maDanhMuc`}
+        />
       </Switch>
     </AppMenu>
   );

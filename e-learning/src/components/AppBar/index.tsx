@@ -81,7 +81,10 @@ export default function HideAppBar(props: Props) {
 
   useEffect(() => {
     dispatch(fetchCourseCategory());
-  }, [dispatch]);
+    if (!statusCategory) {
+      dispatch(fetchCourseCategory());
+    }
+  }, [dispatch, statusCategory]);
 
   const handleClickListItem = () => {
     setOpenListItem(!openListItem);

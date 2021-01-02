@@ -7,7 +7,6 @@ import { LOGIN_PAGE, REGISTER_PAGE, HOME_PAGE } from '../../../constants';
 import RegisterIcon from '../../../assets/registration.svg';
 import LoginIcon from '../../../assets/signin.svg';
 import PersonIcon from '@material-ui/icons/Person';
-import { logoutAction } from '../../../features/login/LoginAction';
 import { toast } from 'react-toastify';
 type MenuProps = {
   menuId: string;
@@ -26,7 +25,7 @@ const MenuDesktop: FunctionComponent<MenuProps> = ({
   const loginStatus = useSelector(
     (state: any) => state.login.loginResponse.status
   );
-  console.log('loginstatus', loginStatus);
+
   const loginData = useSelector(
     (state: any) => state.login.loginResponse.response
   );

@@ -55,7 +55,6 @@ function LoginPage() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const dataLogin = field;
-    console.log('Enter', dataLogin);
     dispatch(loginAction(dataLogin));
   };
 

@@ -143,6 +143,28 @@ export default function HideAppBar(props: Props) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleClickCategory = (index: number, value: string) => {
+    switch (value) {
+      case 'BackEnd':
+        break;
+      case 'Design':
+        console.log(index);
+        break;
+      case 'DiDong':
+        console.log(index);
+        break;
+      case 'FrontEnd':
+        console.log(index);
+        break;
+      case 'FullStack':
+        console.log(index);
+        break;
+      default:
+        console.log(index);
+        break;
+    }
+  };
+
   return (
     <div className={classes.root}>
       <HideOnScroll {...props}>
@@ -292,7 +314,16 @@ export default function HideAppBar(props: Props) {
                       <ListItemIcon>
                         <StarBorder />
                       </ListItemIcon>
-                      <ListItemText key={maDanhMuc} primary={tenDanhMuc} />
+                      <Link
+                        to={`tendDanhMuc-${maDanhMuc}`}
+                        className={classes.categoryLink}
+                      >
+                        <ListItemText
+                          key={maDanhMuc}
+                          primary={tenDanhMuc}
+                          onClick={() => handleClickCategory(index, maDanhMuc)}
+                        />
+                      </Link>
                     </ListItem>
                   </List>
                 );

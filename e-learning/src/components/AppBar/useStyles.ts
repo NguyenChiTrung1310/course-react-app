@@ -25,6 +25,7 @@ const useStyles: () => Record<
 |'content' 
 |'contentShift' 
 |'nested' 
+|'categoryLink' 
 |'sectionMobile',
 string> = makeStyles((theme: Theme) =>
   createStyles({
@@ -146,6 +147,10 @@ string> = makeStyles((theme: Theme) =>
     },
     nested: {
       paddingLeft: theme.spacing(4),
+    },
+    categoryLink: {
+      textDecoration: 'none',
+      color: '#4e4e4e'
     }
   })
 );

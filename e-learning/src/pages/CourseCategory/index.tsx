@@ -21,7 +21,6 @@ import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 
 import useStyles from './useStyle';
-import { COURSE_CATEGORY_PAGE } from '../../constants';
 
 function CourseCategory(props: any) {
   const classes = useStyles();

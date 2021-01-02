@@ -16,6 +16,10 @@ const registerSlice = createSlice({
             status: 0,
             response: []
         },
+        courseDetailResponse: { 
+            status: 0,
+            response: {}
+        },
     },
     reducers:{
         fetchCoursesSuccess: (state, {payload}) => {
@@ -42,6 +46,12 @@ const registerSlice = createSlice({
                 response: payload.data,
             };
         },
+        courseDetail: (state, {payload}) => {
+            state.courseDetailResponse = {
+                status: payload.status,
+                response: payload.data,
+            };
+        },
     }
 });
 
@@ -51,6 +61,7 @@ const {
     fetchCoursesFail,
     fetchCoursesCategory,
     fetchCoursesByCategory,
+    courseDetail
 } = actions;
 
 export {
@@ -58,5 +69,6 @@ export {
     fetchCoursesFail,
     fetchCoursesCategory,
     fetchCoursesByCategory,
+    courseDetail
 };
 export default reducer; 

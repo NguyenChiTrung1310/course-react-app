@@ -1,12 +1,19 @@
 import { Dispatch } from '@reduxjs/toolkit';
-import { getCourseList, getCourseCategory, getCourseByCategory } from '../../services/course';
+import { 
+    getCourseList, 
+    getCourseCategory, 
+    getCourseByCategory,
+    getCourseDetail
+} from '../../services/course';
 import { 
     fetchCoursesFail, 
     fetchCoursesSuccess,
     fetchCoursesCategory,
     fetchCoursesByCategory,
+    courseDetail
 } from './CourseSlice';
 import { toast } from 'react-toastify';
+import { responsiveFontSizes } from '@material-ui/core';
 
 export const fetchCourseList = () => async (dispatch: Dispatch) => {
     try {
@@ -48,5 +55,26 @@ export const fetchCourseByCategory = (id: string) => async (dispatch: Dispatch) 
         toast.error(data);
     }
 }
+
+export const fetchCourseDetail = (id: string) => async (dispatch: Dispatch) => {
+    try {
+        const response = await getCourseDetail(id);
+        const {data = {}, status = ''} = response; 
+        if(status === 200) {
+            dispatch(courseDetail({data, status}));  
+        }
+    }catch (error){
+        const data = {
+            error: {
+                message: 'Error server'
+            }
+        };
+        const status = 204;
+        dispatch(courseDetail({data, status})); 
+
+        toast.error('Nani ??? What happened with BE\'s api ??');
+    }
+}
+
 
 

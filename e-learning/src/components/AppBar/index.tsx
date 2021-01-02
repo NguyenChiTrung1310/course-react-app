@@ -247,7 +247,10 @@ export default function HideAppBar(props: Props) {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton
+            onClick={handleDrawerClose}
+            className={classes.iconDrawerHeader}
+          >
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
             ) : (
@@ -256,15 +259,15 @@ export default function HideAppBar(props: Props) {
           </IconButton>
         </div>
         <Divider />
-        <List>
+        <List className={classes.listMenu}>
           {firstMenu.map((text, index) => (
             <ListItem button key={text.name}>
               {index === 0 ? (
-                <ListItemIcon>
+                <ListItemIcon className={classes.iconListMenu}>
                   <PersonIcon />
                 </ListItemIcon>
               ) : (
-                <ListItemIcon>
+                <ListItemIcon className={classes.iconListMenu}>
                   {index === 1 ? (
                     <VideoLibraryRoundedIcon />
                   ) : (
@@ -277,9 +280,9 @@ export default function HideAppBar(props: Props) {
           ))}
         </List>
         <Divider />
-        <List>
+        <List className={classes.listMenu}>
           <ListItem button onClick={handleClickListItem}>
-            <ListItemIcon>
+            <ListItemIcon className={classes.iconListMenu}>
               <CategoryIcon />
             </ListItemIcon>
             <ListItemText primary='Caterogy' />
@@ -292,7 +295,7 @@ export default function HideAppBar(props: Props) {
                 return (
                   <List component='div' disablePadding key={index}>
                     <ListItem button className={classes.nested}>
-                      <ListItemIcon>
+                      <ListItemIcon className={classes.iconListMenu}>
                         <StarBorder />
                       </ListItemIcon>
                       <Link
@@ -319,11 +322,11 @@ export default function HideAppBar(props: Props) {
           {secondMenu.map((text, index) => (
             <ListItem button key={text.name}>
               {index === 0 ? (
-                <ListItemIcon>
+                <ListItemIcon className={classes.iconListMenu}>
                   <DeleteForeverRoundedIcon />
                 </ListItemIcon>
               ) : (
-                <ListItemIcon>
+                <ListItemIcon className={classes.iconListMenu}>
                   <NotInterestedRoundedIcon />
                 </ListItemIcon>
               )}

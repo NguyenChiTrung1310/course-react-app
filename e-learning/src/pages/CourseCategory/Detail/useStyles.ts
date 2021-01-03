@@ -12,6 +12,7 @@ const useStyles: () => Record<
 | 'paper'
 | 'content'
 | 'subtitle'
+| 'description'
 | 'information'
 , string>
  = makeStyles((theme: Theme) => createStyles({
@@ -39,13 +40,15 @@ const useStyles: () => Record<
         flexWrap: 'wrap'
     },
     content: {
-        // marginRight: '400px'
+        fontWeight: 'bold',
     },
     subtitle: {
-        color: 'black',
-        fontWeight: 'bold',
         paddingLeft: '50px',
-        textTransform: 'uppercase'
+        // textTransform: 'uppercase'
+    },
+    description: {
+        marginTop: '50px',
+        color: 'rgba(0, 0, 0, 0.54);'
     },
     information: {
         height: '5vh',

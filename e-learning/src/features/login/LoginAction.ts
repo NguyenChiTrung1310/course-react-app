@@ -1,4 +1,4 @@
-import { clearStoreFromlocalStorage, setDataFromLocalStorage } from './../../utils/LocalStorage/LocalStorage';
+import { clearStoreFromlocalStorage, setDataFromLocalStorage, setTokenToLocalStorage } from './../../utils/LocalStorage/LocalStorage';
 import {loginSucess, loginFail, logoutSuccess} from './LoginSlice';
 import {Dispatch} from '@reduxjs/toolkit';
 import {loginService} from '../../services/auth';
@@ -14,7 +14,7 @@ export const loginAction= (payload: object
         if(status ===200){
             dispatch(loginSucess({data, status}));
             setDataFromLocalStorage(JSON.stringify(response));
-            // localStorage.setItem(LOCAL_STORAGE_CREDENTIALS_KEY, JSON.stringify(response));
+            setTokenToLocalStorage(data.accessToken);
             toast.success('Đăng nhập Thành Công !!!');  
         } 
     }catch(error){

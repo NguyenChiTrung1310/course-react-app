@@ -5,6 +5,10 @@ export const setDataFromLocalStorage=(data: any)=>{
     return localStorage.setItem(LOCAL_STORAGE_CREDENTIALS_KEY, data);
 }
 
+export const setTokenToLocalStorage=(token: any)=>{
+    return localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, token);
+}
+
 
 //get token
 export const getDataFromLocalStorage= () =>{

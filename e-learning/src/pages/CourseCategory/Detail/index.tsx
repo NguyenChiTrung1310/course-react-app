@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCourseDetail } from '../../../features/course/CourseAction';
+import {
+  fetchCourseDetail,
+  fetchStudentsByCourse,
+} from '../../../features/course/CourseAction';
 import Loading from '../../../components/Loading';
 
 import { CardMedia, Grid, Typography, Paper } from '@material-ui/core';
@@ -9,6 +12,8 @@ import clsx from 'clsx';
 import imgContent from '../../../assets/logo.png';
 import useStyles from './useStyles';
 import './_courseDetail.scss';
+import TableStudents from './components/TableStudents';
+import EnhancedTable from './components/TableStudents';
 
 const CourseDetail = (props: any) => {
   const classes = useStyles();
@@ -22,8 +27,19 @@ const CourseDetail = (props: any) => {
   const status = useSelector(
     (state: any) => state.course.courseDetailResponse.status
   );
+
+  useEffect(() => {
+    if (status === 200) {
+      dispatch(fetchStudentsByCourse(maKhoaHoc));
+    }
+  }, [dispatch, maKhoaHoc, status]);
+
   const courseDetail = useSelector(
     (state: any) => state.course.courseDetailResponse.response
+  );
+
+  const students = useSelector(
+    (state: any) => state.course.studentByCourseResponse.response
   );
 
   const {
@@ -97,8 +113,8 @@ const CourseDetail = (props: any) => {
                 <Grid item xs={12} sm={12} md={12} key={maKhoaHoc}>
                   {/* <Paper className={clsx(classes.cardItem, 'card-item')}> */}
                   <Paper elevation={3} className={classes.paper}>
-                    <Grid xs={12} sm={12} md={1} />
-                    <Grid xs={12} sm={12} md={6}>
+                    <Grid item xs={12} sm={12} md={1} />
+                    <Grid item xs={12} sm={12} md={6}>
                       {hinhAnh.includes('.string') ? (
                         <Paper elevation={3}>
                           <CardMedia
@@ -117,30 +133,29 @@ const CourseDetail = (props: any) => {
                         </Paper>
                       )}
                     </Grid>
-                    <Grid xs={12} sm={12} md={5}>
+                    <Grid item xs={12} sm={12} md={5}>
                       {dataArr.map((item, index) => (
                         <Grid
+                          item
                           xs={12}
                           sm={12}
                           md={12}
                           key={index + 1}
                           className={clsx(classes.information, 'information')}
                         >
-                          <Grid xs={12} sm={12} md={6}>
+                          <Grid item xs={12} sm={12} md={6}>
                             <Typography
                               className={clsx(classes.subtitle, 'subtitle')}
                               color='textSecondary'
                               gutterBottom
-                              variant='h6'
                             >
                               {item.label}
                             </Typography>
                           </Grid>
-                          <Grid xs={12} sm={12} md={6}>
+                          <Grid item xs={12} sm={12} md={6}>
                             <Typography
                               className={clsx(classes.content, 'content')}
                               gutterBottom
-                              variant='h6'
                             >
                               {item.content}
                             </Typography>
@@ -148,18 +163,29 @@ const CourseDetail = (props: any) => {
                         </Grid>
                       ))}
                     </Grid>
-                    <Grid xs={12} sm={12} md={1} />
-                    <Grid xs={12} sm={12} md={10}>
+                    <Grid item xs={12} sm={12} md={1} />
+                    <Grid item xs={12} sm={12} md={10}>
                       <Typography
                         gutterBottom
                         variant='h6'
-                        className='description'
+                        className={clsx(classes.description, 'description')}
+                      >
+                        Description:
+                      </Typography>
+                      <Typography
+                        gutterBottom
+                        variant='h6'
+                        className='description-content'
                       >
                         {moTa}
                       </Typography>
                     </Grid>
                   </Paper>
                 </Grid>
+              </Grid>
+              <Grid>
+                {/* <TableStudents students={students} /> */}
+                <EnhancedTable students={students} />
               </Grid>
             </Grid>
           ) : (

@@ -6,7 +6,6 @@ import useStyles from './useStyles';
 import { LOGIN_PAGE, REGISTER_PAGE, HOME_PAGE } from '../../../constants';
 import RegisterIcon from '../../../assets/registration.svg';
 import LoginIcon from '../../../assets/signin.svg';
-import PersonIcon from '@material-ui/icons/Person';
 import { toast } from 'react-toastify';
 type MenuProps = {
   menuId: string;

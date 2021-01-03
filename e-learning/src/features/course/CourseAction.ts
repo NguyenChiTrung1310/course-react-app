@@ -3,17 +3,18 @@ import {
     getCourseList, 
     getCourseCategory, 
     getCourseByCategory,
-    getCourseDetail
+    getCourseDetail,
+    getStudentsByCourse
 } from '../../services/course';
 import { 
     fetchCoursesFail, 
     fetchCoursesSuccess,
     fetchCoursesCategory,
     fetchCoursesByCategory,
-    courseDetail
+    courseDetail,
+    studentByCourse
 } from './CourseSlice';
 import { toast } from 'react-toastify';
-import { responsiveFontSizes } from '@material-ui/core';
 
 export const fetchCourseList = () => async (dispatch: Dispatch) => {
     try {
@@ -76,5 +77,23 @@ export const fetchCourseDetail = (id: string) => async (dispatch: Dispatch) => {
     }
 }
 
+export const fetchStudentsByCourse = (id: string) => async (dispatch: Dispatch) => {
+    try {
+        const response = await getStudentsByCourse(id);
+        const {data = {}, status = ''} = response; 
+        if(status === 200) {
+            dispatch(studentByCourse({data, status}));  
+        } 
+    }catch (error){
+        const data = {
+            error: {
+                message: 'You must login to continue !'
+            }
+        };
+        const status = 401;
+        dispatch(studentByCourse({data, status}));  
+        // toast.error('You must login to continue !');
+    }
+}
 
 

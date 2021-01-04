@@ -2,7 +2,9 @@
 const HOME_PAGE = '/';
 const LOGIN_PAGE = '/login';
 const REGISTER_PAGE='/register';
-export {HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE}
+
+const PROFILE_USER='/profile_user';
+export {HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE, PROFILE_USER}
 
 
 /* =============* REDUCER + ACTION *============= */

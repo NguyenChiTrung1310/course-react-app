@@ -5,6 +5,7 @@ import AppMenu from './components/AppBar';
 import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
+import ProfileUser from './pages/ProfileUser';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
 import {
@@ -12,6 +13,7 @@ import {
   REGISTER_PAGE,
   HOME_PAGE,
   LOCAL_STORAGE_CREDENTIALS_KEY,
+  PROFILE_USER,
 } from './constants';
 import { toast } from 'react-toastify';
 import { getDataFromCredentials } from './utils/LocalStorage/LocalStorage';
@@ -43,6 +45,7 @@ function App() {
         <Route component={RegisterPage} exact path={REGISTER_PAGE}>
           {loginStatus === '' ? <RegisterPage /> : <Redirect to={HOME_PAGE} />}
         </Route>
+        <Route component={ProfileUser} exact path={PROFILE_USER} />
         <Route component={HomePage} exact path={HOME_PAGE} />
       </Switch>
     </AppMenu>

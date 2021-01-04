@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { HOME_PAGE } from '../../constants';
+import { HOME_PAGE, PROFILE_USER } from '../../constants';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -171,22 +171,19 @@ export default function HideAppBar(props: Props) {
         <AppBar
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
-          })}
-        >
+          })}>
           <Toolbar>
             <IconButton
               color='inherit'
               aria-label='open drawer'
               onClick={handleDrawerOpen}
               edge='start'
-              className={clsx(classes.menuButton, open && classes.hide)}
-            >
+              className={clsx(classes.menuButton, open && classes.hide)}>
               <MenuIcon />
             </IconButton>
             <Link
               to={HOME_PAGE}
-              style={{ textDecoration: 'none', color: 'white' }}
-            >
+              style={{ textDecoration: 'none', color: 'white' }}>
               <Typography className={classes.title} variant='h6' noWrap>
                 Courses E-learning
               </Typography>
@@ -213,8 +210,7 @@ export default function HideAppBar(props: Props) {
               </IconButton>
               <IconButton
                 aria-label='show 17 new notifications'
-                color='inherit'
-              >
+                color='inherit'>
                 <Badge badgeContent={17}>
                   <NotificationsIcon />
                 </Badge>
@@ -225,8 +221,7 @@ export default function HideAppBar(props: Props) {
                 aria-controls={menuId}
                 aria-haspopup='true'
                 onClick={handleProfileMenuOpen}
-                color='inherit'
-              >
+                color='inherit'>
                 <AccountCircle />
               </IconButton>
             </div>
@@ -236,8 +231,7 @@ export default function HideAppBar(props: Props) {
                 aria-controls={mobileMenuId}
                 aria-haspopup='true'
                 onClick={handleMobileMenuOpen}
-                color='inherit'
-              >
+                color='inherit'>
                 <MoreIcon />
               </IconButton>
             </div>
@@ -263,8 +257,7 @@ export default function HideAppBar(props: Props) {
         open={open}
         classes={{
           paper: classes.drawerPaper,
-        }}
-      >
+        }}>
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? (
@@ -291,7 +284,24 @@ export default function HideAppBar(props: Props) {
                   )}
                 </ListItemIcon>
               )}
-              <ListItemText primary={text.name} />
+
+              {index === 0 ? (
+                <Link to={PROFILE_USER}>
+                  <ListItemText primary={text.name} />
+                </Link>
+              ) : (
+                <>
+                  {index === 1 ? (
+                    <Link to='/1'>
+                      <ListItemText primary={text.name} />
+                    </Link>
+                  ) : (
+                    <Link to='/2'>
+                      <ListItemText primary={text.name} />
+                    </Link>
+                  )}
+                </>
+              )}
             </ListItem>
           ))}
         </List>
@@ -316,8 +326,7 @@ export default function HideAppBar(props: Props) {
                       </ListItemIcon>
                       <Link
                         to={`tendDanhMuc-${maDanhMuc}`}
-                        className={classes.categoryLink}
-                      >
+                        className={classes.categoryLink}>
                         <ListItemText
                           key={maDanhMuc}
                           primary={tenDanhMuc}
@@ -358,8 +367,7 @@ export default function HideAppBar(props: Props) {
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
-        })}
-      >
+        })}>
         <div className={classes.drawerHeader} />
         {children}
       </main>

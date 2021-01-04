@@ -11,7 +11,6 @@ const useStyles: () => Record<
 | 'media'
 | 'paper'
 | 'content'
-| 'subtitle'
 | 'description'
 | 'information'
 , string>
@@ -41,10 +40,9 @@ const useStyles: () => Record<
     },
     content: {
         fontWeight: 'bold',
-    },
-    subtitle: {
         paddingLeft: '50px',
-        // textTransform: 'uppercase'
+        marginTop: '12px',
+        paddingBottom: '5px'
     },
     description: {
         marginTop: '50px',
@@ -54,8 +52,10 @@ const useStyles: () => Record<
         height: '5vh',
         display: 'flex',
         marginTop: '10px',
+        // paddingLeft: '20px',
         alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: 'red'
+        // justifyContent: 'center',
     }
 }));
 

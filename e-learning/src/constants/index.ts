@@ -1,10 +1,11 @@
 /* =============* LINKS ROUTER *============= */
 const HOME_PAGE = '/';
 const LOGIN_PAGE = '/login';
-const REGISTER_PAGE='/register';
+const REGISTER_PAGE='/register'; 
+const PROFILE_USER='/profile_user'; 
+const COURSE_CATEGORY_PAGE='/course-category';
 
-const PROFILE_USER='/profile_user';
-export {HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE, PROFILE_USER}
+export {HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE, COURSE_CATEGORY_PAGE, PROFILE_USER}
 
 
 /* =============* REDUCER + ACTION *============= */

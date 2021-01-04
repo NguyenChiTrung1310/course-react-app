@@ -26,6 +26,9 @@ const useStyles: () => Record<
 |'contentShift' 
 |'nested' 
 |'categoryLink' 
+|'iconDrawerHeader' 
+|'listMenu' 
+|'iconListMenu' 
 |'sectionMobile',
 string> = makeStyles((theme: Theme) =>
   createStyles({
@@ -120,14 +123,24 @@ string> = makeStyles((theme: Theme) =>
     },
     drawerPaper: {
       width: drawerWidth,
+      backgroundColor: 'black'
     },
     drawerHeader: {
       display: 'flex',
       alignItems: 'center',
       padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
       ...theme.mixins.toolbar,
       justifyContent: 'flex-end',
+    },
+    iconDrawerHeader: {
+      // backgroundColor: 'white',
+      color: 'white'
+    },
+    listMenu: {
+      color: 'white'
+    },
+    iconListMenu: {
+      color: 'white'
     },
     content: {
       flexGrow: 1,
@@ -150,8 +163,8 @@ string> = makeStyles((theme: Theme) =>
     },
     categoryLink: {
       textDecoration: 'none',
-      color: '#4e4e4e'
-    }
+      color: 'white'
+    },
   })
 );
 

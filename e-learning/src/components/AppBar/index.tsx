@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { HOME_PAGE, PROFILE_USER } from '../../constants';
+import { COURSE_CATEGORY_PAGE, HOME_PAGE, PROFILE_USER } from '../../constants';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -81,7 +81,10 @@ export default function HideAppBar(props: Props) {
 
   useEffect(() => {
     dispatch(fetchCourseCategory());
-  }, [dispatch]);
+    if (!statusCategory) {
+      dispatch(fetchCourseCategory());
+    }
+  }, [dispatch, statusCategory]);
 
   const handleClickListItem = () => {
     setOpenListItem(!openListItem);
@@ -141,28 +144,6 @@ export default function HideAppBar(props: Props) {
 
   const handleMobileMenuOpen = (event: any) => {
     setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const handleClickCategory = (index: number, value: string) => {
-    switch (value) {
-      case 'BackEnd':
-        break;
-      case 'Design':
-        console.log(index);
-        break;
-      case 'DiDong':
-        console.log(index);
-        break;
-      case 'FrontEnd':
-        console.log(index);
-        break;
-      case 'FullStack':
-        console.log(index);
-        break;
-      default:
-        console.log(index);
-        break;
-    }
   };
 
   return (
@@ -259,7 +240,9 @@ export default function HideAppBar(props: Props) {
           paper: classes.drawerPaper,
         }}>
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton
+            onClick={handleDrawerClose}
+            className={classes.iconDrawerHeader}>
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
             ) : (
@@ -268,15 +251,15 @@ export default function HideAppBar(props: Props) {
           </IconButton>
         </div>
         <Divider />
-        <List>
+        <List className={classes.listMenu}>
           {firstMenu.map((text, index) => (
             <ListItem button key={text.name}>
               {index === 0 ? (
-                <ListItemIcon>
+                <ListItemIcon className={classes.iconListMenu}>
                   <PersonIcon />
                 </ListItemIcon>
               ) : (
-                <ListItemIcon>
+                <ListItemIcon className={classes.iconListMenu}>
                   {index === 1 ? (
                     <VideoLibraryRoundedIcon />
                   ) : (
@@ -306,9 +289,9 @@ export default function HideAppBar(props: Props) {
           ))}
         </List>
         <Divider />
-        <List>
+        <List className={classes.listMenu}>
           <ListItem button onClick={handleClickListItem}>
-            <ListItemIcon>
+            <ListItemIcon className={classes.iconListMenu}>
               <CategoryIcon />
             </ListItemIcon>
             <ListItemText primary='Caterogy' />
@@ -321,17 +304,13 @@ export default function HideAppBar(props: Props) {
                 return (
                   <List component='div' disablePadding key={index}>
                     <ListItem button className={classes.nested}>
-                      <ListItemIcon>
+                      <ListItemIcon className={classes.iconListMenu}>
                         <StarBorder />
                       </ListItemIcon>
                       <Link
-                        to={`tendDanhMuc-${maDanhMuc}`}
+                        to={`${COURSE_CATEGORY_PAGE}/${maDanhMuc}`}
                         className={classes.categoryLink}>
-                        <ListItemText
-                          key={maDanhMuc}
-                          primary={tenDanhMuc}
-                          onClick={() => handleClickCategory(index, maDanhMuc)}
-                        />
+                        <ListItemText key={maDanhMuc} primary={tenDanhMuc} />
                       </Link>
                     </ListItem>
                   </List>
@@ -351,11 +330,11 @@ export default function HideAppBar(props: Props) {
           {secondMenu.map((text, index) => (
             <ListItem button key={text.name}>
               {index === 0 ? (
-                <ListItemIcon>
+                <ListItemIcon className={classes.iconListMenu}>
                   <DeleteForeverRoundedIcon />
                 </ListItemIcon>
               ) : (
-                <ListItemIcon>
+                <ListItemIcon className={classes.iconListMenu}>
                   <NotInterestedRoundedIcon />
                 </ListItemIcon>
               )}

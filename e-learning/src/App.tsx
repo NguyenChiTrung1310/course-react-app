@@ -14,10 +14,13 @@ import {
   HOME_PAGE,
   LOCAL_STORAGE_CREDENTIALS_KEY,
   PROFILE_USER,
+  COURSE_CATEGORY_PAGE,
 } from './constants';
 import { toast } from 'react-toastify';
 import { getDataFromCredentials } from './utils/LocalStorage/LocalStorage';
 import { loginSucess } from './features/login/LoginSlice';
+import CourseCategory from './pages/CourseCategory';
+import CourseDetail from './pages/CourseCategory/Detail';
 
 toast.configure({
   autoClose: 2000,
@@ -47,6 +50,16 @@ function App() {
         </Route>
         <Route component={ProfileUser} exact path={PROFILE_USER} />
         <Route component={HomePage} exact path={HOME_PAGE} />
+        <Route
+          component={CourseCategory}
+          exact
+          path={`${COURSE_CATEGORY_PAGE}/:maDanhMuc`}
+        />
+        <Route
+          component={CourseDetail}
+          exact
+          path={`${COURSE_CATEGORY_PAGE}/:maDanhMucKhoahoc/:maKhoaHoc`}
+        />
       </Switch>
     </AppMenu>
   );

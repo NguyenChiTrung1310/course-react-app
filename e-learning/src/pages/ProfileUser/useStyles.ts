@@ -1,66 +1,43 @@
 import {
-    makeStyles,
+    makeStyles,  
     Theme,
+    createStyles, 
   } from '@material-ui/core/styles';
-  
+
+
+
   const useStyles: () => Record<
-  'root'  
-  | 'paper'  
-  | 'avatar' 
-  | 'form' 
-  | 'field'  
-  | 'submit', string>
-   = makeStyles((theme: Theme) => ({
-    root: {
-      width: '100%',
-      height: '90vh',
-      display: 'flex',
-      flexDirection: 'row',
-    },
-    paper: {
-      margin: theme.spacing(8, 4),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    }, 
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-      width: '100%', 
-      marginTop: theme.spacing(1),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    field: {
-      '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-        borderColor: 'black',
+  'root' 
+  |'root1'
+  |'paper' 
+  |'head' 
+  |'avatar',
+  string> = makeStyles((theme: Theme) =>
+    createStyles({
+      root:{
+        position:'relative',
       },
-      '&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-        borderColor: '#f50357',
+      root1:{
+        position:'absolute',
+        right: '0px',
+        backgroundColor: theme.palette.secondary.main,
       },
-      '& .MuiOutlinedInput-input': {
-        color: 'black',
-      },
-      '&:hover .MuiOutlinedInput-input': {
-        color: 'black',
-      },
-      '& .MuiInputLabel-outlined': {
-        color: 'black',
-      },
-      '&:hover .MuiInputLabel-outlined': {
+      paper: {
+        padding: theme.spacing(2),
+        textAlign: 'left',
+        // fontWeight: 'fontWeightBold',
+        fontSize: '24px',
+      }, 
+      head: {
+        fontSize: '32px',
+        variant: 'h2',
         color: '#f50357',
-      },
-  
-      // TextField select
-      '& .MuiTextField-root': {
+      }, 
+      avatar: {
         margin: theme.spacing(1),
-      },
-    } 
-  }));
+        backgroundColor: theme.palette.secondary.main,
+      }, 
+    })
+  );
   
   export { useStyles as default };

@@ -17,6 +17,7 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import useStyles from './useStyles';
+import { IconButton } from '@material-ui/core';
 
 function ProfileUser() {
   const classes = useStyles();
@@ -26,9 +27,13 @@ function ProfileUser() {
         <Grid item xs={12}>
           <Box className={classes.paper}>
             <List className={classes.root}>
-              <Avatar className={classes.root1}>
+              <IconButton
+                className={classes.root1}
+                onClick={() => {
+                  console.log('onClick');
+                }}>
                 <EditIcon />
-              </Avatar>
+              </IconButton>
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatar}>

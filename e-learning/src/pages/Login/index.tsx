@@ -38,7 +38,7 @@ function LoginPage() {
     if (loginStatus === 200) {
       history.push(HOME_PAGE);
     }
-  }, [loginStatus]);
+  }, [loginStatus, history]);
 
   const [field, setfield] = useState<FieldStates>({
     taiKhoan: '',

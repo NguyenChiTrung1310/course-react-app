@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import './_profileuser.scss';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -15,107 +14,80 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import GroupIcon from '@material-ui/icons/Group';
 import PhoneIcon from '@material-ui/icons/Phone';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import EditIcon from '@material-ui/icons/Edit';
 import useStyles from './useStyles';
 import { IconButton } from '@material-ui/core';
-import EditComponent from './EditComponent';
-
-function ProfileUser() {
+function EditComponent() {
   const classes = useStyles();
-
-  const [state, setState] = useState({
-    stateEdit: false,
-  });
-
-  const handleEditButton = () => {
-    console.log('onClick');
-    // setState({
-    //   stateEdit: !stateEdit,
-    // });
-    setState((prevState) => ({
-      stateEdit: !prevState.stateEdit,
-    }));
-    console.log(state);
-  };
-
   function FormRow() {
     return (
       <>
-        <div>{state.stateEdit}</div>
         <Grid item xs={12}>
           <Box className={classes.paper}>
             <List className={classes.root}>
-              <IconButton className={classes.root1} onClick={handleEditButton}>
-                <EditIcon />
-              </IconButton>
-              {state.stateEdit === true ? (
-                <EditComponent />
-              ) : (
-                <>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar className={classes.avatar}>
-                        <EmailIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary='EMAIL'
-                      secondary='Jirawatk1999@hotmail.com'
-                    />
-                  </ListItem>
-                  <Divider variant='inset' component='li' />
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar className={classes.avatar}>
-                        <AccountCircleIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary='ACCOUNT' secondary='ha.ng' />
-                  </ListItem>
-                  <Divider variant='inset' component='li' />
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar className={classes.avatar}>
-                        <ImageIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary='NAME : ' secondary='Mark Law' />
-                  </ListItem>
-                  <Divider variant='inset' component='li' />
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar className={classes.avatar}>
-                        <AccountBoxIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary='TYPE USER' secondary='HV' />
-                  </ListItem>
-                  <Divider variant='inset' component='li' />
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar className={classes.avatar}>
-                        <GroupIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary='TYPE GROUP' secondary='GP01' />
-                  </ListItem>
-                  <Divider variant='inset' component='li' />
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar className={classes.avatar}>
-                        <PhoneIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary='PHONE' secondary='0792085641' />
-                  </ListItem>
-                </>
-              )}
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar className={classes.avatar}>
+                    <EmailIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary='EMAIL'
+                  secondary='Jirawatk1999@hotmail.com'
+                />
+              </ListItem>
+              <Divider variant='inset' component='li' />
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar className={classes.avatar}>
+                    <AccountCircleIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary='ACCOUNT' secondary='ha.ng' />
+              </ListItem>
+              <Divider variant='inset' component='li' />
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar className={classes.avatar}>
+                    <ImageIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary='NAME : ' secondary='Mark Law' />
+              </ListItem>
+              <Divider variant='inset' component='li' />
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar className={classes.avatar}>
+                    <AccountBoxIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary='TYPE USER' secondary='HV' />
+              </ListItem>
+              <Divider variant='inset' component='li' />
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar className={classes.avatar}>
+                    <GroupIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary='TYPE GROUP' secondary='GP01' />
+              </ListItem>
+              <Divider variant='inset' component='li' />
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar className={classes.avatar}>
+                    <PhoneIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary='PHONE' secondary='0792085641' />
+              </ListItem>
             </List>
           </Box>
         </Grid>
       </>
     );
   }
+
+  /**
   function FormRowTwo() {
     return (
       <>
@@ -183,15 +155,15 @@ function ProfileUser() {
       </>
     );
   }
-
+ */
   return (
     <div className={classes.root}>
       <Grid container spacing={6}>
         <Grid container item xs={12}>
           <Box fontWeight='fontWeightLight' m={1}>
-            <Typography className={classes.head} color='primary' component='p'>
+            {/* <Typography className={classes.head} color='primary' component='p'>
               MY PROFILE
-            </Typography>{' '}
+            </Typography>{' '} */}
           </Box>
         </Grid>
 
@@ -200,10 +172,10 @@ function ProfileUser() {
         </Grid>
 
         <Grid container item direction='row' xs={6} sm={6} spacing={2}>
-          <FormRowTwo />
+          {/* <FormRowTwo /> */}
         </Grid>
       </Grid>
     </div>
   );
 }
-export default ProfileUser;
+export default EditComponent;

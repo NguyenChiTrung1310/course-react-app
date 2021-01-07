@@ -42,7 +42,7 @@ const useStyles: () => Record<
       },
       divider: {
         width: '80vh',
-      },
+      }
     })
   );
 

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -16,70 +17,179 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import useStyles from './useStyles';
 import { IconButton } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import ProfileUser from '..';
+
+import {
+  Button,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  InputAdornment,
+} from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
+
+
+
 function EditComponent() {
   const classes = useStyles();
+
+  const dataofUser = useSelector((state: any) => state.login.loginResponse.response);
+  console.log("dataofUser", dataofUser);
+
   function FormRow() {
+    const { email = 'user@gmail',
+      hoTen = 'NOT FOUND',
+      maLoaiNguoiDung = 'NOT FOUND',
+      maNhom = 'NOT FOUND',
+      soDT = 'NOT FOUND',
+      taiKhoan = 'NOT FOUND',
+    } = dataofUser;
+    // console.log("DATA EDIT COMPONENT", dataofUser);
+    // <ProfileUser {...dataofUser} />
+
+
+
     return (
       <>
         <Grid item xs={12}>
           <Box className={classes.paper}>
             <List className={classes.root}>
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <EmailIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary='EMAIL'
-                  secondary='Jirawatk1999@hotmail.com'
+              <form  >
+                <TextField
+                  defaultValue={email}
+                  variant='outlined'
+                  margin='normal'
+                  required
+                  fullWidth
+                  id='Email'
+                  placeholder='Your Account'
+                  name='Email'
+                  autoComplete='Email'
+                  autoFocus
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position='start'>
+                        <Avatar className={classes.avatar}>
+                          <EmailIcon />
+                        </Avatar>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
-              </ListItem>
-              <Divider variant='inset' component='li' />
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <AccountCircleIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='ACCOUNT' secondary='ha.ng' />
-              </ListItem>
-              <Divider variant='inset' component='li' />
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <ImageIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='NAME : ' secondary='Mark Law' />
-              </ListItem>
-              <Divider variant='inset' component='li' />
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <AccountBoxIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='TYPE USER' secondary='HV' />
-              </ListItem>
-              <Divider variant='inset' component='li' />
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <GroupIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='TYPE GROUP' secondary='GP01' />
-              </ListItem>
-              <Divider variant='inset' component='li' />
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <PhoneIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='PHONE' secondary='0792085641' />
-              </ListItem>
+                <TextField
+                  defaultValue={taiKhoan}
+                  variant='outlined'
+                  margin='normal'
+                  required
+                  fullWidth
+                  name='taiKhoan'
+                  placeholder='Your Account'
+                  id='taiKhoan'
+                  autoComplete='taiKhoan'
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position='start'>
+                        <Avatar className={classes.avatar}>
+                          <AccountCircleIcon />
+                        </Avatar>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <TextField
+                  defaultValue={hoTen}
+                  variant='outlined'
+                  margin='normal'
+                  required
+                  fullWidth
+                  name='hoTen'
+                  placeholder='Name User'
+                  id='hoTen'
+                  autoComplete='hoTen'
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position='start'>
+                        <Avatar className={classes.avatar}>
+                          <ImageIcon />
+                        </Avatar>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
+
+                <TextField
+                  defaultValue={maLoaiNguoiDung}
+                  variant='outlined'
+                  margin='normal'
+                  required
+                  fullWidth
+                  name='maLoaiNguoiDung'
+                  placeholder='Type User'
+                  id='maLoaiNguoiDung'
+                  autoComplete='maLoaiNguoiDung'
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position='start'>
+                        <Avatar className={classes.avatar}>
+                          <AccountBoxIcon />
+                        </Avatar>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
+                <TextField
+                  defaultValue={maNhom}
+                  variant='outlined'
+                  margin='normal'
+                  required
+                  fullWidth
+                  name='maNhom'
+                  placeholder='Type Group'
+                  id='maNhom'
+                  autoComplete='maNhom'
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position='start'>
+                        <Avatar className={classes.avatar}>
+                          <GroupIcon />
+                        </Avatar>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
+                <TextField
+                  defaultValue={soDT}
+                  variant='outlined'
+                  margin='normal'
+                  required
+                  fullWidth
+                  name='soDT'
+                  placeholder='Phone Number'
+                  id='soDT'
+                  autoComplete='soDT'
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position='start'>
+                        <Avatar className={classes.avatar}>
+                          <PhoneIcon />
+                        </Avatar>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Button
+                  // type='submit'
+                  fullWidth
+                  variant='contained'
+                  color='secondary' >
+                  Save
+              </Button>
+              </form>
             </List>
           </Box>
         </Grid>
@@ -87,75 +197,6 @@ function EditComponent() {
     );
   }
 
-  /**
-  function FormRowTwo() {
-    return (
-      <>
-        <Grid item xs={12}>
-          <Box className={classes.paper}>
-            <Box>
-              <Typography
-                variant='h3'
-                color='primary'
-                component='p'
-                className={classes.head}>
-                MY COURESE IS REGISTER
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant='h6' color='textSecondary' component='p'>
-                front end development
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant='h6' color='textSecondary' component='p'>
-                web design
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant='h6' color='textSecondary' component='p'>
-                Back end development
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant='h6' color='textSecondary' component='p'>
-                Database design
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box className={classes.paper}>
-            <Box>
-              <Typography
-                variant='h3'
-                color='primary'
-                component='p'
-                className={classes.head}>
-                WHAT CAN I DO{' '}
-              </Typography>
-
-              <Box>
-                <Typography variant='h6' color='textSecondary' component='p'>
-                  Owning a lifetime course
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant='h6' color='textSecondary' component='p'>
-                  Certificate of completion
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant='h6' color='textSecondary' component='p'>
-                  Discount 10% more when paying online
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
-        </Grid>
-      </>
-    );
-  }
- */
   return (
     <div className={classes.root}>
       <Grid container spacing={6}>

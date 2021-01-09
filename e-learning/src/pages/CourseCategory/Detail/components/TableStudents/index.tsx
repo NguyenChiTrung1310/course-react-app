@@ -9,7 +9,10 @@ import {
   TableRow,
   TableSortLabel,
   Paper,
+  Grid,
+  Typography,
 } from '@material-ui/core';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
 import getComparator from './components/GetComparator';
 import stableSort from './components/StableSort';
@@ -148,10 +151,8 @@ export default function EnhancedTable(props: any) {
                       hover
                       onClick={() => handleClick()}
                       role='checkbox'
-                      //   aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={labelId}
-                      //   selected={isItemSelected}
                     >
                       <TableCell
                         component='th'
@@ -168,7 +169,14 @@ export default function EnhancedTable(props: any) {
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={6} className={classes.tblBody}>
+                    {rows.length > 0 ? null : (
+                      <Grid className={classes.noData}>
+                        <ErrorOutlineIcon className={classes.noDataIcon} />
+                        <Typography>No data</Typography>
+                      </Grid>
+                    )}
+                  </TableCell>
                 </TableRow>
               )}
             </TableBody>

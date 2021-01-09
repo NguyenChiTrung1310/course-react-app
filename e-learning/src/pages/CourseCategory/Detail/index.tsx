@@ -1,4 +1,3 @@
-// @ts-ignore
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -130,7 +129,6 @@ const CourseDetail = (props: any) => {
             <Grid className={classes.root}>
               <Typography
                 className={classes.title}
-                // data-wow-iteration='1'
                 color='textSecondary'
                 gutterBottom
               >
@@ -146,7 +144,7 @@ const CourseDetail = (props: any) => {
               >
                 <Grid item xs={12} sm={12} md={4}>
                   <Paper
-                    // elevation={3}
+                    elevation={3}
                     className={`${classes.paper} ${classes.leftSection}`}
                   >
                     <Grid item xs={12} sm={12} md={12}>
@@ -253,16 +251,13 @@ const CourseDetail = (props: any) => {
                         variant='h6'
                         className='description-content'
                       >
-                        {moTa.length > 30 ? `${moTa}. ${str}` : moTa}
+                        {moTa.length > 4 ? `${moTa}. ${str}` : moTa}
                       </Typography>
                     </Grid>
                   </Paper>
                   <MoreDetail />
                 </Grid>
               </Grid>
-              {/* <Container className={classes.tableStudent}>
-                <EnhancedTable students={students} />
-              </Container> */}
             </Grid>
           ) : (
             <div>Message: {message}</div>

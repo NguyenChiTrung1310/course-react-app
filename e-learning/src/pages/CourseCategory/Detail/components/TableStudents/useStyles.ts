@@ -11,9 +11,12 @@ const useStyles: () => Record<
 | 'visuallyHidden'
 | 'tblHead'
 | 'tblHeadCell'
+| 'tblBody'
 | 'tblHeadTitle'
 | 'tblRowContent'
 | 'tblPagination'
+| 'noData'
+| 'noDataIcon'
 , string>
  = makeStyles((theme: Theme) => createStyles({
     root: {
@@ -48,10 +51,25 @@ const useStyles: () => Record<
       paddingLeft: '14px'
     },
     tblPagination: {
-      backgroundColor: '#f50357'
+      backgroundColor: '#f50357',
     },
     tblHeadCell: {
       paddingLeft: '14px'
+    },
+    noData: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    },
+    noDataIcon: {
+      fontSize: '50px'
+    },
+    tblBody: {
+      position: 'relative'
     }
 }));
 

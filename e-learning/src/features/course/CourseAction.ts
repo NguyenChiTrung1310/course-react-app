@@ -4,7 +4,8 @@ import {
     getCourseCategory, 
     getCourseByCategory,
     getCourseDetail,
-    getStudentsByCourse
+    getStudentsByCourse,
+    registerCourse
 } from '../../services/course';
 import { 
     fetchCoursesFail, 
@@ -12,7 +13,8 @@ import {
     fetchCoursesCategory,
     fetchCoursesByCategory,
     courseDetail,
-    studentByCourse
+    studentByCourse,
+    registerCourses
 } from './CourseSlice';
 import { toast } from 'react-toastify';
 
@@ -93,6 +95,20 @@ export const fetchStudentsByCourse = (id: string) => async (dispatch: Dispatch) 
         const status = 401;
         dispatch(studentByCourse({data, status}));  
         // toast.error('You must login to continue !');
+    }
+}
+
+export const registerCoursesAction = (payload: object, maKhoaHoc: string) => async (dispatch: Dispatch) => {
+    try {
+        const response = await registerCourse(payload);
+        const {data = {}, status = ''} = response; 
+        if(status === 200) {
+            dispatch(registerCourses({data, status})); 
+        }
+        toast.success(data); 
+    }catch (error){
+        const {response: {data = {}} = {}, } = error;
+        toast.error(data);
     }
 }
 

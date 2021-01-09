@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchCourseDetail,
   fetchStudentsByCourse,
+  registerCoursesAction,
 } from '../../../features/course/CourseAction';
 import Loading from '../../../components/Loading';
 
@@ -45,11 +46,21 @@ const CourseDetail = (props: any) => {
     (state: any) => state.course.courseDetailResponse.status
   );
 
+  const statusRegisterCourse = useSelector(
+    (state: any) => state.course.registerCourseResponse.status
+  );
+
   useEffect(() => {
     if (statusCourseDetail === 200) {
       dispatch(fetchStudentsByCourse(maKhoaHoc));
     }
   }, [dispatch, maKhoaHoc, statusCourseDetail]);
+
+  useEffect(() => {
+    if (statusRegisterCourse === 200) {
+      dispatch(fetchStudentsByCourse(maKhoaHoc));
+    }
+  }, [dispatch, maKhoaHoc, statusRegisterCourse]);
 
   const courseDetail = useSelector(
     (state: any) => state.course.courseDetailResponse.response
@@ -57,6 +68,10 @@ const CourseDetail = (props: any) => {
 
   const statusLogin = useSelector(
     (state: any) => state.login.loginResponse.status
+  );
+
+  const account = useSelector(
+    (state: any) => state.login.loginResponse.response.taiKhoan
   );
 
   const students = useSelector(
@@ -137,6 +152,15 @@ const CourseDetail = (props: any) => {
   const handleEvent = () => {
     console.log('login status: ', statusLogin);
     console.log('Course ID: ', _maKhoaHoc);
+
+    const payload = {
+      maKhoaHoc: _maKhoaHoc,
+      taiKhoan: account ? account : '',
+    };
+
+    if (statusLogin === 200) {
+      dispatch(registerCoursesAction(payload, maKhoaHoc));
+    }
     setOpen(false);
   };
 

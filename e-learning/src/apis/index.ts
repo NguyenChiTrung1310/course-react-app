@@ -8,6 +8,8 @@ const COURSE_CATEGORY_API = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKh
 const COURSE_BY_CATEGORY_API = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?MaNhom=GP01&maDanhMuc=';
 const COURSE_DETAIL_API = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc='
 const STUDENTS_BY_COURSE_API = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinHocVienKhoaHoc?maKhoaHoc=';
+const REGISTER_COURSE_API = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/DangKyKhoaHoc';
+
 export {
     LOGIN_API, 
     REGISTER_API,
@@ -15,5 +17,6 @@ export {
     COURSE_CATEGORY_API,
     COURSE_BY_CATEGORY_API,
     COURSE_DETAIL_API,
-    STUDENTS_BY_COURSE_API
+    STUDENTS_BY_COURSE_API,
+    REGISTER_COURSE_API
 }

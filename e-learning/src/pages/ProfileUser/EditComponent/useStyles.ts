@@ -11,7 +11,7 @@ const useStyles: () => Record<
   | 'root1'
   | 'paper'
   | 'head'
-  | 'avatar'
+  | 'avatar' 
   | 'divider',
   string> = makeStyles((theme: Theme) =>
     createStyles({
@@ -43,6 +43,7 @@ const useStyles: () => Record<
       divider: {
         width: '80vh',
       },
+      
     })
   );
 

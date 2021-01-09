@@ -17,28 +17,32 @@ import GroupIcon from '@material-ui/icons/Group';
 import PhoneIcon from '@material-ui/icons/Phone';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import useStyles from './useStyles';
-
-
+import { IconButton } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
 function ViewComponent(props: any) {
   const classes = useStyles();
 
-
-  const dataofUser = useSelector((state: any) => state.login.loginResponse.response);
-  console.log("dataofUser", dataofUser);
-
-
+  const getERT = useSelector(
+    (state: any) => state.infoUser.infoUserResponse.response
+  );
+  console.log('OOO', getERT);
 
   function FormRow() {
-    const { email = 'user@gmail',
-      hoTen = 'NOT FOUND',
-      maLoaiNguoiDung = 'NOT FOUND',
-      maNhom = 'NOT FOUND',
-      soDT = 'NOT FOUND',
-      taiKhoan = 'NOT FOUND',
-    } = dataofUser;
+    const {
+      email = 'Please login',
+      hoTen = 'Please login',
+      maLoaiNguoiDung = 'Please login',
+      maNhom = 'Please login',
+      soDT = 'Please login',
+      taiKhoan = 'Please login',
+    } = getERT;
     return (
       <>
         <Grid item xs={12}>
+          {/* onClick={handleEditButton} */}
+          <IconButton className={classes.root1}>
+            <EditIcon />
+          </IconButton>
           <Box className={classes.paper}>
             <List className={classes.root}>
               <ListItem>
@@ -47,12 +51,13 @@ function ViewComponent(props: any) {
                     <EmailIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText
-                  primary='EMAIL'
-                  secondary={email}
-                />
+                <ListItemText primary='EMAIL' secondary={email} />
               </ListItem>
-              <Divider variant='inset' component='li' className={classes.divider} />
+              <Divider
+                variant='inset'
+                component='li'
+                className={classes.divider}
+              />
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatar}>
@@ -61,7 +66,11 @@ function ViewComponent(props: any) {
                 </ListItemAvatar>
                 <ListItemText primary='ACCOUNT' secondary={taiKhoan} />
               </ListItem>
-              <Divider variant='inset' component='li' className={classes.divider} />
+              <Divider
+                variant='inset'
+                component='li'
+                className={classes.divider}
+              />
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatar}>
@@ -70,7 +79,11 @@ function ViewComponent(props: any) {
                 </ListItemAvatar>
                 <ListItemText primary='NAME' secondary={hoTen} />
               </ListItem>
-              <Divider variant='inset' component='li' className={classes.divider} />
+              <Divider
+                variant='inset'
+                component='li'
+                className={classes.divider}
+              />
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatar}>
@@ -79,7 +92,11 @@ function ViewComponent(props: any) {
                 </ListItemAvatar>
                 <ListItemText primary='TYPE USER' secondary={maLoaiNguoiDung} />
               </ListItem>
-              <Divider variant='inset' component='li' className={classes.divider} />
+              <Divider
+                variant='inset'
+                component='li'
+                className={classes.divider}
+              />
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatar}>
@@ -88,7 +105,11 @@ function ViewComponent(props: any) {
                 </ListItemAvatar>
                 <ListItemText primary='TYPE GROUP' secondary={maNhom} />
               </ListItem>
-              <Divider variant='inset' component='li' className={classes.divider} />
+              <Divider
+                variant='inset'
+                component='li'
+                className={classes.divider}
+              />
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatar}>
@@ -103,7 +124,6 @@ function ViewComponent(props: any) {
       </>
     );
   }
-
 
   return (
     <div className={classes.root}>

@@ -30,34 +30,41 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
 
-
-
 function EditComponent() {
   const classes = useStyles();
 
-  const dataofUser = useSelector((state: any) => state.login.loginResponse.response);
-  console.log("dataofUser", dataofUser);
+  // const dataofUser = useSelector(
+  //   (state: any) => state.login.loginResponse.response
+  // );
+  // console.log('dataofUser', dataofUser);
+
+  const getERT = useSelector(
+    (state: any) => state.infoUser.infoUserResponse.response
+  );
+  console.log('OOO', getERT);
 
   function FormRow() {
-    const { email = 'user@gmail',
-      hoTen = 'NOT FOUND',
-      maLoaiNguoiDung = 'NOT FOUND',
-      maNhom = 'NOT FOUND',
-      soDT = 'NOT FOUND',
-      taiKhoan = 'NOT FOUND',
-    } = dataofUser;
+    const {
+      chiTietKhoaHocGhiDanh = 'Please login',
+      email = 'Please login',
+      hoTen = 'Please login',
+      maLoaiNguoiDung = 'Please login',
+      maNhom = 'Please login',
+      matKhau = 'Please login',
+      soDT = 'Please login',
+      taiKhoan = 'Please login',
+    } = getERT;
     // console.log("DATA EDIT COMPONENT", dataofUser);
     // <ProfileUser {...dataofUser} />
-
-
 
     return (
       <>
         <Grid item xs={12}>
           <Box className={classes.paper}>
             <List className={classes.root}>
-              <form  >
+              <form>
                 <TextField
+                  className={classes.divider}
                   defaultValue={email}
                   variant='outlined'
                   margin='normal'
@@ -79,6 +86,7 @@ function EditComponent() {
                   }}
                 />
                 <TextField
+                  className={classes.divider}
                   defaultValue={taiKhoan}
                   variant='outlined'
                   margin='normal'
@@ -99,6 +107,7 @@ function EditComponent() {
                   }}
                 />
                 <TextField
+                  className={classes.divider}
                   defaultValue={hoTen}
                   variant='outlined'
                   margin='normal'
@@ -119,8 +128,8 @@ function EditComponent() {
                   }}
                 />
 
-
                 <TextField
+                  className={classes.divider}
                   defaultValue={maLoaiNguoiDung}
                   variant='outlined'
                   margin='normal'
@@ -142,6 +151,7 @@ function EditComponent() {
                 />
 
                 <TextField
+                  className={classes.divider}
                   defaultValue={maNhom}
                   variant='outlined'
                   margin='normal'
@@ -163,6 +173,7 @@ function EditComponent() {
                 />
 
                 <TextField
+                  className={classes.divider}
                   defaultValue={soDT}
                   variant='outlined'
                   margin='normal'
@@ -186,9 +197,9 @@ function EditComponent() {
                   // type='submit'
                   fullWidth
                   variant='contained'
-                  color='secondary' >
+                  color='secondary'>
                   Save
-              </Button>
+                </Button>
               </form>
             </List>
           </Box>

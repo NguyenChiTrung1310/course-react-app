@@ -9,7 +9,6 @@ import { IconButton } from '@material-ui/core';
 import ViewComponent from './ViewComponent';
 import EditComponent from './EditComponent';
 
-
 function ProfileUser(props: any) {
   const classes = useStyles();
 
@@ -98,20 +97,17 @@ function ProfileUser(props: any) {
       <Grid container spacing={6}>
         <Grid container item xs={12}>
           <Box fontWeight='fontWeightLight' m={1}>
+            <IconButton className={classes.root1} onClick={handleEditButton}>
+              <EditIcon />
+            </IconButton>
             <Typography className={classes.head} color='primary' component='p'>
               MY PROFILE
             </Typography>{' '}
           </Box>
         </Grid>
 
-        <Grid container item xs={6} sm={6} spacing={2}>
-          <IconButton className={classes.root1} onClick={handleEditButton}>
-            <EditIcon />
-          </IconButton>
-          {
-            state.stateEdit === false ? (<ViewComponent />) : (<EditComponent />)
-          }
-
+        <Grid item xs={6} sm={6} spacing={2}>
+          {state.stateEdit === false ? <ViewComponent /> : <EditComponent />}
         </Grid>
 
         <Grid container item direction='row' xs={6} sm={6} spacing={2}>

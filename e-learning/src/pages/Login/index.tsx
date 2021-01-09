@@ -19,7 +19,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
 import useStyles from './useStyles';
 import './_loginpage.scss';
-import { HOME_PAGE } from '../../constants';
+import { COURSE_CATEGORY_PAGE, HOME_PAGE } from '../../constants';
 
 type FieldStates = {
   taiKhoan: string;
@@ -34,11 +34,29 @@ function LoginPage() {
     (state: any) => state.login.loginResponse.status
   );
 
+  const statusDetaiCourse = useSelector(
+    (state: any) => state.course.courseDetailResponse.status
+  );
+  const detaiCourse = useSelector(
+    (state: any) => state.course.courseDetailResponse.response
+  );
+
+  const {
+    maKhoaHoc = '',
+    danhMucKhoaHoc: { maDanhMucKhoahoc = '' } = {},
+  } = detaiCourse;
+
   useEffect(() => {
     if (loginStatus === 200) {
-      history.push(HOME_PAGE);
+      if (statusDetaiCourse === 200) {
+        history.push(
+          `${COURSE_CATEGORY_PAGE}/${maDanhMucKhoahoc}/${maKhoaHoc}`
+        );
+      } else {
+        history.push(HOME_PAGE);
+      }
     }
-  }, [loginStatus]);
+  }, [loginStatus, history, statusDetaiCourse, maDanhMucKhoahoc, maKhoaHoc]);
 
   const [field, setfield] = useState<FieldStates>({
     taiKhoan: '',
@@ -62,7 +80,8 @@ function LoginPage() {
     <Grid
       container
       component='main'
-      className={clsx(classes.root && 'login-page')}>
+      className={clsx(classes.root && 'login-page')}
+    >
       <Grid item xs={12} sm={12} md={6} className='imageBannerLogin' />
       <Grid item xs={12} sm={12} md={6}>
         <div className={classes.paper}>
@@ -124,7 +143,8 @@ function LoginPage() {
                 fullWidth
                 variant='contained'
                 color='secondary'
-                className={classes.submit}>
+                className={classes.submit}
+              >
                 Log In
               </Button>
               <Grid container>

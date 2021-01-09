@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchCourseDetail,
@@ -17,7 +17,7 @@ import {
 import clsx from 'clsx';
 
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
 import DescriptionIcon from '@material-ui/icons/Description';
@@ -29,28 +29,34 @@ import useStyles from './useStyles';
 import './_courseDetail.scss';
 import EnhancedTable from './components/TableStudents';
 import MoreDetail from './components/MoreDetail';
+import Modal from '../../../components/Modal';
 
 const CourseDetail = (props: any) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
   const { match: { params: { maKhoaHoc = '' } = {} } = {} } = props;
 
   useEffect(() => {
     dispatch(fetchCourseDetail(maKhoaHoc));
   }, [dispatch, maKhoaHoc]);
 
-  const status = useSelector(
+  const statusCourseDetail = useSelector(
     (state: any) => state.course.courseDetailResponse.status
   );
 
   useEffect(() => {
-    if (status === 200) {
+    if (statusCourseDetail === 200) {
       dispatch(fetchStudentsByCourse(maKhoaHoc));
     }
-  }, [dispatch, maKhoaHoc, status]);
+  }, [dispatch, maKhoaHoc, statusCourseDetail]);
 
   const courseDetail = useSelector(
     (state: any) => state.course.courseDetailResponse.response
+  );
+
+  const statusLogin = useSelector(
+    (state: any) => state.login.loginResponse.status
   );
 
   const students = useSelector(
@@ -58,7 +64,7 @@ const CourseDetail = (props: any) => {
   );
 
   const {
-    // maKhoaHoc: _maKhoaHoc = '',
+    maKhoaHoc: _maKhoaHoc = '',
     biDanh = '',
     // maNhom = '',
     tenKhoaHoc = '',
@@ -110,7 +116,7 @@ const CourseDetail = (props: any) => {
       case 'STUDENT':
         return <GroupAddIcon />;
       case 'TEACHER':
-        return <AccountBoxIcon />;
+        return <PermIdentityIcon />;
       case 'ACCOUNT':
         return <AccountCircleIcon />;
       default:
@@ -121,11 +127,24 @@ const CourseDetail = (props: any) => {
   const str =
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleEvent = () => {
+    console.log('login status: ', statusLogin);
+    console.log('Course ID: ', _maKhoaHoc);
+    setOpen(false);
+  };
+
   return (
     <div>
-      {status ? (
+      {statusCourseDetail ? (
         <>
-          {status === 200 ? (
+          {statusCourseDetail === 200 ? (
             <Grid className={classes.root}>
               <Typography
                 className={classes.title}
@@ -179,9 +198,17 @@ const CourseDetail = (props: any) => {
                         <Button
                           variant='outlined'
                           className={`${classes.btn} ${classes.btnBuy}`}
+                          onClick={handleClickOpen}
                         >
                           Buy Now
                         </Button>
+                        <Modal
+                          open={open}
+                          handleClose={handleClose}
+                          handleEvent={handleEvent}
+                          moDalTitle='Confirm to buy?'
+                          className={`${classes.btn} ${classes.btnBuy}`}
+                        />
                       </Grid>
                       <Grid item xs={12} sm={12} md={12}>
                         {dataArr.map((item, index) => (
@@ -198,7 +225,9 @@ const CourseDetail = (props: any) => {
                               className={clsx(classes.content, 'content')}
                               gutterBottom
                             >
-                              {item.content}
+                              {item.content === luotXem
+                                ? `${item.content} views`
+                                : item.content}
                             </Typography>
                           </Grid>
                         ))}

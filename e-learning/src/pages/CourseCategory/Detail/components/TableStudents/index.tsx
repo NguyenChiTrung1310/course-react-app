@@ -24,10 +24,10 @@ import { Data, HeadCell, Order, EnhancedTableProps } from '../../type';
 
 const headCells: HeadCell[] = [
   {
-    id: 'name',
+    id: 'student',
     numeric: false,
     disablePadding: true,
-    label: 'Student',
+    label: 'Student list',
   },
   { id: 'account', numeric: true, disablePadding: false, label: 'Account' },
 ];
@@ -71,8 +71,8 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-function createData(name: string, account: string): Data {
-  return { name, account };
+function createData(student: string, account: string): Data {
+  return { student, account };
 }
 
 export default function EnhancedTable(props: any) {
@@ -161,7 +161,7 @@ export default function EnhancedTable(props: any) {
                         padding='none'
                         className={classes.tblRowContent}
                       >
-                        {row.name}
+                        {row.student}
                       </TableCell>
                       <TableCell align='right'>{row.account}</TableCell>
                     </TableRow>

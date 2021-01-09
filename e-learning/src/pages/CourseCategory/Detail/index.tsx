@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   fetchCourseDetail,
   fetchStudentsByCourse,
@@ -31,9 +32,12 @@ import './_courseDetail.scss';
 import EnhancedTable from './components/TableStudents';
 import MoreDetail from './components/MoreDetail';
 import Modal from '../../../components/Modal';
+import { toast } from 'react-toastify';
+import { LOGIN_PAGE } from '../../../constants';
 
 const CourseDetail = (props: any) => {
   const classes = useStyles();
+  const history = useHistory();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const { match: { params: { maKhoaHoc = '' } = {} } = {} } = props;
@@ -149,10 +153,7 @@ const CourseDetail = (props: any) => {
     setOpen(false);
   };
 
-  const handleEvent = () => {
-    console.log('login status: ', statusLogin);
-    console.log('Course ID: ', _maKhoaHoc);
-
+  const handleRegisterCourse = () => {
     const payload = {
       maKhoaHoc: _maKhoaHoc,
       taiKhoan: account ? account : '',
@@ -160,8 +161,14 @@ const CourseDetail = (props: any) => {
 
     if (statusLogin === 200) {
       dispatch(registerCoursesAction(payload));
+    } else {
+      toast.error("You're not login account. Please try again !");
     }
     setOpen(false);
+  };
+
+  const handleLogin = () => {
+    history.push(LOGIN_PAGE);
   };
 
   return (
@@ -229,8 +236,14 @@ const CourseDetail = (props: any) => {
                         <Modal
                           open={open}
                           handleClose={handleClose}
-                          handleEvent={handleEvent}
-                          moDalTitle='Confirm to buy?'
+                          handleEvent={
+                            statusLogin ? handleRegisterCourse : handleLogin
+                          }
+                          moDalTitle={
+                            statusLogin
+                              ? `Confirm to buy?`
+                              : `Redirect to Login page ?`
+                          }
                           className={`${classes.btn} ${classes.btnBuy}`}
                         />
                       </Grid>

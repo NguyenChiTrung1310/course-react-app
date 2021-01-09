@@ -14,6 +14,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
+import './_modal.scss';
+
 const styles = (theme: Theme) =>
   createStyles({
     root: {
@@ -89,7 +91,12 @@ export default function Modal(props: any) {
           <Button autoFocus onClick={handleClose}>
             Close
           </Button>
-          <Button autoFocus style={{ color: '#f50357' }} onClick={handleEvent}>
+          <Button
+            autoFocus
+            className='btnConfirm'
+            // style={{ color: '#f50357' }}
+            onClick={handleEvent}
+          >
             Confirm
           </Button>
         </DialogActions>

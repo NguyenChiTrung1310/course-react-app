@@ -4,18 +4,19 @@ import { combineReducers } from 'redux';
 import loginReducer from './features/login/LoginSlice';
 import registerReducer from './features/register/RegisterSlice';
 import courseReducer from './features/course/CourseSlice'; 
-
+import inforUserReducer from './features/profileUser/profileUserSlice';
 const appReducer = combineReducers({
   // [13] here we will be adding reducers
   login: loginReducer,
   register: registerReducer,
   course: courseReducer,
+  infoUser:  inforUserReducer,
 })
 
 const rootReducer=( state:any, action: any)=>{
   if(action.type==='CLEAR_STORE'){
     clearStoreFromlocalStorage();
-    state= undefined;
+    state= undefined; 
   }
   return appReducer(state,action);
 }

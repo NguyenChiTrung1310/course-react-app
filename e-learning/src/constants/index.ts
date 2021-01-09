@@ -19,11 +19,11 @@ const COURSE_REDUCER = {
     COURSE_LIST: 'course_list',
 }
 
-const INFOR_USER_REDUCER={
+const PROFILE_USER_REDUCER={
     INFOR_USER:'info_user',
 }
 
-export {AUTH_REDUCER, COURSE_REDUCER, INFOR_USER_REDUCER}
+export {AUTH_REDUCER, COURSE_REDUCER, PROFILE_USER_REDUCER}
 
 /* =============* LOCALSTORAGE KEY CONSTANTS *============= */
 const LOCAL_STORAGE_TOKEN_KEY= '@token';

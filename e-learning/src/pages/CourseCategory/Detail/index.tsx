@@ -159,7 +159,7 @@ const CourseDetail = (props: any) => {
     };
 
     if (statusLogin === 200) {
-      dispatch(registerCoursesAction(payload, maKhoaHoc));
+      dispatch(registerCoursesAction(payload));
     }
     setOpen(false);
   };

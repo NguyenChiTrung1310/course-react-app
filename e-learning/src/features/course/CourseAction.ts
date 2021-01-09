@@ -98,7 +98,7 @@ export const fetchStudentsByCourse = (id: string) => async (dispatch: Dispatch) 
     }
 }
 
-export const registerCoursesAction = (payload: object, maKhoaHoc: string) => async (dispatch: Dispatch) => {
+export const registerCoursesAction = (payload: object) => async (dispatch: Dispatch) => {
     try {
         const response = await registerCourse(payload);
         const {data = {}, status = ''} = response; 

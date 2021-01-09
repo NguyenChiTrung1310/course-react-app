@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -12,6 +13,7 @@ import {
   Typography,
   Paper,
   Container,
+  Button,
 } from '@material-ui/core';
 import clsx from 'clsx';
 
@@ -19,11 +21,15 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
+import DescriptionIcon from '@material-ui/icons/Description';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 import imgContent from '../../../assets/logo.png';
 import useStyles from './useStyles';
 import './_courseDetail.scss';
 import EnhancedTable from './components/TableStudents';
+import MoreDetail from './components/MoreDetail';
 
 const CourseDetail = (props: any) => {
   const classes = useStyles();
@@ -53,15 +59,15 @@ const CourseDetail = (props: any) => {
   );
 
   const {
-    maKhoaHoc: _maKhoaHoc = '',
+    // maKhoaHoc: _maKhoaHoc = '',
     biDanh = '',
-    maNhom = '',
+    // maNhom = '',
     tenKhoaHoc = '',
     moTa = '',
     luotXem = '',
     hinhAnh = 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201811/online-3412473_1920_1.jpeg?tz.RfsTe_UTLHiDqxmpG7PY_nTIBjwF7',
     ngayTao = '',
-    soLuongHocVien = '',
+    // soLuongHocVien = '',
     nguoiTao: { hoTen = '', tenLoaiNguoiDung = '', taiKhoan = '' } = {},
     danhMucKhoaHoc: { tenDanhMucKhoaHoc = '' } = {},
     error: { message = '' } = {},
@@ -69,40 +75,26 @@ const CourseDetail = (props: any) => {
 
   const dataArr = [
     {
-      label: '',
       content: tenKhoaHoc,
       icon: 'COURSE',
     },
     {
-      label: 'View',
       content: luotXem,
       icon: 'VIEWS',
     },
     {
-      label: 'Create at',
       content: ngayTao,
       icon: 'DATE',
     },
     {
-      label: 'Student',
-      content: soLuongHocVien,
-      icon: 'STUDENT',
-    },
-  ];
-
-  const teacher = [
-    {
-      label: 'Teacher',
       content: hoTen,
       icon: 'TEACHER',
     },
     {
-      label: 'Account',
       content: taiKhoan,
       icon: 'ACCOUNT',
     },
     {
-      label: 'Type of user',
       content: tenLoaiNguoiDung,
       icon: 'TYPE',
     },
@@ -111,11 +103,11 @@ const CourseDetail = (props: any) => {
   const getIcon = (icon: string) => {
     switch (icon) {
       case 'COURSE':
-        return <Typography>Course</Typography>;
+        return <DescriptionIcon />;
       case 'VIEWS':
-        return <Typography>Views</Typography>;
+        return <VisibilityIcon />;
       case 'DATE':
-        return <Typography>Create at</Typography>;
+        return <CloudDownloadIcon />;
       case 'STUDENT':
         return <GroupAddIcon />;
       case 'TEACHER':
@@ -138,97 +130,139 @@ const CourseDetail = (props: any) => {
             <Grid className={classes.root}>
               <Typography
                 className={classes.title}
+                // data-wow-iteration='1'
                 color='textSecondary'
                 gutterBottom
               >
                 Course category: {tenDanhMucKhoaHoc}
               </Typography>
-              <Container className={classes.courseDetail}>
-                <Paper elevation={3} className={classes.paper}>
-                  <Grid item xs={12} sm={12} md={1} />
-                  <Grid item xs={12} sm={12} md={5}>
-                    {hinhAnh.includes('.string') ? (
-                      <Paper elevation={3}>
-                        <CardMedia
-                          className={classes.media}
-                          image={imgContent}
-                          title={biDanh}
-                        />
-                      </Paper>
-                    ) : (
-                      <Paper elevation={3}>
-                        <CardMedia
-                          className={classes.media}
-                          image={hinhAnh}
-                          title={biDanh}
-                        />
-                      </Paper>
-                    )}
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={3}>
-                    {dataArr.map((item, index) => (
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                container
+                className={classes.courseDetail}
+              >
+                <Grid item xs={12} sm={12} md={4}>
+                  <Paper
+                    // elevation={3}
+                    className={`${classes.paper} ${classes.leftSection}`}
+                  >
+                    <Grid item xs={12} sm={12} md={12}>
+                      {hinhAnh.includes('.string') ? (
+                        <Paper elevation={3}>
+                          <CardMedia
+                            className={classes.media}
+                            image={imgContent}
+                            title={biDanh}
+                          />
+                        </Paper>
+                      ) : (
+                        <Paper elevation={3}>
+                          <CardMedia
+                            className={classes.media}
+                            image={hinhAnh}
+                            title={biDanh}
+                          />
+                        </Paper>
+                      )}
+                    </Grid>
+                    <Container style={{ width: '85%' }}>
+                      <Grid item xs={12} sm={12} md={12}>
+                        <Button
+                          variant='contained'
+                          className={`${classes.btn} ${classes.btnAdd}`}
+                        >
+                          Add to cart
+                        </Button>
+                      </Grid>
+                      <Grid item xs={12} sm={12} md={12}>
+                        <Button
+                          variant='outlined'
+                          className={`${classes.btn} ${classes.btnBuy}`}
+                        >
+                          Buy Now
+                        </Button>
+                      </Grid>
+                      <Grid item xs={12} sm={12} md={12}>
+                        {dataArr.map((item, index) => (
+                          <Grid
+                            item
+                            xs={12}
+                            sm={12}
+                            md={12}
+                            key={index + 1}
+                            className={classes.information}
+                          >
+                            {getIcon(item.icon)}
+                            <Typography
+                              className={clsx(classes.content, 'content')}
+                              gutterBottom
+                            >
+                              {item.content}
+                            </Typography>
+                          </Grid>
+                        ))}
+                      </Grid>
+                    </Container>
+                  </Paper>
+                  <EnhancedTable students={students} />
+                </Grid>
+                <Grid item xs={12} sm={12} md={1} />
+                <Grid item xs={12} sm={12} md={7}>
+                  <Paper elevation={3} className={classes.paper}>
+                    <Grid item xs={12} sm={12} md={1} />
+                    <Grid item xs={12} sm={12} md={10}>
                       <Grid
                         item
                         xs={12}
                         sm={12}
-                        md={6}
-                        key={index + 1}
-                        className={classes.information}
+                        md={12}
+                        className={classes.course}
                       >
-                        {getIcon(item.icon)}
                         <Typography
-                          className={clsx(classes.content, 'content')}
                           gutterBottom
+                          variant='h6'
+                          className={clsx(classes.courseTitle, 'course-title')}
                         >
-                          {item.content}
+                          Course:
+                        </Typography>
+                        <Typography
+                          gutterBottom
+                          component={'span'}
+                          variant='h6'
+                          className={clsx(
+                            classes.courseContent,
+                            'course-content'
+                          )}
+                        >
+                          {tenKhoaHoc}
                         </Typography>
                       </Grid>
-                    ))}
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={3}>
-                    {teacher.map((item, index) => (
-                      <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        md={6}
-                        key={index + 1}
-                        className={classes.information}
+
+                      <Typography
+                        gutterBottom
+                        variant='h6'
+                        className={clsx(classes.description, 'description')}
                       >
-                        {getIcon(item.icon)}
-                        <Typography
-                          className={clsx(classes.content, 'content')}
-                          gutterBottom
-                        >
-                          {item.content === tenKhoaHoc
-                            ? `${item.content} (${_maKhoaHoc})`
-                            : item.content}
-                        </Typography>
-                      </Grid>
-                    ))}
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={1} />
-                  <Grid item xs={12} sm={12} md={10}>
-                    <Typography
-                      gutterBottom
-                      variant='h6'
-                      className={clsx(classes.description, 'description')}
-                    >
-                      Description:
-                    </Typography>
-                    <Typography
-                      gutterBottom
-                      variant='h6'
-                      className='description-content'
-                    >
-                      {moTa.length > 30 ? `${moTa}. ${str}` : moTa}
-                    </Typography>
-                  </Grid>
-                </Paper>
-              </Container>
-              <Grid>
-                <EnhancedTable students={students} />
+                        Description:
+                      </Typography>
+                      <Typography
+                        gutterBottom
+                        variant='h6'
+                        className='description-content'
+                      >
+                        {moTa.length > 30 ? `${moTa}. ${str}` : moTa}
+                      </Typography>
+                    </Grid>
+                  </Paper>
+                  <MoreDetail />
+                </Grid>
               </Grid>
+              {/* <Container className={classes.tableStudent}>
+                <EnhancedTable students={students} />
+              </Container> */}
             </Grid>
           ) : (
             <div>Message: {message}</div>

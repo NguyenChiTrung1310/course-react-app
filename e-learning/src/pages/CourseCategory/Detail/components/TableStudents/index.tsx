@@ -15,6 +15,7 @@ import getComparator from './components/GetComparator';
 import stableSort from './components/StableSort';
 
 import useStyles from './useStyles';
+import './_tableStudent.scss';
 
 import { Data, HeadCell, Order, EnhancedTableProps } from '../../type';
 
@@ -37,7 +38,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   };
 
   return (
-    <TableHead>
+    <TableHead className={classes.tblHead}>
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell
@@ -45,11 +46,13 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
+            className={classes.tblHeadCell}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
+              className={classes.tblHeadTitle}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
@@ -155,6 +158,7 @@ export default function EnhancedTable(props: any) {
                         id={labelId}
                         scope='row'
                         padding='none'
+                        className={classes.tblRowContent}
                       >
                         {row.name}
                       </TableCell>
@@ -178,6 +182,7 @@ export default function EnhancedTable(props: any) {
           page={page}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
+          className={classes.tblPagination}
         />
       </Paper>
     </div>

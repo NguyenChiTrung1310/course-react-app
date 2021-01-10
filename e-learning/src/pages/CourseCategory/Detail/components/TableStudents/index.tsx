@@ -85,7 +85,8 @@ export default function EnhancedTable(props: any) {
   const { students: { lstHocVien = [] } = {} } = props;
 
   const rows = lstHocVien.map((item: any) => {
-    return createData(item.hoTen, item.taiKhoan);
+    const { hoTen = '', taiKhoan = '' } = item;
+    return createData(hoTen, taiKhoan);
   });
 
   const handleRequestSort = (

@@ -26,6 +26,7 @@ const useStyles: () => Record<
 | 'learnDetail'
 | 'learnDescription'
 | 'item'
+| 'loading'
 , string>
  = makeStyles((theme: Theme) => createStyles({
     root: {
@@ -122,6 +123,12 @@ const useStyles: () => Record<
     },
     item: {
         display: 'flex',
+    },
+    loading: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate (-50%, -50%)'
     }
 }));
 

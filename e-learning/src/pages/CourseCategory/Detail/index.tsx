@@ -330,7 +330,9 @@ const CourseDetail = (props: any) => {
           )}
         </>
       ) : (
-        <Loading />
+        <Grid className={classes.loading}>
+          <Loading />
+        </Grid>
       )}
     </div>
   );

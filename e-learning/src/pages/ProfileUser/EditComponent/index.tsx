@@ -15,6 +15,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import GroupIcon from '@material-ui/icons/Group';
 import PhoneIcon from '@material-ui/icons/Phone';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import SaveIcon from '@material-ui/icons/Save';
 import useStyles from './useStyles';
 import { IconButton } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
@@ -60,6 +61,9 @@ function EditComponent() {
     return (
       <>
         <Grid item xs={12}>
+          <IconButton className={classes.root1}>
+            <SaveIcon />
+          </IconButton>
           <Box className={classes.paper}>
             <List className={classes.root}>
               <form>

@@ -27,6 +27,10 @@ function ViewComponent(props: any) {
   );
   console.log('OOO', getERT);
 
+  const handleClickEditButton = () => {
+    console.log('click icon Edit');
+  };
+
   function FormRow() {
     const {
       email = 'Please login',
@@ -36,12 +40,13 @@ function ViewComponent(props: any) {
       soDT = 'Please login',
       taiKhoan = 'Please login',
     } = getERT;
+
     return (
       <>
         <Grid item xs={12}>
           {/* onClick={handleEditButton} */}
           <IconButton className={classes.root1}>
-            <EditIcon />
+            <EditIcon onClick={handleClickEditButton} />
           </IconButton>
           <Box className={classes.paper}>
             <List className={classes.root}>

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './_profileuser.scss';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -8,12 +9,20 @@ import useStyles from './useStyles';
 import { IconButton } from '@material-ui/core';
 import ViewComponent from './ViewComponent';
 import EditComponent from './EditComponent';
-
+import { profileUserAction } from './../../features/profileUser/profileUserAction';
 function ProfileUser(props: any) {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     stateEdit: false,
+  });
+
+  const getToken = useSelector(
+    (state: any) => state.login.loginResponse.response.accessToken
+  );
+
+  useEffect(() => {
+    dispatch(profileUserAction(getToken));
   });
 
   const handleEditButton = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -19,8 +19,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import useStyles from './useStyles';
 import { IconButton } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import ProfileUser from '..';
-
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import {
   Button,
   FormControlLabel,
@@ -30,10 +29,10 @@ import {
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
-
+import { updateProfileUserAction } from './../../../features/profileUser/profileUserAction';
 function EditComponent() {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
   // const dataofUser = useSelector(
   //   (state: any) => state.login.loginResponse.response
   // );
@@ -43,7 +42,15 @@ function EditComponent() {
     (state: any) => state.infoUser.infoUserResponse.response
   );
   console.log('OOO', getERT);
-
+  type FieldStates = {
+    email: string;
+    hoTen: string;
+    maLoaiNguoiDung: string;
+    maNhom: string;
+    matKhau: string;
+    soDT: string;
+    taiKhoan: string;
+  };
   function FormRow() {
     const {
       chiTietKhoaHocGhiDanh = 'Please login',
@@ -55,8 +62,29 @@ function EditComponent() {
       soDT = 'Please login',
       taiKhoan = 'Please login',
     } = getERT;
-    // console.log("DATA EDIT COMPONENT", dataofUser);
-    // <ProfileUser {...dataofUser} />
+
+    const [field, setfield] = useState<FieldStates>({
+      email: email,
+      hoTen: hoTen,
+      maLoaiNguoiDung: maLoaiNguoiDung,
+      maNhom: maNhom,
+      matKhau: matKhau,
+      soDT: soDT,
+      taiKhoan: taiKhoan,
+    });
+
+    const handleChange = (e: any) => {
+      setfield({
+        ...field,
+        [e.target.name]: e.target.value,
+      });
+    };
+
+    const handleSubmit = (e: any) => {
+      e.preventDefault();
+      dispatch(updateProfileUserAction(field));
+      console.log('WHEN SUBMIT', field);
+    };
 
     return (
       <>
@@ -66,7 +94,7 @@ function EditComponent() {
           </IconButton>
           <Box className={classes.paper}>
             <List className={classes.root}>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <TextField
                   className={classes.divider}
                   defaultValue={email}
@@ -74,11 +102,12 @@ function EditComponent() {
                   margin='normal'
                   required
                   fullWidth
-                  id='Email'
+                  id='email'
                   placeholder='Your Account'
-                  name='Email'
-                  autoComplete='Email'
+                  name='email'
+                  autoComplete='email'
                   autoFocus
+                  onChange={(event) => handleChange(event)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position='start'>
@@ -100,11 +129,34 @@ function EditComponent() {
                   placeholder='Your Account'
                   id='taiKhoan'
                   autoComplete='taiKhoan'
+                  onChange={(event) => handleChange(event)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position='start'>
                         <Avatar className={classes.avatar}>
                           <AccountCircleIcon />
+                        </Avatar>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <TextField
+                  className={classes.divider}
+                  defaultValue={matKhau}
+                  variant='outlined'
+                  margin='normal'
+                  required
+                  fullWidth
+                  name='matKhau'
+                  placeholder='Your Password'
+                  id='matKhau'
+                  autoComplete='matKhau'
+                  onChange={(event) => handleChange(event)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position='start'>
+                        <Avatar className={classes.avatar}>
+                          <VpnKeyIcon />
                         </Avatar>
                       </InputAdornment>
                     ),
@@ -121,6 +173,7 @@ function EditComponent() {
                   placeholder='Name User'
                   id='hoTen'
                   autoComplete='hoTen'
+                  onChange={(event) => handleChange(event)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position='start'>
@@ -143,6 +196,7 @@ function EditComponent() {
                   placeholder='Type User'
                   id='maLoaiNguoiDung'
                   autoComplete='maLoaiNguoiDung'
+                  onChange={(event) => handleChange(event)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position='start'>
@@ -165,6 +219,7 @@ function EditComponent() {
                   placeholder='Type Group'
                   id='maNhom'
                   autoComplete='maNhom'
+                  onChange={(event) => handleChange(event)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position='start'>
@@ -187,6 +242,7 @@ function EditComponent() {
                   placeholder='Phone Number'
                   id='soDT'
                   autoComplete='soDT'
+                  onChange={(event) => handleChange(event)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position='start'>
@@ -198,7 +254,7 @@ function EditComponent() {
                   }}
                 />
                 <Button
-                  // type='submit'
+                  type='submit'
                   fullWidth
                   variant='contained'
                   color='secondary'>

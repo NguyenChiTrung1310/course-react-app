@@ -19,16 +19,26 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import useStyles from './useStyles';
 import { IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+import { stateEditButtonAction } from '../../../features/profileUser/profileUserAction';
+import { truncate } from 'fs';
 function ViewComponent(props: any) {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+  const [state, setState] = useState({
+    stateEditButton: false,
+  });
   const getERT = useSelector(
     (state: any) => state.infoUser.infoUserResponse.response
   );
   console.log('OOO', getERT);
 
   const handleClickEditButton = () => {
+    setState((prevState) => ({
+      stateEditButton: !prevState.stateEditButton,
+    }));
+    dispatch(stateEditButtonAction(state));
     console.log('click icon Edit');
+    console.log('wrewrgfndfg', state);
   };
 
   function FormRow() {

@@ -20,7 +20,10 @@ function ProfileUser(props: any) {
   const getToken = useSelector(
     (state: any) => state.login.loginResponse.response.accessToken
   );
-
+  const testEditButton = useSelector(
+    (state: any) => state.infoUser.stateEditButton
+  );
+  console.log('STATE EDIT BUTTON WHEN GET REDUXER', testEditButton);
   useEffect(() => {
     dispatch(profileUserAction(getToken));
   });
@@ -116,7 +119,7 @@ function ProfileUser(props: any) {
         </Grid>
 
         <Grid item xs={6} sm={6} spacing={2}>
-          {state.stateEdit === false ? <ViewComponent /> : <EditComponent />}
+          {testEditButton === false ? <ViewComponent /> : <EditComponent />}
         </Grid>
 
         <Grid container item direction='row' xs={6} sm={6} spacing={2}>

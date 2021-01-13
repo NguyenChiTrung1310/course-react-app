@@ -88,10 +88,7 @@ function EditComponent() {
 
     return (
       <>
-        <Grid item xs={12}>
-          <IconButton className={classes.root1}>
-            <SaveIcon />
-          </IconButton>
+        <Grid item xs={12}> 
           <Box className={classes.paper}>
             <List className={classes.root}>
               <form onSubmit={handleSubmit}>

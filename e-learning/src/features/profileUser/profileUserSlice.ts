@@ -1,3 +1,4 @@
+import { stateEditButtonAction } from './profileUserAction';
 import { createSlice } from '@reduxjs/toolkit';
 import {PROFILE_USER_REDUCER} from '../../constants'
 
@@ -7,7 +8,12 @@ const infoUserSlice= createSlice({
         infoUserResponse:{
             status: 0,
             response:{}
-        }
+        },
+        updateUserResponse: {
+            status: 0,
+            response: {},
+        },
+        stateEditButton: false,
     },
     reducers:{
          
@@ -22,12 +28,29 @@ const infoUserSlice= createSlice({
                 status: payload.status,
                 response:payload.data,
             }
-        }
+        },
+        updateinforUserSuccess: (state, { payload }) => {
+            state.updateUserResponse = {
+                status: payload.status,
+                response: payload.data,
+                // stateEditButton: payload.stateEditButtonAction,
+            }
+        },
+        updateinforUserFail: (state, { payload }) => {
+            state.updateUserResponse = {
+                status: payload.status,
+                response: payload.data,
+                // stateEditButton: payload.stateEditButtonAction,
+            }
+        },
+        editButtonReducer: (state, { payload }) => {
+            state.stateEditButton= payload.stateEditButton;
+        },
     }
 })
 
 const {actions, reducer }= infoUserSlice;
-const {inforUserSucess, inforUserFail}= actions;
+const {inforUserSucess, inforUserFail, updateinforUserSuccess, updateinforUserFail, editButtonReducer } = actions;
 
-export {inforUserSucess, inforUserFail};
+export {inforUserSucess, inforUserFail, updateinforUserSuccess, updateinforUserFail, editButtonReducer };
 export default reducer;

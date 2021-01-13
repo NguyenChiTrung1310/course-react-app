@@ -1,7 +1,7 @@
  
 import React from 'react'
 import { Dispatch } from '@reduxjs/toolkit';
-import {inforUserSucess, inforUserFail} from './profileUserSlice';
+import {inforUserSucess, inforUserFail, updateinforUserSuccess, editButtonReducer} from './profileUserSlice';
 import {infoUserService, updateinforUserService} from './../../services/user'
  
 export const profileUserAction= (payload: object 
@@ -23,8 +23,10 @@ export const profileUserAction= (payload: object
  export const updateProfileUserAction=(payload: object
     )=> async(dispatch: Dispatch)=>{
     try{
-        const response= await updateinforUserService(payload);
-        console.log('updateinforUser',response);
+        const response = await updateinforUserService(payload);
+        console.log('dispatch Action updateinforUser', response);
+        const { data = {}, status = '' } = response;
+        dispatch(updateinforUserSuccess({ data, status }));
     }
     catch(error){
         console.log(error);
@@ -32,4 +34,12 @@ export const profileUserAction= (payload: object
     }
  }
  
- 
+ export const stateEditButtonAction = (payload: object) => async (dispatch: Dispatch) => {
+    try {
+        console.log("payload", payload);
+        dispatch(editButtonReducer(payload));
+    }
+    catch (error) {
+        console.log(error);
+    }
+}

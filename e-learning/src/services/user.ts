@@ -1,10 +1,10 @@
-import {INFOR_USER, UPDATE_INFOR_USER_API} from '../apis/index';
+import {PROFILE_API, UPDATE_PROFILE_API} from '../apis/index';
 import request from '../configs/request';
 
 export async function infoUserService(payload: any){
     return (
         request(
-            INFOR_USER,
+            PROFILE_API,
             'POST',
             payload,
         )
@@ -14,7 +14,7 @@ export async function infoUserService(payload: any){
 export async function updateinforUserService(payload: any){
     return(
         request(
-            UPDATE_INFOR_USER_API,
+            UPDATE_PROFILE_API,
             'PUT',
             payload,
         )

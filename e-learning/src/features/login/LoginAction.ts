@@ -9,7 +9,7 @@ export const loginAction= (payload: object
     
     try{
         const response= await loginService(payload);
-        console.log('response', response);
+        // console.log('response', response);
         const {data= {}, status= ''}= response; 
         if(status ===200){
             dispatch(loginSucess({data, status}));
@@ -32,6 +32,6 @@ export const logoutAction=()=> async(dispatch: Dispatch)=>{
     toast.success('Đăng xuất thành công');
    }
    catch(e){
-       console.log(e);
+    //    console.log(e);
    }
 }

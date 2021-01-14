@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { profileUserAction } from './../../features/profileUser/profileUserAction';
+import { ProfileAction } from './../../features/Profile/profileUserAction';
 import { COURSE_CATEGORY_PAGE, HOME_PAGE, PROFILE_USER } from '../../constants';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -83,7 +83,6 @@ export default function HideAppBar(props: Props) {
   const getToken = useSelector(
     (state: any) => state.login.loginResponse.response.accessToken
   );
-  console.log('TOKEN', getToken);
   useEffect(() => {
     dispatch(fetchCourseCategory());
     if (!statusCategory) {
@@ -152,8 +151,7 @@ export default function HideAppBar(props: Props) {
   };
 
   const handleGetInforUser = () => {
-    console.log('click');
-    dispatch(profileUserAction(getToken));
+    dispatch(ProfileAction(getToken));
   };
 
   return (

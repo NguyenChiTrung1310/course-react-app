@@ -5,7 +5,7 @@ import AppMenu from './components/AppBar';
 import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
-import ProfileUser from './pages/ProfileUser';
+import Profile from './pages/Profile';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
 import {
@@ -48,7 +48,7 @@ function App() {
         <Route component={RegisterPage} exact path={REGISTER_PAGE}>
           {loginStatus === '' ? <RegisterPage /> : <Redirect to={HOME_PAGE} />}
         </Route>
-        <Route component={ProfileUser} exact path={PROFILE_USER} />
+        <Route component={Profile} exact path={PROFILE_USER} />
         <Route component={HomePage} exact path={HOME_PAGE} />
         <Route
           component={CourseCategory}

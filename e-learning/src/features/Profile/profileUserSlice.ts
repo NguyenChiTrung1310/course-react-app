@@ -1,9 +1,8 @@
-import { stateEditButtonAction } from './profileUserAction';
 import { createSlice } from '@reduxjs/toolkit';
-import {PROFILE_USER_REDUCER} from '../../constants'
+import {PROFILE_REDUCER} from '../../constants'
 
-const infoUserSlice= createSlice({
-    name: PROFILE_USER_REDUCER.INFOR_USER,
+const ProfileSlice= createSlice({
+    name: PROFILE_REDUCER.PROFILE_API,
     initialState:{
         infoUserResponse:{
             status: 0,
@@ -17,30 +16,28 @@ const infoUserSlice= createSlice({
     },
     reducers:{
          
-        inforUserSucess:(state, {payload})=>{
+        getProfileSuccess:(state, {payload})=>{
             state.infoUserResponse={
                 status: payload.status,
                 response:payload.data,
             };
         },
-        inforUserFail:(state, {payload})=>{
+        getProfileFail:(state, {payload})=>{
             state.infoUserResponse={
                 status: payload.status,
                 response:payload.data,
             }
         },
-        updateinforUserSuccess: (state, { payload }) => {
+        updateProfileSuccess: (state, { payload }) => {
             state.updateUserResponse = {
                 status: payload.status,
-                response: payload.data,
-                // stateEditButton: payload.stateEditButtonAction,
+                response: payload.data, 
             }
         },
-        updateinforUserFail: (state, { payload }) => {
+        updateProfileFail: (state, { payload }) => {
             state.updateUserResponse = {
                 status: payload.status,
-                response: payload.data,
-                // stateEditButton: payload.stateEditButtonAction,
+                response: payload.data, 
             }
         },
         editButtonReducer: (state, { payload }) => {
@@ -49,8 +46,8 @@ const infoUserSlice= createSlice({
     }
 })
 
-const {actions, reducer }= infoUserSlice;
-const {inforUserSucess, inforUserFail, updateinforUserSuccess, updateinforUserFail, editButtonReducer } = actions;
+const {actions, reducer }= ProfileSlice;
+const {getProfileSuccess, getProfileFail, updateProfileSuccess, updateProfileFail, editButtonReducer } = actions;
 
-export {inforUserSucess, inforUserFail, updateinforUserSuccess, updateinforUserFail, editButtonReducer };
+export {getProfileSuccess, getProfileFail, updateProfileSuccess, updateProfileFail, editButtonReducer };
 export default reducer;

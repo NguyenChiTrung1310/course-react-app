@@ -1,45 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './_profileuser.scss';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import EditIcon from '@material-ui/icons/Edit';
 import useStyles from './useStyles';
 import { IconButton } from '@material-ui/core';
 import ViewComponent from './ViewComponent';
 import EditComponent from './EditComponent';
-import { profileUserAction } from './../../features/profileUser/profileUserAction';
-function ProfileUser(props: any) {
+import { ProfileAction } from './../../features/Profile/profileUserAction';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+function Profile(props: any) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [state, setState] = useState({
-    stateEdit: false,
-  });
 
   const getToken = useSelector(
     (state: any) => state.login.loginResponse.response.accessToken
   );
   const testEditButton = useSelector(
-    (state: any) => state.infoUser.stateEditButton
+    (state: any) => state.profile.stateEditButton
   );
   console.log('STATE EDIT BUTTON WHEN GET REDUXER', testEditButton);
   useEffect(() => {
-    dispatch(profileUserAction(getToken));
+    dispatch(ProfileAction(getToken));
   });
 
-  const handleEditButton = () => {
-    console.log('onClick');
-    setState((prevState) => ({
-      stateEdit: !prevState.stateEdit,
-    }));
-    console.log(state);
-  };
-
-  function FormRowTwo() {
+  function CoursePickup() {
     return (
       <>
         <Grid item xs={12}>
+          <IconButton className={classes.root1}>
+            <ShoppingCartIcon />
+          </IconButton>
           <Box className={classes.paper}>
             <Box>
               <Typography
@@ -109,9 +101,6 @@ function ProfileUser(props: any) {
       <Grid container spacing={6}>
         <Grid container item xs={12}>
           <Box fontWeight='fontWeightLight' m={1}>
-            <IconButton className={classes.root1} onClick={handleEditButton}>
-              <EditIcon />
-            </IconButton>
             <Typography className={classes.head} color='primary' component='p'>
               MY PROFILE
             </Typography>{' '}
@@ -123,10 +112,10 @@ function ProfileUser(props: any) {
         </Grid>
 
         <Grid container item direction='row' xs={6} sm={6} spacing={2}>
-          <FormRowTwo />
+          <CoursePickup />
         </Grid>
       </Grid>
     </div>
   );
 }
-export default ProfileUser;
+export default Profile;

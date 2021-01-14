@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import './_viewProfileUser.scss';
+// import './_viewProfile.scss';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -19,8 +18,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import useStyles from './useStyles';
 import { IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-import { stateEditButtonAction } from '../../../features/profileUser/profileUserAction';
-import { truncate } from 'fs';
+import { stateEditButtonAction } from '../../../features/Profile/profileUserAction';
+
 function ViewComponent(props: any) {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -28,33 +27,29 @@ function ViewComponent(props: any) {
     stateEditButton: false,
   });
   const getERT = useSelector(
-    (state: any) => state.infoUser.infoUserResponse.response
+    (state: any) => state.profile.infoUserResponse.response
   );
-  console.log('OOO', getERT);
 
   const handleClickEditButton = () => {
     setState((prevState) => ({
       stateEditButton: !prevState.stateEditButton,
     }));
     dispatch(stateEditButtonAction(state));
-    console.log('click icon Edit');
-    console.log('wrewrgfndfg', state);
   };
 
-  function FormRow() {
+  function ViewComponentChild() {
     const {
-      email = 'Please login',
-      hoTen = 'Please login',
-      maLoaiNguoiDung = 'Please login',
-      maNhom = 'Please login',
-      soDT = 'Please login',
-      taiKhoan = 'Please login',
+      email = '',
+      hoTen = '',
+      maLoaiNguoiDung = '',
+      maNhom = '',
+      soDT = '',
+      taiKhoan = '',
     } = getERT;
 
     return (
       <>
         <Grid item xs={12}>
-          {/* onClick={handleEditButton} */}
           <IconButton className={classes.root1}>
             <EditIcon onClick={handleClickEditButton} />
           </IconButton>
@@ -142,23 +137,7 @@ function ViewComponent(props: any) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={6}>
-        <Grid container item xs={12}>
-          <Box fontWeight='fontWeightLight' m={1}>
-            {/* <Typography className={classes.head} color='primary' component='p'>
-              MY PROFILE
-            </Typography>{' '} */}
-          </Box>
-        </Grid>
-
-        <Grid container item xs={6} sm={6} spacing={2}>
-          <FormRow />
-        </Grid>
-
-        <Grid container item direction='row' xs={6} sm={6} spacing={2}>
-          {/* <FormRowTwo /> */}
-        </Grid>
-      </Grid>
+      <ViewComponentChild />
     </div>
   );
 }

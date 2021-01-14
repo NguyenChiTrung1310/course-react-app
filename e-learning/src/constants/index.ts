@@ -2,7 +2,7 @@
 const HOME_PAGE = '/';
 const LOGIN_PAGE = '/login';
 const REGISTER_PAGE='/register'; 
-const PROFILE_USER='/profile_user'; 
+const PROFILE_USER='/profile'; 
 const COURSE_CATEGORY_PAGE='/course-category';
 
 export {HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE, COURSE_CATEGORY_PAGE, PROFILE_USER}
@@ -19,11 +19,11 @@ const COURSE_REDUCER = {
     COURSE_LIST: 'course_list',
 }
 
-const PROFILE_USER_REDUCER={
-    INFOR_USER:'info_user',
+const PROFILE_REDUCER={
+    PROFILE_API:'profile_user',
 }
 
-export {AUTH_REDUCER, COURSE_REDUCER, PROFILE_USER_REDUCER}
+export {AUTH_REDUCER, COURSE_REDUCER, PROFILE_REDUCER}
 
 /* =============* LOCALSTORAGE KEY CONSTANTS *============= */
 const LOCAL_STORAGE_TOKEN_KEY= '@token';

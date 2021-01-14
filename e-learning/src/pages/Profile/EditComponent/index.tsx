@@ -1,50 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
-import Divider from '@material-ui/core/Divider';
 import EmailIcon from '@material-ui/icons/Email';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import GroupIcon from '@material-ui/icons/Group';
 import PhoneIcon from '@material-ui/icons/Phone';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import SaveIcon from '@material-ui/icons/Save';
 import useStyles from './useStyles';
-import { IconButton } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import {
-  Button,
-  FormControlLabel,
-  Checkbox,
-  Link,
-  InputAdornment,
-} from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
+import { Button, InputAdornment } from '@material-ui/core';
 import {
   stateEditButtonAction,
-  updateProfileUserAction,
-} from './../../../features/profileUser/profileUserAction';
+  updateProfileAction,
+} from '../../../features/Profile/profileUserAction';
 function EditComponent() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  // const dataofUser = useSelector(
-  //   (state: any) => state.login.loginResponse.response
-  // );
-  // console.log('dataofUser', dataofUser);
 
   const getERT = useSelector(
-    (state: any) => state.infoUser.infoUserResponse.response
+    (state: any) => state.profile.infoUserResponse.response
   );
-  console.log('OOO', getERT);
+  // console.log('getERT', getERT);
   type FieldStates = {
     email: string;
     hoTen: string;
@@ -55,20 +36,20 @@ function EditComponent() {
     taiKhoan: string;
   };
   const testEditButton = useSelector(
-    (state: any) => state.infoUser.stateEditButton
+    (state: any) => state.profile.stateEditButton
   );
 
   console.log('state of ViewC at EditC', testEditButton);
-  function FormRow() {
+  function EditComponentChild() {
     const {
-      chiTietKhoaHocGhiDanh = 'Please login',
-      email = 'Please login',
-      hoTen = 'Please login',
-      maLoaiNguoiDung = 'Please login',
-      maNhom = 'Please login',
-      matKhau = 'Please login',
-      soDT = 'Please login',
-      taiKhoan = 'Please login',
+      chiTietKhoaHocGhiDanh = '',
+      email = '',
+      hoTen = '',
+      maLoaiNguoiDung = '',
+      maNhom = '',
+      matKhau = '',
+      soDT = '',
+      taiKhoan = '',
     } = getERT;
 
     const [field, setfield] = useState<FieldStates>({
@@ -92,17 +73,24 @@ function EditComponent() {
     };
     const handleSubmit = (e: any) => {
       e.preventDefault();
-      dispatch(updateProfileUserAction(field));
+      dispatch(updateProfileAction(field));
       dispatch(stateEditButtonAction(temp));
-      console.log('WHEN SUBMIT', field);
+      // console.log('WHEN SUBMIT', field);
     };
 
     return (
       <>
         <Grid item xs={12}>
-          <Box className={classes.paper}>
-            <List className={classes.root}>
-              <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
+            <Button
+              type='submit'
+              variant='contained'
+              color='secondary'
+              className={classes.root1}>
+              Update
+            </Button>
+            <Box className={classes.paper}>
+              <List className={classes.root}>
                 <TextField
                   className={classes.divider}
                   defaultValue={email}
@@ -261,16 +249,9 @@ function EditComponent() {
                     ),
                   }}
                 />
-                <Button
-                  type='submit'
-                  fullWidth
-                  variant='contained'
-                  color='secondary'>
-                  Save
-                </Button>
-              </form>
-            </List>
-          </Box>
+              </List>
+            </Box>
+          </form>
         </Grid>
       </>
     );
@@ -278,23 +259,7 @@ function EditComponent() {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={6}>
-        <Grid container item xs={12}>
-          <Box fontWeight='fontWeightLight' m={1}>
-            {/* <Typography className={classes.head} color='primary' component='p'>
-              MY PROFILE
-            </Typography>{' '} */}
-          </Box>
-        </Grid>
-
-        <Grid container item xs={6} sm={6} spacing={2}>
-          <FormRow />
-        </Grid>
-
-        <Grid container item direction='row' xs={6} sm={6} spacing={2}>
-          {/* <FormRowTwo /> */}
-        </Grid>
-      </Grid>
+      <EditComponentChild />
     </div>
   );
 }

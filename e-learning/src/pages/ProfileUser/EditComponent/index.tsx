@@ -29,7 +29,10 @@ import {
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
-import { updateProfileUserAction } from './../../../features/profileUser/profileUserAction';
+import {
+  stateEditButtonAction,
+  updateProfileUserAction,
+} from './../../../features/profileUser/profileUserAction';
 function EditComponent() {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -51,6 +54,11 @@ function EditComponent() {
     soDT: string;
     taiKhoan: string;
   };
+  const testEditButton = useSelector(
+    (state: any) => state.infoUser.stateEditButton
+  );
+
+  console.log('state of ViewC at EditC', testEditButton);
   function FormRow() {
     const {
       chiTietKhoaHocGhiDanh = 'Please login',
@@ -79,16 +87,19 @@ function EditComponent() {
         [e.target.name]: e.target.value,
       });
     };
-
+    const temp = {
+      stateEditButton: !testEditButton,
+    };
     const handleSubmit = (e: any) => {
       e.preventDefault();
       dispatch(updateProfileUserAction(field));
+      dispatch(stateEditButtonAction(temp));
       console.log('WHEN SUBMIT', field);
     };
 
     return (
       <>
-        <Grid item xs={12}> 
+        <Grid item xs={12}>
           <Box className={classes.paper}>
             <List className={classes.root}>
               <form onSubmit={handleSubmit}>

@@ -119,7 +119,7 @@ function ProfileUser(props: any) {
         </Grid>
 
         <Grid item xs={6} sm={6} spacing={2}>
-          {testEditButton === false ? <ViewComponent /> : <EditComponent />}
+          {testEditButton === true ? <ViewComponent /> : <EditComponent />}
         </Grid>
 
         <Grid container item direction='row' xs={6} sm={6} spacing={2}>

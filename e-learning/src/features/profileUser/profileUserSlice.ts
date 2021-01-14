@@ -13,7 +13,7 @@ const infoUserSlice= createSlice({
             status: 0,
             response: {},
         },
-        stateEditButton: false,
+        stateEditButton: true,
     },
     reducers:{
          

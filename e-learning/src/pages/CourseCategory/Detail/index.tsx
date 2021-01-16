@@ -251,7 +251,7 @@ const CourseDetail = (props: any) => {
                           onClick={handleAddToCart}
                           disabled={isAdded}
                         >
-                          Add to cart
+                          {isAdded ? 'Check your cart' : 'Add to cart'}
                         </Button>
                       </Grid>
                       <Grid item xs={12} sm={12} md={12}>

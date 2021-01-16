@@ -186,12 +186,17 @@ const CourseDetail = (props: any) => {
   };
 
   useEffect(() => {
+    let check = false;
     if (courseIDList.length > 0) {
-      courseIDList.map((item: string) =>
-        item === _maKhoaHoc ? setIsAdded(true) : setIsAdded(false)
-      );
+      courseIDList.map((item: string) => {
+        if (item === _maKhoaHoc) {
+          check = true;
+        }
+        return check;
+      });
+      setIsAdded(check);
     }
-  });
+  }, [courseIDList, _maKhoaHoc]);
 
   return (
     <div>

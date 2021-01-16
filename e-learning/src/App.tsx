@@ -13,12 +13,15 @@ import {
   HOME_PAGE,
   LOCAL_STORAGE_CREDENTIALS_KEY,
   COURSE_CATEGORY_PAGE,
+  LOCAL_STORAGE_COURSE_DETAIL,
+  LOCAL_STORAGE_COURSE_ID,
 } from './constants';
 import { toast } from 'react-toastify';
 import { getDataFromCredentials } from './utils/LocalStorage/LocalStorage';
 import { loginSucess } from './features/login/LoginSlice';
 import CourseCategory from './pages/CourseCategory';
 import CourseDetail from './pages/CourseCategory/Detail';
+import { addToCart, courseIDs } from './features/cart/CartSlice';
 
 toast.configure({
   autoClose: 2000,
@@ -29,13 +32,27 @@ function App() {
   const credentialsStr: any = getDataFromCredentials(
     LOCAL_STORAGE_CREDENTIALS_KEY
   );
+  const courseDetail: any = localStorage.getItem(LOCAL_STORAGE_COURSE_DETAIL);
+  const courseID: any = localStorage.getItem(LOCAL_STORAGE_COURSE_ID);
+
   const newCredentials = JSON.parse(credentialsStr);
+  const newCourseDetail = JSON.parse(courseDetail);
+  const newCourseID = JSON.parse(courseID);
+
   const loginStatus = newCredentials ? newCredentials.status : '';
   const action = loginSucess(newCredentials);
+  const actionCourseDetail = addToCart(newCourseDetail);
+  const actionCourseID = courseIDs(newCourseID);
 
   useEffect(() => {
     if (newCredentials) {
       dispatch(action);
+    }
+    if (newCourseDetail) {
+      dispatch(actionCourseDetail);
+    }
+    if (newCourseID) {
+      dispatch(actionCourseID);
     }
   });
 

@@ -34,7 +34,7 @@ import MoreDetail from './components/MoreDetail';
 import Modal from '../../../components/Modal';
 import { toast } from 'react-toastify';
 import { LOGIN_PAGE } from '../../../constants';
-import { addToCart, courseID } from '../../../features/cart/CartSlice';
+import { addToCart, courseIDs } from '../../../features/cart/CartSlice';
 
 const CourseDetail = (props: any) => {
   const classes = useStyles();
@@ -180,7 +180,7 @@ const CourseDetail = (props: any) => {
 
   const handleAddToCart = () => {
     const addCourse = addToCart(courseDetail);
-    const addCourseID = courseID(_maKhoaHoc);
+    const addCourseID = courseIDs(_maKhoaHoc);
     dispatch(addCourse);
     dispatch(addCourseID);
   };

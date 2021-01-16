@@ -3,7 +3,12 @@ const HOME_PAGE = '/';
 const LOGIN_PAGE = '/login';
 const REGISTER_PAGE='/register';
 const COURSE_CATEGORY_PAGE='/course-category';
-export {HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE, COURSE_CATEGORY_PAGE}
+export {
+    HOME_PAGE, 
+    LOGIN_PAGE, 
+    REGISTER_PAGE, 
+    COURSE_CATEGORY_PAGE
+}
 
 
 /* =============* REDUCER + ACTION *============= */
@@ -26,4 +31,11 @@ export {AUTH_REDUCER, COURSE_REDUCER, CART_REDUCER}
 /* =============* LOCALSTORAGE KEY CONSTANTS *============= */
 const LOCAL_STORAGE_TOKEN_KEY= '@token';
 const LOCAL_STORAGE_CREDENTIALS_KEY = '@credentials';
-export {LOCAL_STORAGE_TOKEN_KEY, LOCAL_STORAGE_CREDENTIALS_KEY}
+const LOCAL_STORAGE_COURSE_DETAIL = '@course_detail';
+const LOCAL_STORAGE_COURSE_ID = '@courseID';
+export {
+    LOCAL_STORAGE_TOKEN_KEY, 
+    LOCAL_STORAGE_CREDENTIALS_KEY,
+    LOCAL_STORAGE_COURSE_DETAIL,
+    LOCAL_STORAGE_COURSE_ID
+}

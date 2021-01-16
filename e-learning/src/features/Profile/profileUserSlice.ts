@@ -41,7 +41,7 @@ const ProfileSlice= createSlice({
             }
         },
         editButtonReducer: (state, { payload }) => {
-            state.stateEditButton= payload.stateEditButton;
+            state.stateEditButton= payload;
         },
     }
 })

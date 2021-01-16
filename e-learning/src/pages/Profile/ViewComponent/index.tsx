@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'; 
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import Divider from '@material-ui/core/Divider';
@@ -23,17 +23,16 @@ import { stateEditButtonAction } from '../../../features/Profile/profileUserActi
 function ViewComponent(props: any) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [state, setState] = useState({
-    stateEditButton: false,
-  });
+  const [state, setState] = useState(false);
   const getERT = useSelector(
     (state: any) => state.profile.infoUserResponse.response
   );
 
   const handleClickEditButton = () => {
-    setState((prevState) => ({
-      stateEditButton: !prevState.stateEditButton,
-    }));
+    // setState((prevState) => ({
+    //   stateEditButton: !prevState.stateEditButton,
+    // }));
+    setState(!state);
     dispatch(stateEditButtonAction(state));
   };
 
@@ -47,6 +46,56 @@ function ViewComponent(props: any) {
       taiKhoan = '',
     } = getERT;
 
+    const dataArr1 = [
+      {
+        label: 'Email',
+        content: email,
+        icon: 'emailIcon',
+      },
+      {
+        label: 'Name',
+        content: hoTen,
+        icon: 'nameIcon',
+      },
+      {
+        label: 'Type User',
+        content: maLoaiNguoiDung,
+        icon: 'typeUserIcon',
+      },
+      {
+        label: 'Type Group',
+        content: maNhom,
+        icon: 'typeGroupIcon',
+      },
+      {
+        label: 'Phone Number',
+        content: soDT,
+        icon: 'phomeNumberIcon',
+      },
+      {
+        label: 'Account',
+        content: taiKhoan,
+        icon: 'accountIcon',
+      },
+    ];
+
+    const renderIcon = (iconType: any) => {
+      switch (iconType) {
+        case 'emailIcon':
+          return <EmailIcon />;
+        case 'nameIcon':
+          return <AccountCircleIcon />;
+        case 'typeUserIcon':
+          return <ImageIcon />;
+        case 'typeGroupIcon':
+          return <GroupIcon />;
+        case 'phomeNumberIcon':
+          return <PhoneIcon />;
+        case 'accountIcon':
+          return <AccountBoxIcon />;
+      }
+    };
+
     return (
       <>
         <Grid item xs={12}>
@@ -55,79 +104,27 @@ function ViewComponent(props: any) {
           </IconButton>
           <Box className={classes.paper}>
             <List className={classes.root}>
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <EmailIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='EMAIL' secondary={email} />
-              </ListItem>
-              <Divider
-                variant='inset'
-                component='li'
-                className={classes.divider}
-              />
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <AccountCircleIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='ACCOUNT' secondary={taiKhoan} />
-              </ListItem>
-              <Divider
-                variant='inset'
-                component='li'
-                className={classes.divider}
-              />
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <ImageIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='NAME' secondary={hoTen} />
-              </ListItem>
-              <Divider
-                variant='inset'
-                component='li'
-                className={classes.divider}
-              />
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <AccountBoxIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='TYPE USER' secondary={maLoaiNguoiDung} />
-              </ListItem>
-              <Divider
-                variant='inset'
-                component='li'
-                className={classes.divider}
-              />
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <GroupIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='TYPE GROUP' secondary={maNhom} />
-              </ListItem>
-              <Divider
-                variant='inset'
-                component='li'
-                className={classes.divider}
-              />
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <PhoneIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary='PHONE' secondary={soDT} />
-              </ListItem>
+              {dataArr1.map((item) => {
+                const { label, content, icon } = item;
+
+                return (
+                  <Grid key={label}>
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar className={classes.avatar}>
+                          {renderIcon(icon)}
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText primary={label} secondary={content} />
+                    </ListItem>
+                    <Divider
+                      variant='inset'
+                      component='li'
+                      className={classes.divider}
+                    />
+                  </Grid>
+                );
+              })}
             </List>
           </Box>
         </Grid>

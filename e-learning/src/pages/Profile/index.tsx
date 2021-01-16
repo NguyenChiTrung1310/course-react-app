@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './_profileuser.scss';
 import Grid from '@material-ui/core/Grid';
@@ -10,10 +10,11 @@ import ViewComponent from './ViewComponent';
 import EditComponent from './EditComponent';
 import { ProfileAction } from './../../features/Profile/profileUserAction';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { stateEditButtonAction } from './../../features/Profile/profileUserAction';
 function Profile(props: any) {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const [state, setState] = useState(true);
   const getToken = useSelector(
     (state: any) => state.login.loginResponse.response.accessToken
   );
@@ -23,6 +24,10 @@ function Profile(props: any) {
   console.log('STATE EDIT BUTTON WHEN GET REDUXER', testEditButton);
   useEffect(() => {
     dispatch(ProfileAction(getToken));
+    return () => {
+      setState(!state);
+      dispatch(stateEditButtonAction(state));
+    };
   });
 
   function CoursePickup() {

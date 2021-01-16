@@ -63,6 +63,8 @@ function EditComponent() {
     });
 
     const handleChange = (e: any) => {
+      console.log('QQQ', e.target.name);
+      console.log('AAAA', e.target.value);
       setfield({
         ...field,
         [e.target.name]: e.target.value,
@@ -73,11 +75,80 @@ function EditComponent() {
     };
     const handleSubmit = (e: any) => {
       e.preventDefault();
+      console.log('WHEN SUBMIT', field);
       dispatch(updateProfileAction(field));
       dispatch(stateEditButtonAction(temp));
-      // console.log('WHEN SUBMIT', field);
     };
 
+    const dataProfileUser = [
+      {
+        label: 'Email',
+        content: email,
+        icon: 'emailIcon',
+        key: 'email',
+        placeholder: 'Your Email',
+      },
+      {
+        label: 'Name',
+        content: hoTen,
+        icon: 'nameIcon',
+        key: 'hoTen',
+        placeholder: 'Your Name',
+      },
+      {
+        label: 'Type User',
+        content: maLoaiNguoiDung,
+        icon: 'typeUserIcon',
+        key: 'maLoaiNguoiDung',
+        placeholder: 'Your Type User',
+      },
+      {
+        label: 'Type Group',
+        content: maNhom,
+        icon: 'typeGroupIcon',
+        key: 'maNhom',
+        placeholder: 'Your Type Group',
+      },
+      {
+        label: 'Passowrd',
+        content: matKhau,
+        icon: 'typeGroupIcon',
+        key: 'matKhau',
+        placeholder: 'Your Password',
+      },
+      {
+        label: 'Phone Number',
+        content: soDT,
+        icon: 'phomeNumberIcon',
+        key: 'soDT',
+        placeholder: 'Your Phone Number',
+      },
+      {
+        label: 'Account',
+        content: taiKhoan,
+        icon: 'accountIcon',
+        key: 'taiKhoan',
+        placeholder: 'Your Accpunt',
+      },
+    ];
+    const renderIcon = (iconType: any) => {
+      switch (iconType) {
+        case 'email':
+          return <EmailIcon />;
+        case 'hoTen':
+          return <AccountCircleIcon />;
+        case 'maLoaiNguoiDung':
+          return <ImageIcon />;
+        case 'maNhom':
+          return <GroupIcon />;
+        case 'matKhau':
+          return <VpnKeyIcon />;
+        case 'soDT':
+          return <PhoneIcon />;
+        case 'taiKhoan':
+          return <AccountBoxIcon />;
+      }
+    };
     return (
       <>
         <Grid item xs={12}>
@@ -91,164 +162,45 @@ function EditComponent() {
             </Button>
             <Box className={classes.paper}>
               <List className={classes.root}>
-                <TextField
-                  className={classes.divider}
-                  defaultValue={email}
-                  variant='outlined'
-                  margin='normal'
-                  required
-                  fullWidth
-                  id='email'
-                  placeholder='Your Account'
-                  name='email'
-                  autoComplete='email'
-                  autoFocus
-                  onChange={(event) => handleChange(event)}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position='start'>
-                        <Avatar className={classes.avatar}>
-                          <EmailIcon />
-                        </Avatar>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <TextField
-                  className={classes.divider}
-                  defaultValue={taiKhoan}
-                  variant='outlined'
-                  margin='normal'
-                  required
-                  fullWidth
-                  name='taiKhoan'
-                  placeholder='Your Account'
-                  id='taiKhoan'
-                  autoComplete='taiKhoan'
-                  onChange={(event) => handleChange(event)}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position='start'>
-                        <Avatar className={classes.avatar}>
-                          <AccountCircleIcon />
-                        </Avatar>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <TextField
-                  className={classes.divider}
-                  defaultValue={matKhau}
-                  variant='outlined'
-                  margin='normal'
-                  required
-                  fullWidth
-                  name='matKhau'
-                  placeholder='Your Password'
-                  id='matKhau'
-                  autoComplete='matKhau'
-                  onChange={(event) => handleChange(event)}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position='start'>
-                        <Avatar className={classes.avatar}>
-                          <VpnKeyIcon />
-                        </Avatar>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <TextField
-                  className={classes.divider}
-                  defaultValue={hoTen}
-                  variant='outlined'
-                  margin='normal'
-                  required
-                  fullWidth
-                  name='hoTen'
-                  placeholder='Name User'
-                  id='hoTen'
-                  autoComplete='hoTen'
-                  onChange={(event) => handleChange(event)}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position='start'>
-                        <Avatar className={classes.avatar}>
-                          <ImageIcon />
-                        </Avatar>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-
-                <TextField
-                  className={classes.divider}
-                  defaultValue={maLoaiNguoiDung}
-                  variant='outlined'
-                  margin='normal'
-                  required
-                  fullWidth
-                  name='maLoaiNguoiDung'
-                  placeholder='Type User'
-                  id='maLoaiNguoiDung'
-                  autoComplete='maLoaiNguoiDung'
-                  onChange={(event) => handleChange(event)}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position='start'>
-                        <Avatar className={classes.avatar}>
-                          <AccountBoxIcon />
-                        </Avatar>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-
-                <TextField
-                  className={classes.divider}
-                  defaultValue={maNhom}
-                  variant='outlined'
-                  margin='normal'
-                  required
-                  fullWidth
-                  name='maNhom'
-                  placeholder='Type Group'
-                  id='maNhom'
-                  autoComplete='maNhom'
-                  onChange={(event) => handleChange(event)}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position='start'>
-                        <Avatar className={classes.avatar}>
-                          <GroupIcon />
-                        </Avatar>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-
-                <TextField
-                  className={classes.divider}
-                  defaultValue={soDT}
-                  variant='outlined'
-                  margin='normal'
-                  required
-                  fullWidth
-                  name='soDT'
-                  placeholder='Phone Number'
-                  id='soDT'
-                  autoComplete='soDT'
-                  onChange={(event) => handleChange(event)}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position='start'>
-                        <Avatar className={classes.avatar}>
-                          <PhoneIcon />
-                        </Avatar>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                {dataProfileUser.map((item) => {
+                  const { label, content, key, placeholder } = item;
+                  return (
+                    <Grid key={label}>
+                      <TextField
+                        disabled={
+                          key === 'maLoaiNguoiDung'
+                            ? true
+                            : key === 'taiKhoan'
+                            ? true
+                            : key === 'maNhom'
+                            ? true
+                            : false
+                        }
+                        className={classes.divider}
+                        defaultValue={content}
+                        variant='outlined'
+                        margin='normal'
+                        required
+                        fullWidth
+                        id={key}
+                        placeholder={placeholder}
+                        name={key}
+                        autoComplete={key}
+                        autoFocus
+                        onChange={(event) => handleChange(event)}
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position='start'>
+                              <Avatar className={classes.avatar}>
+                                {renderIcon(key)}
+                              </Avatar>
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    </Grid>
+                  );
+                })}
               </List>
             </Box>
           </form>

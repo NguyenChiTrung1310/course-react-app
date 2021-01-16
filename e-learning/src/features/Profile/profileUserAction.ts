@@ -23,8 +23,9 @@ export const ProfileAction= (payload: object
  export const updateProfileAction=(payload: object
     )=> async(dispatch: Dispatch)=>{
     try{
+
         const response = await updateinforUserService(payload);
-        // console.log('dispatch Action updateinforUser', response);
+        console.log('dispatch Action updateinforUser', response);
         const { data = {}, status = '' } = response;
         dispatch(updateProfileSuccess({ data, status }));
     }
@@ -34,7 +35,7 @@ export const ProfileAction= (payload: object
     }
  }
  
- export const stateEditButtonAction = (payload: object) => async (dispatch: Dispatch) => {
+ export const stateEditButtonAction = (payload: any) => async (dispatch: Dispatch) => {
     try {
         // console.log("payload", payload);
         dispatch(editButtonReducer(payload));

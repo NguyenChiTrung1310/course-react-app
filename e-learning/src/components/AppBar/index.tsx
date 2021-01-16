@@ -8,7 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
-import MailIcon from '@material-ui/icons/Mail';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import CategoryIcon from '@material-ui/icons/Category';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -188,8 +188,8 @@ export default function HideAppBar(props: Props) {
             <div className={classes.root} />
             <div className={classes.sectionDesktop}>
               <IconButton aria-label='show 4 new mails' color='inherit'>
-                <Badge badgeContent={4}>
-                  <MailIcon />
+                <Badge badgeContent={0}>
+                  <AddShoppingCartIcon />
                 </Badge>
               </IconButton>
               <IconButton

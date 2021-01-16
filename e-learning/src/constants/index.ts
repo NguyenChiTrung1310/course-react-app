@@ -17,9 +17,11 @@ const COURSE_REDUCER = {
     COURSE_LIST: 'course_list',
 }
 
+const CART_REDUCER = 'cart';
 
 
-export {AUTH_REDUCER, COURSE_REDUCER}
+
+export {AUTH_REDUCER, COURSE_REDUCER, CART_REDUCER}
 
 /* =============* LOCALSTORAGE KEY CONSTANTS *============= */
 const LOCAL_STORAGE_TOKEN_KEY= '@token';

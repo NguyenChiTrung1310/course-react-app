@@ -34,12 +34,16 @@ import MoreDetail from './components/MoreDetail';
 import Modal from '../../../components/Modal';
 import { toast } from 'react-toastify';
 import { LOGIN_PAGE } from '../../../constants';
+import { addToCart } from '../../../features/cart/CartSlice';
 
 const CourseDetail = (props: any) => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+
+  const addCourse = addToCart();
+
   const { match: { params: { maKhoaHoc = '' } = {} } = {} } = props;
 
   useEffect(() => {
@@ -171,6 +175,10 @@ const CourseDetail = (props: any) => {
     history.push(LOGIN_PAGE);
   };
 
+  const handleAddToCart = () => {
+    dispatch(addCourse);
+  };
+
   return (
     <div>
       {statusCourseDetail ? (
@@ -221,6 +229,7 @@ const CourseDetail = (props: any) => {
                         <Button
                           variant='contained'
                           className={`${classes.btn} ${classes.btnAdd}`}
+                          onClick={handleAddToCart}
                         >
                           Add to cart
                         </Button>

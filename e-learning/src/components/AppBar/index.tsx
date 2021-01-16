@@ -79,6 +79,10 @@ export default function HideAppBar(props: Props) {
     (state: any) => state.course.courseCategoryResponse.status
   );
 
+  const numberCart = useSelector(
+    (state: any) => state.cart.cartOrder.numberCarts
+  );
+
   useEffect(() => {
     dispatch(fetchCourseCategory());
     if (!statusCategory) {
@@ -188,7 +192,7 @@ export default function HideAppBar(props: Props) {
             <div className={classes.root} />
             <div className={classes.sectionDesktop}>
               <IconButton aria-label='show 4 new mails' color='inherit'>
-                <Badge badgeContent={0}>
+                <Badge badgeContent={numberCart}>
                   <AddShoppingCartIcon />
                 </Badge>
               </IconButton>

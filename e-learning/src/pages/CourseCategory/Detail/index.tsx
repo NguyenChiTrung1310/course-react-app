@@ -34,13 +34,14 @@ import MoreDetail from './components/MoreDetail';
 import Modal from '../../../components/Modal';
 import { toast } from 'react-toastify';
 import { LOGIN_PAGE } from '../../../constants';
-import { addToCart } from '../../../features/cart/CartSlice';
+import { addToCart, courseID } from '../../../features/cart/CartSlice';
 
 const CourseDetail = (props: any) => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
 
   const { match: { params: { maKhoaHoc = '' } = {} } = {} } = props;
 
@@ -82,6 +83,10 @@ const CourseDetail = (props: any) => {
 
   const students = useSelector(
     (state: any) => state.course.studentByCourseResponse.response
+  );
+
+  const courseIDList = useSelector(
+    (state: any) => state.cart.ordered.courseIdList
   );
 
   const {
@@ -175,9 +180,18 @@ const CourseDetail = (props: any) => {
 
   const handleAddToCart = () => {
     const addCourse = addToCart(courseDetail);
-
+    const addCourseID = courseID(_maKhoaHoc);
     dispatch(addCourse);
+    dispatch(addCourseID);
   };
+
+  useEffect(() => {
+    if (courseIDList.length > 0) {
+      courseIDList.map((item: string) =>
+        item === _maKhoaHoc ? setIsAdded(true) : setIsAdded(false)
+      );
+    }
+  });
 
   return (
     <div>
@@ -230,6 +244,7 @@ const CourseDetail = (props: any) => {
                           variant='contained'
                           className={`${classes.btn} ${classes.btnAdd}`}
                           onClick={handleAddToCart}
+                          disabled={isAdded}
                         >
                           Add to cart
                         </Button>

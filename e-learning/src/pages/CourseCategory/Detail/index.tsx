@@ -42,8 +42,6 @@ const CourseDetail = (props: any) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
-  const addCourse = addToCart();
-
   const { match: { params: { maKhoaHoc = '' } = {} } = {} } = props;
 
   useEffect(() => {
@@ -176,6 +174,8 @@ const CourseDetail = (props: any) => {
   };
 
   const handleAddToCart = () => {
+    const addCourse = addToCart(courseDetail);
+
     dispatch(addCourse);
   };
 

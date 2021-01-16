@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
     CART_REDUCER,
-    LOCAL_STORAGE_COURSE_DETAIL,
+    LOCAL_STORAGE_CART,
     LOCAL_STORAGE_COURSE_ID
 } from '../../constants';
 import {Cart} from './type';
@@ -21,7 +21,6 @@ const cartSlice = createSlice({
     initialState,
     reducers:{
         addToCart: (state, {payload}) => {
-            localStorage.setItem(LOCAL_STORAGE_COURSE_DETAIL, JSON.stringify(payload))
             const newCart = state.cartOrder.cartList;
             newCart.push(payload);
 
@@ -31,15 +30,17 @@ const cartSlice = createSlice({
                 numberCarts: num,
                 cartList: newCart
             }
+            localStorage.setItem(LOCAL_STORAGE_CART, JSON.stringify(state.cartOrder.cartList))
         },
         courseIDs: (state, {payload}) => {
-            localStorage.setItem(LOCAL_STORAGE_COURSE_ID, JSON.stringify(payload))
             const newArr = state.ordered.courseIdList;
             newArr.push(payload);
 
             state.ordered = {
                 courseIdList: newArr
             }
+
+            localStorage.setItem(LOCAL_STORAGE_COURSE_ID, JSON.stringify(state.ordered.courseIdList))
         } 
     }
 });

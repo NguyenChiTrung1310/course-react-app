@@ -13,7 +13,7 @@ import {
   HOME_PAGE,
   LOCAL_STORAGE_CREDENTIALS_KEY,
   COURSE_CATEGORY_PAGE,
-  LOCAL_STORAGE_COURSE_DETAIL,
+  LOCAL_STORAGE_CART,
   LOCAL_STORAGE_COURSE_ID,
 } from './constants';
 import { toast } from 'react-toastify';
@@ -32,27 +32,34 @@ function App() {
   const credentialsStr: any = getDataFromCredentials(
     LOCAL_STORAGE_CREDENTIALS_KEY
   );
-  const courseDetail: any = localStorage.getItem(LOCAL_STORAGE_COURSE_DETAIL);
+  const cartStr: any = localStorage.getItem(LOCAL_STORAGE_CART);
   const courseID: any = localStorage.getItem(LOCAL_STORAGE_COURSE_ID);
 
   const newCredentials = JSON.parse(credentialsStr);
-  const newCourseDetail = JSON.parse(courseDetail);
+  const newCart = JSON.parse(cartStr);
   const newCourseID = JSON.parse(courseID);
 
   const loginStatus = newCredentials ? newCredentials.status : '';
   const action = loginSucess(newCredentials);
-  const actionCourseDetail = addToCart(newCourseDetail);
-  const actionCourseID = courseIDs(newCourseID);
+
+  const dispatchCart = () => {
+    newCart.map((item: object) => {
+      const cartAction = addToCart(item);
+      return dispatch(cartAction);
+    });
+
+    newCourseID.map((item: string) => {
+      const courseIdAction = courseIDs(item);
+      return dispatch(courseIdAction);
+    });
+  };
 
   useEffect(() => {
     if (newCredentials) {
       dispatch(action);
     }
-    if (newCourseDetail) {
-      dispatch(actionCourseDetail);
-    }
-    if (newCourseID) {
-      dispatch(actionCourseID);
+    if (newCart && newCourseID) {
+      dispatchCart();
     }
   });
 

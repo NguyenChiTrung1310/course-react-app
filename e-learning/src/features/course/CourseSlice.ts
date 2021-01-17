@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {COURSE_REDUCER} from '../../constants';
+import { Course } from './type';
 
 const registerSlice = createSlice({
     name: COURSE_REDUCER.COURSE_LIST, 
@@ -28,7 +29,7 @@ const registerSlice = createSlice({
             status: 0,
             response: {}
         },
-    },
+    } as Course,
     reducers:{
         fetchCoursesSuccess: (state, {payload}) => {
             state.courseListResponse = {

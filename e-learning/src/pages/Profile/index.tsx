@@ -14,7 +14,7 @@ import { stateEditButtonAction } from './../../features/Profile/profileUserActio
 function Profile(props: any) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [state, setState] = useState(true);
+
   const getToken = useSelector(
     (state: any) => state.login.loginResponse.response.accessToken
   );
@@ -25,10 +25,9 @@ function Profile(props: any) {
   useEffect(() => {
     dispatch(ProfileAction(getToken));
     return () => {
-      setState(!state);
-      dispatch(stateEditButtonAction(state));
+      dispatch(stateEditButtonAction(true));
     };
-  });
+  }, []);
 
   function CoursePickup() {
     return (

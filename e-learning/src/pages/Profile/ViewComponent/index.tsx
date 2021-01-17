@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import './_viewProfile.scss';
 import Grid from '@material-ui/core/Grid';
@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'; 
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import Divider from '@material-ui/core/Divider';
@@ -23,17 +23,13 @@ import { stateEditButtonAction } from '../../../features/Profile/profileUserActi
 function ViewComponent(props: any) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [state, setState] = useState(false);
+
   const getERT = useSelector(
     (state: any) => state.profile.infoUserResponse.response
   );
 
   const handleClickEditButton = () => {
-    // setState((prevState) => ({
-    //   stateEditButton: !prevState.stateEditButton,
-    // }));
-    setState(!state);
-    dispatch(stateEditButtonAction(state));
+    dispatch(stateEditButtonAction(false));
   };
 
   function ViewComponentChild() {

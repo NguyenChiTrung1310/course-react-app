@@ -35,11 +35,7 @@ function EditComponent() {
     soDT: string;
     taiKhoan: string;
   };
-  const testEditButton = useSelector(
-    (state: any) => state.profile.stateEditButton
-  );
 
-  console.log('state of ViewC at EditC', testEditButton);
   function EditComponentChild() {
     const {
       chiTietKhoaHocGhiDanh = '',
@@ -63,21 +59,17 @@ function EditComponent() {
     });
 
     const handleChange = (e: any) => {
-      console.log('QQQ', e.target.name);
-      console.log('AAAA', e.target.value);
       setfield({
         ...field,
         [e.target.name]: e.target.value,
       });
     };
-    const temp = {
-      stateEditButton: !testEditButton,
-    };
+
     const handleSubmit = (e: any) => {
       e.preventDefault();
-      console.log('WHEN SUBMIT', field);
+      // console.log('WHEN SUBMIT', field);
       dispatch(updateProfileAction(field));
-      dispatch(stateEditButtonAction(temp));
+      dispatch(stateEditButtonAction(true));
     };
 
     const dataProfileUser = [
@@ -204,6 +196,16 @@ function EditComponent() {
               </List>
             </Box>
           </form>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={() => {
+              console.log('CLICK CANCEL');
+              dispatch(stateEditButtonAction(true));
+            }}
+            className={classes.root1}>
+            Cancel
+          </Button>
         </Grid>
       </>
     );

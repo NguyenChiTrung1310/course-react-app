@@ -49,6 +49,7 @@ import {
 
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
+import CartPopup from './MenuCart';
 
 import useStyles from './useStyles';
 import './index.scss';
@@ -74,11 +75,13 @@ export default function HideAppBar(props: Props) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorCart, setAnchorCart] = useState<null | HTMLElement>(null);
   const [openListItem, setOpenListItem] = useState(false);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
   const menuId = 'search-menu';
+  const cartId = 'cart-menu';
   const mobileMenuId = 'search-menu-mobile';
 
   const category = useSelector(
@@ -193,6 +196,14 @@ export default function HideAppBar(props: Props) {
     }
   };
 
+  const handleClickCartIcon = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorCart(event.currentTarget);
+  };
+
+  const handleCloseCartIcon = () => {
+    setAnchorCart(null);
+  };
+
   return (
     <div className={classes.root}>
       <HideOnScroll {...props}>
@@ -234,7 +245,11 @@ export default function HideAppBar(props: Props) {
             </div>
             <div className={classes.root} />
             <div className={classes.sectionDesktop}>
-              <IconButton aria-label='show 4 new mails' color='inherit'>
+              <IconButton
+                aria-controls={cartId}
+                color='inherit'
+                onClick={handleClickCartIcon}
+              >
                 <Badge badgeContent={numberCart}>
                   <AddShoppingCartIcon />
                 </Badge>
@@ -283,6 +298,12 @@ export default function HideAppBar(props: Props) {
         menuId={menuId}
         anchorEl={anchorEl}
         handleMenuClose={handleMenuClose}
+      />
+
+      <CartPopup
+        cartId={cartId}
+        anchorCart={anchorCart}
+        handleCloseCartIcon={handleCloseCartIcon}
       />
       <Drawer
         className={classes.drawer}

@@ -29,6 +29,7 @@ const useStyles: () => Record<
 |'iconDrawerHeader' 
 |'listMenu' 
 |'iconListMenu' 
+|'link'
 |'sectionMobile',
 string> = makeStyles((theme: Theme) =>
   createStyles({
@@ -165,6 +166,10 @@ string> = makeStyles((theme: Theme) =>
       textDecoration: 'none',
       color: 'white'
     },
+    link: {
+      textDecoration: 'none',
+      color: 'white', 
+    },  
   })
 );
 

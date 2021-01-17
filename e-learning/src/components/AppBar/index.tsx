@@ -105,16 +105,19 @@ export default function HideAppBar(props: Props) {
       name: 'My Profile',
       value: 'profile',
       icon: 'PROFILE',
+      link: PROFILE_USER,
     },
     {
       name: 'My Courses',
       value: 'courses',
       icon: 'COURSES',
+      link: '/myCourse',
     },
     {
       name: 'My Order',
       value: 'order',
       icon: 'ORDER',
+      link: '/myOrder',
     },
   ]);
 
@@ -173,6 +176,16 @@ export default function HideAppBar(props: Props) {
 
   const handleGetInforUser = () => {
     dispatch(ProfileAction(getToken));
+  };
+
+  const handleClickMenu = (id: any) => {
+    if (id === 'profile') {
+      handleGetInforUser();
+    } else if (id === 'courses') {
+      console.log('Click my course');
+    } else {
+      console.log('Click my order');
+    }
   };
 
   return (
@@ -281,50 +294,22 @@ export default function HideAppBar(props: Props) {
         </div>
         <Divider />
         <List className={classes.listMenu}>
-          {firstMenu.map((text, index) => (
-            <ListItem button key={text.name}>
-              {index === 0 ? (
+          {firstMenu.map((text) => {
+            return (
+              <ListItem button key={text.name}>
                 <ListItemIcon className={classes.iconListMenu}>
-                  <PersonIcon />
+                  {getIcon(text.icon)}
                 </ListItemIcon>
-              ) : (
-                <ListItemIcon className={classes.iconListMenu}>
-                  {index === 1 ? (
-                    <VideoLibraryRoundedIcon />
-                  ) : (
-                    <ShoppingCartIcon />
-                  )}
-                </ListItemIcon>
-              )}
 
-              {index === 0 ? (
                 <Link
-                  to={PROFILE_USER}
-                  style={{ textDecoration: 'none', color: 'white' }}
-                  onClick={() => {
-                    handleGetInforUser();
-                  }}>
+                  className={classes.link}
+                  to={text.link}
+                  onClick={() => handleClickMenu(text.value)}>
                   <ListItemText primary={text.name} />
                 </Link>
-              ) : (
-                <>
-                  {index === 1 ? (
-                    <Link
-                      to='/1'
-                      style={{ textDecoration: 'none', color: 'white' }}>
-                      <ListItemText primary={text.name} />
-                    </Link>
-                  ) : (
-                    <Link
-                      to='/2'
-                      style={{ textDecoration: 'none', color: 'white' }}>
-                      <ListItemText primary={text.name} />
-                    </Link>
-                  )}
-                </>
-              )}
-            </ListItem>
-          ))}
+              </ListItem>
+            );
+          })}
         </List>
 
         <Divider />

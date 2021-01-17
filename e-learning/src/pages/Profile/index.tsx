@@ -21,7 +21,7 @@ function Profile(props: any) {
   const testEditButton = useSelector(
     (state: any) => state.profile.stateEditButton
   );
-  console.log('STATE EDIT BUTTON WHEN GET REDUXER', testEditButton);
+  // console.log('STATE EDIT BUTTON WHEN GET REDUXER', testEditButton);
   useEffect(() => {
     dispatch(ProfileAction(getToken));
     return () => {

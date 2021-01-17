@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './_profileuser.scss';
 import Grid from '@material-ui/core/Grid';
@@ -8,22 +8,18 @@ import useStyles from './useStyles';
 import { IconButton } from '@material-ui/core';
 import ViewComponent from './ViewComponent';
 import EditComponent from './EditComponent';
-import { ProfileAction } from './../../features/Profile/profileUserAction';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { stateEditButtonAction } from './../../features/Profile/profileUserAction';
+
 function Profile(props: any) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const getToken = useSelector(
-    (state: any) => state.login.loginResponse.response.accessToken
-  );
   const testEditButton = useSelector(
     (state: any) => state.profile.stateEditButton
   );
-  // console.log('STATE EDIT BUTTON WHEN GET REDUXER', testEditButton);
+
   useEffect(() => {
-    dispatch(ProfileAction(getToken));
     return () => {
       dispatch(stateEditButtonAction(true));
     };
@@ -115,7 +111,7 @@ function Profile(props: any) {
           {testEditButton === true ? <ViewComponent /> : <EditComponent />}
         </Grid>
 
-        <Grid container item direction='row' xs={6} sm={6} spacing={2}>
+        <Grid item xs={6} sm={6} spacing={2}>
           <CoursePickup />
         </Grid>
       </Grid>

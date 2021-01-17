@@ -10,7 +10,7 @@ import {
   'root' 
   |'root1'
   |'paper' 
-  |'head' 
+  |'head'  
   |'avatar',
   string> = makeStyles((theme: Theme) =>
     createStyles({
@@ -38,7 +38,7 @@ import {
       avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
-      }, 
+      },
     })
   );
   

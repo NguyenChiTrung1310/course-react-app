@@ -12,6 +12,7 @@ const useStyles: () => Record<
   | 'paper'
   | 'head'
   | 'avatar'
+  | 'loading'
   | 'divider',
   string> = makeStyles((theme: Theme) =>
     createStyles({
@@ -42,7 +43,13 @@ const useStyles: () => Record<
       },
       divider: {
         width: '80vh',
-      }
+      }, 
+      loading: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate (-50%, -50%)'
+    }
     })
   );
 

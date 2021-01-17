@@ -144,15 +144,8 @@ function EditComponent() {
     return (
       <>
         <Grid item xs={12}>
-          <form onSubmit={handleSubmit}>
-            <Button
-              type='submit'
-              variant='contained'
-              color='secondary'
-              className={classes.root1}>
-              Update
-            </Button>
-            <Box className={classes.paper}>
+          <form onSubmit={handleSubmit} style={{ marginTop: '-20px' }}>
+            <Grid className={classes.paper}>
               <List className={classes.root}>
                 {dataProfileUser.map((item) => {
                   const { label, content, key, placeholder } = item;
@@ -194,18 +187,33 @@ function EditComponent() {
                   );
                 })}
               </List>
-            </Box>
+            </Grid>
+            <div
+              style={
+                {
+                  // display: 'flex',
+                  // alignItems: 'center',
+                  // justifyContent: 'center',
+                }
+              }>
+              <Button
+                type='submit'
+                variant='contained'
+                color='secondary'
+                className={classes.root2}>
+                Update
+              </Button>
+              <Button
+                variant='contained'
+                color='secondary'
+                onClick={() => {
+                  dispatch(stateEditButtonAction(true));
+                }}
+                className={classes.root1}>
+                Cancel
+              </Button>
+            </div>
           </form>
-          <Button
-            variant='contained'
-            color='secondary'
-            onClick={() => {
-              console.log('CLICK CANCEL');
-              dispatch(stateEditButtonAction(true));
-            }}
-            className={classes.root1}>
-            Cancel
-          </Button>
         </Grid>
       </>
     );

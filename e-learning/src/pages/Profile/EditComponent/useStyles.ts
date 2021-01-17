@@ -9,6 +9,7 @@ import {
 const useStyles: () => Record<
   'root'
   | 'root1'
+  | 'root2'
   | 'paper'
   | 'head'
   | 'avatar' 
@@ -20,7 +21,14 @@ const useStyles: () => Record<
       },
       root1: {
         position: 'absolute',
-        right: '0px',
+        left: '20px',
+        backgroundColor: theme.palette.secondary.main,
+        zIndex: 100,
+        color: 'white',
+      },
+      root2: {
+        position: 'absolute',
+        left: '120px',
         backgroundColor: theme.palette.secondary.main,
         zIndex: 100,
         color: 'white',

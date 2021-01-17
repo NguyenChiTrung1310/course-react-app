@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import './_viewProfile.scss';
 import Grid from '@material-ui/core/Grid';
@@ -18,8 +18,11 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import useStyles from './useStyles';
 import { IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-import { stateEditButtonAction } from '../../../features/Profile/profileUserAction';
-
+import {
+  ProfileAction,
+  stateEditButtonAction,
+} from '../../../features/Profile/profileUserAction';
+import Loading from './../../../components/Loading';
 function ViewComponent(props: any) {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -27,6 +30,17 @@ function ViewComponent(props: any) {
   const getERT = useSelector(
     (state: any) => state.profile.infoUserResponse.response
   );
+
+  const stateGetProfileUser = useSelector(
+    (state: any) => state.profile.infoUserResponse.status
+  );
+
+  const getToken = useSelector(
+    (state: any) => state.login.loginResponse.response.accessToken
+  );
+  useEffect(() => {
+    dispatch(ProfileAction(getToken));
+  }, []);
 
   const handleClickEditButton = () => {
     dispatch(stateEditButtonAction(false));
@@ -130,7 +144,13 @@ function ViewComponent(props: any) {
 
   return (
     <div className={classes.root}>
-      <ViewComponentChild />
+      {stateGetProfileUser === 200 ? (
+        <ViewComponentChild />
+      ) : (
+        <Grid className={classes.loading}>
+          <Loading />
+        </Grid>
+      )}
     </div>
   );
 }

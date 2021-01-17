@@ -3,7 +3,7 @@ import React from 'react'
 import { Dispatch } from '@reduxjs/toolkit';
 import {getProfileSuccess, getProfileFail, updateProfileSuccess, editButtonReducer} from './profileUserSlice';
 import {infoUserService, updateinforUserService} from '../../services/user'
- 
+import { toast } from 'react-toastify'; 
 export const ProfileAction= (payload: object 
     )=> async (dispatch: Dispatch) =>{
      try{
@@ -25,13 +25,17 @@ export const ProfileAction= (payload: object
     try{
 
         const response = await updateinforUserService(payload);
-        console.log('dispatch Action updateinforUser', response);
+        // console.log('dispatch Action updateinforUser', response);
         const { data = {}, status = '' } = response;
+        if( status ===200){
         dispatch(updateProfileSuccess({ data, status }));
+        toast.success("Update Profile Success");
+        }
     }
     catch(error){
         // console.log(error);
-        // const {response: {data= {}}= {}, }= error;  
+        const {response: {data= {}}= {}, }= error;  
+        toast.error(data);
     }
  }
  

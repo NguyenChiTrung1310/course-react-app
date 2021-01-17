@@ -1,0 +1,20 @@
+.MuiTableContainer-root {
+    border-radius: 10px !important;
+}
+.MuiTableSortLabel-root.MuiTableSortLabel-active{
+    color: #fff !important;
+}
+
+.MuiTableSortLabel-root{
+    &:hover {
+        color: rgba(255, 255, 255, 0.54) !important;
+    }
+}
+
+.MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon{
+    color: #fff !important;
+}
+
+.MuiToolbar-root, .MuiToolbar-regular, .MuiTablePagination-toolbar,.MuiToolbar-gutters, .MuiSelect-icon{
+    color: #fff !important;
+}

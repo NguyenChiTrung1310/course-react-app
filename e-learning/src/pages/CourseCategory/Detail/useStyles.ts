@@ -10,16 +10,29 @@ const useStyles: () => Record<
 | 'courseDetail'
 | 'media'
 | 'paper'
+| 'leftSection'
 | 'content'
-| 'subtitle'
 | 'description'
+| 'tableStudent'
 | 'information'
+| 'course'
+| 'courseTitle'
+| 'courseContent'
+| 'btn'
+| 'btnAdd'
+| 'btnBuy'
+| 'paperSecond'
+| 'learn'
+| 'learnDetail'
+| 'learnDescription'
+| 'item'
+| 'loading'
 , string>
  = makeStyles((theme: Theme) => createStyles({
     root: {
         minWidth: 200,
         paddingTop: 100,
-        height: '100vh'
+        height: '200vh'
     },
     title: {
         fontSize: 50,
@@ -27,7 +40,9 @@ const useStyles: () => Record<
         textAlign: 'center'
     },
     courseDetail: {
-        flexGrow: 1
+        flexGrow: 1,
+        width: '90%',
+        margin: 'auto'
     },
     media: {
         height: 0,
@@ -35,27 +50,85 @@ const useStyles: () => Record<
         marginTop: '12px',
     },
     paper: {
-        height: 'auto',
         display: 'flex',
         flexWrap: 'wrap'
     },
-    content: {
-        fontWeight: 'bold',
+    leftSection: {
+        // position: 'fixed',
+        width: '500px',
     },
-    subtitle: {
+    content: {
+        fontWeight: 500,
         paddingLeft: '50px',
-        // textTransform: 'uppercase'
+        marginTop: '12px',
+        paddingBottom: '5px'
     },
     description: {
-        marginTop: '50px',
+        marginTop: '20px',
         color: 'rgba(0, 0, 0, 0.54);'
+    },
+    course: {
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: '50px',
+    },
+    courseTitle: {
+        color: 'rgba(0, 0, 0, 0.54)',
+    },
+    courseContent: {
+        marginLeft: '20px',
+        fontWeight: 'bold'
     },
     information: {
         height: '5vh',
         display: 'flex',
         marginTop: '10px',
         alignItems: 'center',
-        justifyContent: 'center',
+        paddingLeft: '18px'
+    },
+    tableStudent: {
+        marginTop: '100px'
+    },
+    btn: {
+        width: '100%',
+        color: '#fff',
+        margin: '10px 0',
+        height: '50px'
+    },
+    btnAdd: {
+        marginTop: '40px',
+        backgroundColor: '#f50357',
+    },
+    btnBuy: {
+        background: 'transparent',
+        border: '1px solid #f50357',
+        color: '#f50357',
+        '&:hover': {
+            background: 'transparent !important',
+            color: '#f50357',
+        }
+    },
+    paperSecond: {
+        marginTop: '50px'
+    },
+    learn: {
+        marginTop: '50px',
+    },
+    learnDetail: {
+        fontWeight: 'bold'
+    },
+    learnDescription: {
+        display: 'flex',
+        flexWrap: 'wrap'
+    },
+    item: {
+        display: 'flex',
+    },
+    loading: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate (-50%, -50%)'
     }
 }));
 

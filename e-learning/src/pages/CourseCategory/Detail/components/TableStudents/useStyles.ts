@@ -9,10 +9,19 @@ const useStyles: () => Record<
 | 'paper'
 | 'table'
 | 'visuallyHidden'
+| 'tblHead'
+| 'tblHeadCell'
+| 'tblBody'
+| 'tblHeadTitle'
+| 'tblRowContent'
+| 'tblPagination'
+| 'noData'
+| 'noDataIcon'
 , string>
  = makeStyles((theme: Theme) => createStyles({
     root: {
-      width: '400px',
+      width: '500px',
+      marginTop: '100px'
     },
     paper: {
       width: '100%',
@@ -32,6 +41,36 @@ const useStyles: () => Record<
       top: 20,
       width: 1,
     },
+    tblHead: {
+      backgroundColor: '#f50357',
+    },
+    tblHeadTitle: {
+      color: '#fff'
+    },
+    tblRowContent: {
+      paddingLeft: '14px'
+    },
+    tblPagination: {
+      backgroundColor: '#f50357',
+    },
+    tblHeadCell: {
+      paddingLeft: '14px'
+    },
+    noData: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    },
+    noDataIcon: {
+      fontSize: '50px'
+    },
+    tblBody: {
+      position: 'relative'
+    }
 }));
 
 export { useStyles as default };

@@ -1,7 +1,7 @@
 import useStyles from '../../CourseCategory/Detail/components/TableStudents/useStyles';
 export interface Data {
   account: string;
-  name: string;
+  student: string;
 }
 
 export interface HeadCell {

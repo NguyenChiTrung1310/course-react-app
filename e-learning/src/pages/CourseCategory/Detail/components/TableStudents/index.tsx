@@ -9,21 +9,25 @@ import {
   TableRow,
   TableSortLabel,
   Paper,
+  Grid,
+  Typography,
 } from '@material-ui/core';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
 import getComparator from './components/GetComparator';
 import stableSort from './components/StableSort';
 
 import useStyles from './useStyles';
+import './_tableStudent.scss';
 
 import { Data, HeadCell, Order, EnhancedTableProps } from '../../type';
 
 const headCells: HeadCell[] = [
   {
-    id: 'name',
+    id: 'student',
     numeric: false,
     disablePadding: true,
-    label: 'Student',
+    label: 'Student list',
   },
   { id: 'account', numeric: true, disablePadding: false, label: 'Account' },
 ];
@@ -37,7 +41,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   };
 
   return (
-    <TableHead>
+    <TableHead className={classes.tblHead}>
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell
@@ -45,11 +49,13 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
+            className={classes.tblHeadCell}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
+              className={classes.tblHeadTitle}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
@@ -65,8 +71,8 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-function createData(name: string, account: string): Data {
-  return { name, account };
+function createData(student: string, account: string): Data {
+  return { student, account };
 }
 
 export default function EnhancedTable(props: any) {
@@ -79,7 +85,8 @@ export default function EnhancedTable(props: any) {
   const { students: { lstHocVien = [] } = {} } = props;
 
   const rows = lstHocVien.map((item: any) => {
-    return createData(item.hoTen, item.taiKhoan);
+    const { hoTen = '', taiKhoan = '' } = item;
+    return createData(hoTen, taiKhoan);
   });
 
   const handleRequestSort = (
@@ -145,18 +152,17 @@ export default function EnhancedTable(props: any) {
                       hover
                       onClick={() => handleClick()}
                       role='checkbox'
-                      //   aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={labelId}
-                      //   selected={isItemSelected}
                     >
                       <TableCell
                         component='th'
                         id={labelId}
                         scope='row'
                         padding='none'
+                        className={classes.tblRowContent}
                       >
-                        {row.name}
+                        {row.student}
                       </TableCell>
                       <TableCell align='right'>{row.account}</TableCell>
                     </TableRow>
@@ -164,7 +170,14 @@ export default function EnhancedTable(props: any) {
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={6} className={classes.tblBody}>
+                    {rows.length > 0 ? null : (
+                      <Grid className={classes.noData}>
+                        <ErrorOutlineIcon className={classes.noDataIcon} />
+                        <Typography>No data</Typography>
+                      </Grid>
+                    )}
+                  </TableCell>
                 </TableRow>
               )}
             </TableBody>
@@ -178,6 +191,7 @@ export default function EnhancedTable(props: any) {
           page={page}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
+          className={classes.tblPagination}
         />
       </Paper>
     </div>

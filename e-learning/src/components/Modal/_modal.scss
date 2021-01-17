@@ -1,0 +1,8 @@
+@import '../../styles/styles';
+
+.btnConfirm {
+    color: $red !important;
+    &:hover {
+        color: $white !important;
+    }
+}

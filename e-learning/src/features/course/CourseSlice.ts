@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {COURSE_REDUCER} from '../../constants';
+import { Course } from './type';
 
 const registerSlice = createSlice({
     name: COURSE_REDUCER.COURSE_LIST, 
@@ -24,7 +25,11 @@ const registerSlice = createSlice({
             status: 0,
             response: {}
         },
-    },
+        registerCourseResponse: { 
+            status: 0,
+            response: {}
+        },
+    } as Course,
     reducers:{
         fetchCoursesSuccess: (state, {payload}) => {
             state.courseListResponse = {
@@ -62,6 +67,12 @@ const registerSlice = createSlice({
                 response: payload.data,
             };
         },
+        registerCourses: (state, {payload}) => {
+            state.registerCourseResponse = {
+                status: payload.status,
+                response: payload.data,
+            };
+        },
     }
 });
 
@@ -72,7 +83,8 @@ const {
     fetchCoursesCategory,
     fetchCoursesByCategory,
     courseDetail,
-    studentByCourse
+    studentByCourse,
+    registerCourses
 } = actions;
 
 export {
@@ -81,6 +93,7 @@ export {
     fetchCoursesCategory,
     fetchCoursesByCategory,
     courseDetail,
-    studentByCourse
+    studentByCourse,
+    registerCourses
 };
 export default reducer; 

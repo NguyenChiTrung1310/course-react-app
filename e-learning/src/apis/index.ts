@@ -12,6 +12,7 @@ const STUDENTS_BY_COURSE_API = 'https://elearning0706.cybersoft.edu.vn/api/QuanL
 //USER
 const PROFILE_API="https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinNguoiDung";
 const UPDATE_PROFILE_API="https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung";
+const REGISTER_COURSE_API = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/DangKyKhoaHoc';
 
 export {
     LOGIN_API, 
@@ -22,5 +23,6 @@ export {
     COURSE_DETAIL_API,
     STUDENTS_BY_COURSE_API,
     PROFILE_API,
-    UPDATE_PROFILE_API
+    UPDATE_PROFILE_API,
+    REGISTER_COURSE_API,
 }

@@ -3,13 +3,15 @@ const HOME_PAGE = '/';
 const LOGIN_PAGE = '/login';
 const REGISTER_PAGE='/register'; 
 const PROFILE_USER='/profile'; 
+const ORDER_PAGE ='/order'; 
 const COURSE_CATEGORY_PAGE='/course-category';
 export {
     HOME_PAGE, 
     LOGIN_PAGE, 
     REGISTER_PAGE, 
     PROFILE_USER,
-    COURSE_CATEGORY_PAGE
+    COURSE_CATEGORY_PAGE,
+    ORDER_PAGE
 }
 
 

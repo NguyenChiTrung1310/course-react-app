@@ -3,7 +3,12 @@ import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { ProfileAction } from './../../features/Profile/profileUserAction';
-import { COURSE_CATEGORY_PAGE, HOME_PAGE, PROFILE_USER } from '../../constants';
+import {
+  COURSE_CATEGORY_PAGE,
+  HOME_PAGE,
+  ORDER_PAGE,
+  PROFILE_USER,
+} from '../../constants';
 import {
   MenuIcon,
   SearchIcon,
@@ -117,7 +122,7 @@ export default function HideAppBar(props: Props) {
       name: 'My Order',
       value: 'order',
       icon: 'ORDER',
-      link: '/myOrder',
+      link: ORDER_PAGE,
     },
   ]);
 
@@ -194,19 +199,22 @@ export default function HideAppBar(props: Props) {
         <AppBar
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
-          })}>
+          })}
+        >
           <Toolbar>
             <IconButton
               color='inherit'
               aria-label='open drawer'
               onClick={handleDrawerOpen}
               edge='start'
-              className={clsx(classes.menuButton, open && classes.hide)}>
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
               <MenuIcon />
             </IconButton>
             <Link
               to={HOME_PAGE}
-              style={{ textDecoration: 'none', color: 'white' }}>
+              style={{ textDecoration: 'none', color: 'white' }}
+            >
               <Typography className={classes.title} variant='h6' noWrap>
                 Courses E-learning
               </Typography>
@@ -233,7 +241,8 @@ export default function HideAppBar(props: Props) {
               </IconButton>
               <IconButton
                 aria-label='show 17 new notifications'
-                color='inherit'>
+                color='inherit'
+              >
                 <Badge badgeContent={17}>
                   <NotificationsIcon />
                 </Badge>
@@ -244,7 +253,8 @@ export default function HideAppBar(props: Props) {
                 aria-controls={menuId}
                 aria-haspopup='true'
                 onClick={handleProfileMenuOpen}
-                color='inherit'>
+                color='inherit'
+              >
                 <AccountCircle />
               </IconButton>
             </div>
@@ -254,7 +264,8 @@ export default function HideAppBar(props: Props) {
                 aria-controls={mobileMenuId}
                 aria-haspopup='true'
                 onClick={handleMobileMenuOpen}
-                color='inherit'>
+                color='inherit'
+              >
                 <MoreIcon />
               </IconButton>
             </div>
@@ -280,11 +291,13 @@ export default function HideAppBar(props: Props) {
         open={open}
         classes={{
           paper: classes.drawerPaper,
-        }}>
+        }}
+      >
         <div className={classes.drawerHeader}>
           <IconButton
             onClick={handleDrawerClose}
-            className={classes.iconDrawerHeader}>
+            className={classes.iconDrawerHeader}
+          >
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
             ) : (
@@ -304,7 +317,8 @@ export default function HideAppBar(props: Props) {
                 <Link
                   className={classes.link}
                   to={text.link}
-                  onClick={() => handleClickMenu(text.value)}>
+                  onClick={() => handleClickMenu(text.value)}
+                >
                   <ListItemText primary={text.name} />
                 </Link>
               </ListItem>
@@ -333,7 +347,8 @@ export default function HideAppBar(props: Props) {
                       </ListItemIcon>
                       <Link
                         to={`${COURSE_CATEGORY_PAGE}/${maDanhMuc}`}
-                        className={classes.categoryLink}>
+                        className={classes.categoryLink}
+                      >
                         <ListItemText key={maDanhMuc} primary={tenDanhMuc} />
                       </Link>
                     </ListItem>
@@ -364,7 +379,8 @@ export default function HideAppBar(props: Props) {
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
-        })}>
+        })}
+      >
         <div className={classes.drawerHeader} />
         {children}
       </main>

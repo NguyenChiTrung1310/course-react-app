@@ -25,7 +25,7 @@ export const ProfileAction= (payload: object
     try{
 
         const response = await updateinforUserService(payload);
-        console.log('dispatch Action updateinforUser', response);
+        // console.log('dispatch Action updateinforUser', response);
         const { data = {}, status = '' } = response;
         dispatch(updateProfileSuccess({ data, status }));
     }

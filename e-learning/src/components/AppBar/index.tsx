@@ -3,24 +3,25 @@ import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { COURSE_CATEGORY_PAGE, HOME_PAGE } from '../../constants';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import CategoryIcon from '@material-ui/icons/Category';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import PersonIcon from '@material-ui/icons/Person';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import VideoLibraryRoundedIcon from '@material-ui/icons/VideoLibraryRounded';
-import NotInterestedRoundedIcon from '@material-ui/icons/NotInterestedRounded';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
-import Collapse from '@material-ui/core/Collapse';
+import {
+  MenuIcon,
+  SearchIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  DeleteForeverRoundedIcon,
+  AddShoppingCartIcon,
+  CategoryIcon,
+  AccountCircle,
+  NotInterestedRoundedIcon,
+  NotificationsIcon,
+  MoreIcon,
+  PersonIcon,
+  ShoppingCartIcon,
+  VideoLibraryRoundedIcon,
+  ExpandLess,
+  ExpandMore,
+  StarBorder,
+} from './icon';
 
 import {
   AppBar,
@@ -37,6 +38,7 @@ import {
   ListItemText,
   Slide,
   useScrollTrigger,
+  Collapse,
 } from '@material-ui/core';
 
 import MenuDesktop from './MenuDesktop';
@@ -46,11 +48,7 @@ import useStyles from './useStyles';
 import './index.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCourseCategory } from '../../features/course/CourseAction';
-
-interface Props {
-  window?: () => Window;
-  children: React.ReactElement | any;
-}
+import { Props } from './type';
 
 function HideOnScroll(props: Props) {
   const { children, window } = props;
@@ -64,21 +62,25 @@ function HideOnScroll(props: Props) {
 }
 
 export default function HideAppBar(props: Props) {
+  const theme = useTheme();
   const { children } = props;
   const classes = useStyles();
-  const theme = useTheme();
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [openListItem, setOpenListItem] = useState(false);
-  const dispatch = useDispatch();
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+
+  const menuId = 'search-menu';
+  const mobileMenuId = 'search-menu-mobile';
+
   const category = useSelector(
     (state: any) => state.course.courseCategoryResponse.response
   );
-
   const statusCategory = useSelector(
     (state: any) => state.course.courseCategoryResponse.status
   );
-
   const numberCart = useSelector(
     (state: any) => state.cart.cartOrder.numberCarts
   );
@@ -93,21 +95,22 @@ export default function HideAppBar(props: Props) {
   const handleClickListItem = () => {
     setOpenListItem(!openListItem);
   };
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
   const [firstMenu] = useState([
     {
       name: 'My Profile',
       value: 'profile',
+      icon: 'PROFILE',
     },
     {
       name: 'My Courses',
       value: 'courses',
+      icon: 'COURSES',
     },
     {
       name: 'My Order',
       value: 'order',
+      icon: 'ORDER',
     },
   ]);
 
@@ -115,15 +118,29 @@ export default function HideAppBar(props: Props) {
     {
       name: 'Trash',
       value: 'trash',
+      icon: 'TRASH',
     },
     {
       name: 'Spam',
       value: 'spam',
+      icon: 'SPAM',
     },
   ]);
 
-  const menuId = 'search-menu';
-  const mobileMenuId = 'search-menu-mobile';
+  const getIcon = (icon: string) => {
+    switch (icon) {
+      case 'PROFILE':
+        return <PersonIcon />;
+      case 'COURSES':
+        return <VideoLibraryRoundedIcon />;
+      case 'ORDER':
+        return <ShoppingCartIcon />;
+      case 'TRASH':
+        return <DeleteForeverRoundedIcon />;
+      default:
+        return <NotInterestedRoundedIcon />;
+    }
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -266,23 +283,14 @@ export default function HideAppBar(props: Props) {
         <List className={classes.listMenu}>
           {firstMenu.map((text, index) => (
             <ListItem button key={text.name}>
-              {index === 0 ? (
-                <ListItemIcon className={classes.iconListMenu}>
-                  <PersonIcon />
-                </ListItemIcon>
-              ) : (
-                <ListItemIcon className={classes.iconListMenu}>
-                  {index === 1 ? (
-                    <VideoLibraryRoundedIcon />
-                  ) : (
-                    <ShoppingCartIcon />
-                  )}
-                </ListItemIcon>
-              )}
+              <ListItemIcon className={classes.iconListMenu}>
+                {getIcon(text.icon)}
+              </ListItemIcon>
               <ListItemText primary={text.name} />
             </ListItem>
           ))}
         </List>
+
         <Divider />
         <List className={classes.listMenu}>
           <ListItem button onClick={handleClickListItem}>
@@ -325,15 +333,9 @@ export default function HideAppBar(props: Props) {
           )}
           {secondMenu.map((text, index) => (
             <ListItem button key={text.name}>
-              {index === 0 ? (
-                <ListItemIcon className={classes.iconListMenu}>
-                  <DeleteForeverRoundedIcon />
-                </ListItemIcon>
-              ) : (
-                <ListItemIcon className={classes.iconListMenu}>
-                  <NotInterestedRoundedIcon />
-                </ListItemIcon>
-              )}
+              <ListItemIcon className={classes.iconListMenu}>
+                {getIcon(text.icon)}
+              </ListItemIcon>
               <ListItemText primary={text.name} />
             </ListItem>
           ))}

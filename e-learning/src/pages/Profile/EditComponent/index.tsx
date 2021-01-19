@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
 import Avatar from '@material-ui/core/Avatar';
@@ -13,11 +12,15 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import useStyles from './useStyles';
 import { useDispatch, useSelector } from 'react-redux';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { Button, InputAdornment } from '@material-ui/core';
 import {
   stateEditButtonAction,
   updateProfileAction,
 } from '../../../features/Profile/profileUserAction';
+
 function EditComponent() {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -34,6 +37,7 @@ function EditComponent() {
     matKhau: string;
     soDT: string;
     taiKhoan: string;
+    showPassword: boolean;
   };
 
   function EditComponentChild() {
@@ -56,6 +60,7 @@ function EditComponent() {
       matKhau: matKhau,
       soDT: soDT,
       taiKhoan: taiKhoan,
+      showPassword: false,
     });
 
     const handleChange = (e: any) => {
@@ -67,9 +72,19 @@ function EditComponent() {
 
     const handleSubmit = (e: any) => {
       e.preventDefault();
-      // console.log('WHEN SUBMIT', field);
+      console.log('WHEN SUBMIT', field);
       dispatch(updateProfileAction(field));
       dispatch(stateEditButtonAction(true));
+    };
+
+    const handleClickShowPassword = () => {
+      setfield({ ...field, showPassword: !field.showPassword });
+    };
+
+    const handleMouseDownPassword = (
+      event: React.MouseEvent<HTMLButtonElement>
+    ) => {
+      event.preventDefault();
     };
 
     const dataProfileUser = [
@@ -172,30 +187,58 @@ function EditComponent() {
                         name={key}
                         autoComplete={key}
                         autoFocus
+                        type={
+                          key === 'matKhau'
+                            ? field.showPassword
+                              ? 'text'
+                              : 'password'
+                            : 'text'
+                        }
                         onChange={(event) => handleChange(event)}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position='start'>
-                              <Avatar className={classes.avatar}>
-                                {renderIcon(key)}
-                              </Avatar>
-                            </InputAdornment>
-                          ),
-                        }}
+                        InputProps={
+                          key === 'matKhau'
+                            ? {
+                                startAdornment: (
+                                  <InputAdornment position='start'>
+                                    <Avatar className={classes.avatar}>
+                                      {renderIcon(key)}
+                                    </Avatar>
+                                  </InputAdornment>
+                                ),
+                                endAdornment: (
+                                  <InputAdornment position='start'>
+                                    <IconButton
+                                      aria-label='toggle password visibility'
+                                      onClick={handleClickShowPassword}
+                                      onMouseDown={handleMouseDownPassword}
+                                      // edge="end"
+                                    >
+                                      {field.showPassword ? (
+                                        <Visibility />
+                                      ) : (
+                                        <VisibilityOff />
+                                      )}
+                                    </IconButton>
+                                  </InputAdornment>
+                                ),
+                              }
+                            : {
+                                startAdornment: (
+                                  <InputAdornment position='start'>
+                                    <Avatar className={classes.avatar}>
+                                      {renderIcon(key)}
+                                    </Avatar>
+                                  </InputAdornment>
+                                ),
+                              }
+                        }
                       />
                     </Grid>
                   );
                 })}
               </List>
             </Grid>
-            <div
-              style={
-                {
-                  // display: 'flex',
-                  // alignItems: 'center',
-                  // justifyContent: 'center',
-                }
-              }>
+            <div>
               <Button
                 type='submit'
                 variant='contained'

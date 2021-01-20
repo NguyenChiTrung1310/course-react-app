@@ -6,6 +6,7 @@ import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
 import Profile from './pages/Profile';
+import Admin from './pages/Admin';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
 import {
@@ -14,6 +15,7 @@ import {
   HOME_PAGE,
   LOCAL_STORAGE_CREDENTIALS_KEY,
   PROFILE_USER,
+  ADMIN_PAGE,
   COURSE_CATEGORY_PAGE,
   LOCAL_STORAGE_CART,
   LOCAL_STORAGE_COURSE_ID,
@@ -73,6 +75,7 @@ function App() {
           {loginStatus === '' ? <RegisterPage /> : <Redirect to={HOME_PAGE} />}
         </Route>
         <Route component={Profile} exact path={PROFILE_USER} />
+        <Route component={Admin} exact path={ADMIN_PAGE} />
         <Route component={HomePage} exact path={HOME_PAGE} />
         <Route
           component={CourseCategory}

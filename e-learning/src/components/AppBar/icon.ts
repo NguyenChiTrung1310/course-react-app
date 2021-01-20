@@ -14,8 +14,8 @@ import VideoLibraryRoundedIcon from '@material-ui/icons/VideoLibraryRounded';
 import NotInterestedRoundedIcon from '@material-ui/icons/NotInterestedRounded';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
-
+import StarBorder from '@material-ui/icons/StarBorder'; 
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 export {
     MenuIcon,
     SearchIcon,
@@ -33,5 +33,6 @@ export {
     VideoLibraryRoundedIcon,
     ExpandLess,
     ExpandMore,
-    StarBorder
+    StarBorder,
+    SupervisorAccountIcon
 }

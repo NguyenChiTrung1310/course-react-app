@@ -3,7 +3,12 @@ import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { ProfileAction } from './../../features/Profile/profileUserAction';
-import { COURSE_CATEGORY_PAGE, HOME_PAGE, PROFILE_USER } from '../../constants';
+import {
+  COURSE_CATEGORY_PAGE,
+  HOME_PAGE,
+  PROFILE_USER,
+  ADMIN_PAGE,
+} from '../../constants';
 import {
   MenuIcon,
   SearchIcon,
@@ -22,6 +27,7 @@ import {
   ExpandLess,
   ExpandMore,
   StarBorder,
+  SupervisorAccountIcon,
 } from './icon';
 
 import {
@@ -89,6 +95,11 @@ export default function HideAppBar(props: Props) {
   const getToken = useSelector(
     (state: any) => state.login.loginResponse.response.accessToken
   );
+  const typeUser = useSelector(
+    (state: any) => state.login.loginResponse.response.maLoaiNguoiDung
+  );
+ 
+
   useEffect(() => {
     dispatch(fetchCourseCategory());
     if (!statusCategory) {
@@ -120,6 +131,15 @@ export default function HideAppBar(props: Props) {
       link: '/myOrder',
     },
   ]);
+  const [firstMenuAdmin] = useState([
+    ...firstMenu,
+    {
+      name: 'Admin',
+      value: 'admin',
+      icon: 'ADMIN',
+      link: ADMIN_PAGE,
+    },
+  ]);
 
   const [secondMenu] = useState([
     {
@@ -142,6 +162,8 @@ export default function HideAppBar(props: Props) {
         return <VideoLibraryRoundedIcon />;
       case 'ORDER':
         return <ShoppingCartIcon />;
+      case 'ADMIN':
+        return <SupervisorAccountIcon />;
       case 'TRASH':
         return <DeleteForeverRoundedIcon />;
       default:
@@ -183,9 +205,26 @@ export default function HideAppBar(props: Props) {
       handleGetInforUser();
     } else if (id === 'courses') {
       console.log('Click my course');
-    } else {
+    } else if (id === 'order') {
       console.log('Click my order');
-    }
+    } else console.log('Click Admin');
+  };
+
+  const renderListTem = (text: any) => {
+    return (
+      <ListItem button key={text.name}>
+        <ListItemIcon className={classes.iconListMenu}>
+          {getIcon(text.icon)}
+        </ListItemIcon>
+
+        <Link
+          className={classes.link}
+          to={text.link}
+          onClick={() => handleClickMenu(text.value)}>
+          <ListItemText primary={text.name} />
+        </Link>
+      </ListItem>
+    );
   };
 
   return (
@@ -294,22 +333,13 @@ export default function HideAppBar(props: Props) {
         </div>
         <Divider />
         <List className={classes.listMenu}>
-          {firstMenu.map((text) => {
-            return (
-              <ListItem button key={text.name}>
-                <ListItemIcon className={classes.iconListMenu}>
-                  {getIcon(text.icon)}
-                </ListItemIcon>
-
-                <Link
-                  className={classes.link}
-                  to={text.link}
-                  onClick={() => handleClickMenu(text.value)}>
-                  <ListItemText primary={text.name} />
-                </Link>
-              </ListItem>
-            );
-          })}
+          {typeUser === 'GV'
+            ? firstMenuAdmin.map((text) => {
+                return renderListTem(text);
+              })
+            : firstMenu.map((text) => {
+                return renderListTem(text);
+              })}
         </List>
 
         <Divider />

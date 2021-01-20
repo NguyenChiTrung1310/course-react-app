@@ -4,12 +4,14 @@ const LOGIN_PAGE = '/login';
 const REGISTER_PAGE='/register'; 
 const PROFILE_USER='/profile'; 
 const COURSE_CATEGORY_PAGE='/course-category';
+const ADMIN_PAGE='/admin';
 export {
     HOME_PAGE, 
     LOGIN_PAGE, 
     REGISTER_PAGE, 
     PROFILE_USER,
-    COURSE_CATEGORY_PAGE
+    COURSE_CATEGORY_PAGE,
+    ADMIN_PAGE
 }
 
 

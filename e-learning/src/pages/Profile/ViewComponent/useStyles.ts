@@ -12,8 +12,7 @@ const useStyles: () => Record<
   | 'paper'
   | 'head'
   | 'avatar'
-  | 'loading'
-  | 'divider',
+  | 'loading',
   string> = makeStyles((theme: Theme) =>
     createStyles({
       root: {
@@ -25,6 +24,15 @@ const useStyles: () => Record<
         backgroundColor: theme.palette.secondary.main,
         zIndex: 100,
         color: 'white',
+        [theme.breakpoints.down('sm')]:{ 
+          right: '-20px',
+        },
+        [theme.breakpoints.up('md')]:{ 
+          right: '-10px',
+        },
+        [theme.breakpoints.up('lg')]:{ 
+          right: '20px',
+        } 
       },
       paper: {
         padding: theme.spacing(2),
@@ -40,9 +48,6 @@ const useStyles: () => Record<
       avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
-      },
-      divider: {
-        width: '80vh',
       }, 
       loading: {
         position: 'absolute',

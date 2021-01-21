@@ -108,7 +108,7 @@ function ViewComponent(props: any) {
 
     return (
       <>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={12}>
           <IconButton className={classes.root1}>
             <EditIcon onClick={handleClickEditButton} />
           </IconButton>
@@ -127,11 +127,7 @@ function ViewComponent(props: any) {
                       </ListItemAvatar>
                       <ListItemText primary={label} secondary={content} />
                     </ListItem>
-                    <Divider
-                      variant='inset'
-                      component='li'
-                      className={classes.divider}
-                    />
+                    <Divider variant='inset' component='li' />
                   </Grid>
                 );
               })}

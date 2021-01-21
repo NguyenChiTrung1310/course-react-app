@@ -28,7 +28,7 @@ function Profile(props: any) {
   function CoursePickup() {
     return (
       <>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={12}>
           <IconButton className={classes.root1}>
             <ShoppingCartIcon />
           </IconButton>
@@ -107,11 +107,11 @@ function Profile(props: any) {
           </Box>
         </Grid>
 
-        <Grid item xs={6} sm={6} spacing={2}>
+        <Grid item xs={12} sm={6} spacing={2}>
           {testEditButton === true ? <ViewComponent /> : <EditComponent />}
         </Grid>
 
-        <Grid item xs={6} sm={6} spacing={2}>
+        <Grid item xs={12} sm={6} spacing={2}>
           <CoursePickup />
         </Grid>
       </Grid>

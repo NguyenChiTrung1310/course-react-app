@@ -12,8 +12,7 @@ const useStyles: () => Record<
   | 'root2'
   | 'paper'
   | 'head'
-  | 'avatar' 
-  | 'divider',
+  | 'avatar',
   string> = makeStyles((theme: Theme) =>
     createStyles({
       root: {
@@ -47,10 +46,7 @@ const useStyles: () => Record<
       avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
-      },
-      divider: {
-        width: '80vh',
-      },
+      }, 
       
     })
   );

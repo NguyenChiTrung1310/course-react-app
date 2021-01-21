@@ -158,7 +158,7 @@ function EditComponent() {
     };
     return (
       <>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={12}>
           <form onSubmit={handleSubmit} style={{ marginTop: '-20px' }}>
             <Grid className={classes.paper}>
               <List className={classes.root}>
@@ -176,7 +176,6 @@ function EditComponent() {
                             ? true
                             : false
                         }
-                        className={classes.divider}
                         defaultValue={content}
                         variant='outlined'
                         margin='normal'

@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { ProfileAction } from './../../features/Profile/profileUserAction';
+import { adminAction } from './../../features/admin/adminAction';
 import {
   COURSE_CATEGORY_PAGE,
   HOME_PAGE,
@@ -98,7 +99,6 @@ export default function HideAppBar(props: Props) {
   const typeUser = useSelector(
     (state: any) => state.login.loginResponse.response.maLoaiNguoiDung
   );
- 
 
   useEffect(() => {
     dispatch(fetchCourseCategory());
@@ -200,6 +200,10 @@ export default function HideAppBar(props: Props) {
     dispatch(ProfileAction(getToken));
   };
 
+  const handleGetListUser = () => {
+    dispatch(adminAction());
+  };
+
   const handleClickMenu = (id: any) => {
     if (id === 'profile') {
       handleGetInforUser();
@@ -207,7 +211,10 @@ export default function HideAppBar(props: Props) {
       console.log('Click my course');
     } else if (id === 'order') {
       console.log('Click my order');
-    } else console.log('Click Admin');
+    } else {
+      console.log('Click Admin');
+      handleGetListUser();
+    }
   };
 
   const renderListTem = (text: any) => {

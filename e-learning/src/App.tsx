@@ -7,6 +7,7 @@ import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
 import Profile from './pages/Profile';
 import Admin from './pages/Admin';
+import ErrorPage from './pages/ErrorPage/';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
 import {
@@ -44,6 +45,7 @@ function App() {
   const newCourseID = JSON.parse(courseID);
 
   const loginStatus = newCredentials ? newCredentials.status : '';
+  console.log('HHH', loginStatus);
   const action = loginSucess(newCredentials);
 
   const dispatchCart = () => {
@@ -74,7 +76,9 @@ function App() {
         <Route component={RegisterPage} exact path={REGISTER_PAGE}>
           {loginStatus === '' ? <RegisterPage /> : <Redirect to={HOME_PAGE} />}
         </Route>
-        <Route component={Profile} exact path={PROFILE_USER} />
+        <Route component={Profile} exact path={PROFILE_USER}>
+          {loginStatus === '' ? <ErrorPage /> : <Redirect to={PROFILE_USER} />}
+        </Route>
         <Route component={Admin} exact path={ADMIN_PAGE} />
         <Route component={HomePage} exact path={HOME_PAGE} />
         <Route

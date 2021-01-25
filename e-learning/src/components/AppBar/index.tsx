@@ -4,6 +4,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { ProfileAction } from './../../features/Profile/profileUserAction';
 import { adminAction } from './../../features/admin/adminAction';
+import { isEmpty } from 'lodash';
 import {
   COURSE_CATEGORY_PAGE,
   HOME_PAGE,
@@ -93,13 +94,18 @@ export default function HideAppBar(props: Props) {
     (state: any) => state.cart.cartOrder.numberCarts
   );
 
-  const getToken = useSelector(
-    (state: any) => state.login.loginResponse.response.accessToken
-  );
-  const typeUser = useSelector(
-    (state: any) => state.login.loginResponse.response.maLoaiNguoiDung
-  );
-
+  const getToken = useSelector((state: any) => {
+    if (isEmpty(state.login.loginResponse.response)) {
+      console.log('empty');
+    } else {
+      console.log('not emty');
+      return state.login.loginResponse.response.accessToken;
+    }
+  });
+  // const typeUser = useSelector(
+  //   (state: any) => state.login.loginResponse.response.maLoaiNguoiDung
+  // );
+  const typeUser = 'GV';
   useEffect(() => {
     dispatch(fetchCourseCategory());
     if (!statusCategory) {
@@ -197,6 +203,7 @@ export default function HideAppBar(props: Props) {
   };
 
   const handleGetInforUser = () => {
+    console.log('WQE', getToken);
     dispatch(ProfileAction(getToken));
   };
 

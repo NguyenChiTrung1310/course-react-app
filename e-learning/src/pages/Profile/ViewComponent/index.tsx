@@ -23,6 +23,7 @@ import {
   stateEditButtonAction,
 } from '../../../features/Profile/profileUserAction';
 import Loading from './../../../components/Loading';
+import { isEmpty } from 'lodash';
 function ViewComponent(props: any) {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -35,9 +36,19 @@ function ViewComponent(props: any) {
     (state: any) => state.profile.infoUserResponse.status
   );
 
-  const getToken = useSelector(
-    (state: any) => state.login.loginResponse.response.accessToken
-  );
+  // const getToken = useSelector(
+  //   (state: any) => state.login.loginResponse.response.accessToken
+  // );
+
+  const getToken = useSelector((state: any) => {
+    if (isEmpty(state.login.loginResponse.response)) {
+      console.log('empty');
+    } else {
+      console.log('not emty');
+      return state.login.loginResponse.response.accessToken;
+    }
+  });
+
   useEffect(() => {
     dispatch(ProfileAction(getToken));
   }, []);

@@ -72,7 +72,7 @@ function EditComponent() {
 
     const handleSubmit = (e: any) => {
       e.preventDefault();
-      console.log('WHEN SUBMIT', field);
+      // console.log('WHEN SUBMIT', field);
       dispatch(updateProfileAction(field));
       dispatch(stateEditButtonAction(true));
     };

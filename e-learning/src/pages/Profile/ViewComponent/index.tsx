@@ -41,11 +41,10 @@ function ViewComponent(props: any) {
   // );
 
   const getToken = useSelector((state: any) => {
-    if (isEmpty(state.login.loginResponse.response)) {
-      console.log('empty');
-    } else {
-      console.log('not emty');
+    if (!isEmpty(state.login.loginResponse.response)) {
       return state.login.loginResponse.response.accessToken;
+    } else {
+      return null;
     }
   });
 
@@ -54,6 +53,7 @@ function ViewComponent(props: any) {
   }, []);
 
   const handleClickEditButton = () => {
+    // console.log('Click');
     dispatch(stateEditButtonAction(false));
   };
 

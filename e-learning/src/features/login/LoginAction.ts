@@ -9,7 +9,7 @@ export const loginAction= (payload: object
     
     try{
         const response= await loginService(payload);
-        console.log('LOGIN SUCCESS', response);
+        // console.log('LOGIN SUCCESS', response);
         const {data= {}, status= ''}= response; 
         if(status ===200){
             dispatch(loginSucess({data, status}));
@@ -19,7 +19,7 @@ export const loginAction= (payload: object
         } 
     }catch(error){
         const {response: {data= {}}= {}, }= error;
-        console.log("LOGIN ERROR", data);
+        // console.log("LOGIN ERROR", data);
         dispatch(loginFail(data)); 
         toast.error(data);
     }

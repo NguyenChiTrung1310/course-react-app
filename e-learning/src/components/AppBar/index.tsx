@@ -95,17 +95,20 @@ export default function HideAppBar(props: Props) {
   );
 
   const getToken = useSelector((state: any) => {
-    if (isEmpty(state.login.loginResponse.response)) {
-      console.log('empty');
-    } else {
-      console.log('not emty');
+    if (!isEmpty(state.login.loginResponse.response)) {
       return state.login.loginResponse.response.accessToken;
+    } else {
+      return null;
     }
   });
-  // const typeUser = useSelector(
-  //   (state: any) => state.login.loginResponse.response.maLoaiNguoiDung
-  // );
-  const typeUser = 'GV';
+  const typeUser = useSelector((state: any) => {
+    if (!isEmpty(state.login.loginResponse.response)) {
+      return state.login.loginResponse.response.maLoaiNguoiDung;
+    } else {
+      return null;
+    }
+  });
+  // console.log('TypeUser', typeUser);
   useEffect(() => {
     dispatch(fetchCourseCategory());
     if (!statusCategory) {
@@ -119,12 +122,6 @@ export default function HideAppBar(props: Props) {
 
   const [firstMenu] = useState([
     {
-      name: 'My Profile',
-      value: 'profile',
-      icon: 'PROFILE',
-      link: PROFILE_USER,
-    },
-    {
       name: 'My Courses',
       value: 'courses',
       icon: 'COURSES',
@@ -137,7 +134,24 @@ export default function HideAppBar(props: Props) {
       link: '/myOrder',
     },
   ]);
+
+  const [firstMenuUser] = useState([
+    {
+      name: 'My Profile',
+      value: 'profile',
+      icon: 'PROFILE',
+      link: PROFILE_USER,
+    },
+    ...firstMenu,
+  ]);
+
   const [firstMenuAdmin] = useState([
+    {
+      name: 'My Profile',
+      value: 'profile',
+      icon: 'PROFILE',
+      link: PROFILE_USER,
+    },
     ...firstMenu,
     {
       name: 'Admin',
@@ -203,7 +217,6 @@ export default function HideAppBar(props: Props) {
   };
 
   const handleGetInforUser = () => {
-    console.log('WQE', getToken);
     dispatch(ProfileAction(getToken));
   };
 
@@ -349,6 +362,10 @@ export default function HideAppBar(props: Props) {
         <List className={classes.listMenu}>
           {typeUser === 'GV'
             ? firstMenuAdmin.map((text) => {
+                return renderListTem(text);
+              })
+            : typeUser === 'HV'
+            ? firstMenuUser.map((text) => {
                 return renderListTem(text);
               })
             : firstMenu.map((text) => {

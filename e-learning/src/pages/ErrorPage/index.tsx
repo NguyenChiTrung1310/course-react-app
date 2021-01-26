@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ErrorPage = () => {
-  return <div>404 NOT FOUND</div>;
+  return <div style={{ textAlign: 'center' }}>404 NOT FOUND</div>;
 };
 
 export default ErrorPage;

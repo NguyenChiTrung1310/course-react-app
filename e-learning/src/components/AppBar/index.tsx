@@ -217,11 +217,11 @@ export default function HideAppBar(props: Props) {
   };
 
   const handleGetInforUser = () => {
-    dispatch(ProfileAction(getToken));
+    // dispatch(ProfileAction(getToken));
   };
 
   const handleGetListUser = () => {
-    dispatch(adminAction());
+    // dispatch(adminAction());
   };
 
   const handleClickMenu = (id: any) => {

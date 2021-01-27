@@ -6,7 +6,7 @@ const AdminSlice=createSlice({
     initialState:{
         listUserResponse:{
             status:0,
-            response:{}
+            response:[],
         },
     },
     reducers:{

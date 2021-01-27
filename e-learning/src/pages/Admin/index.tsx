@@ -7,7 +7,8 @@
 // }
 // export default Admin;
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   makeStyles,
   useTheme,
@@ -27,6 +28,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
+import { adminAction } from '../../features/admin/adminAction';
 
 const useStyles1 = makeStyles((theme: Theme) =>
   createStyles({
@@ -118,6 +120,15 @@ function createData(name: string, calories: number, fat: number) {
   return { name, calories, fat };
 }
 
+function createData1(
+  account: string,
+  name: string,
+  typeUser: string,
+  email: string
+) {
+  return { account, name, typeUser, email };
+}
+
 const rows = [
   createData('Cupcake', 305, 3.7),
   createData('Donut', 452, 25.0),
@@ -142,8 +153,13 @@ const useStyles2 = makeStyles({
 
 export default function Admin() {
   const classes = useStyles2();
+  const dispatch = useDispatch();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  useEffect(() => {
+    dispatch(adminAction());
+  }, []);
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -162,6 +178,20 @@ export default function Admin() {
     setPage(0);
   };
 
+  const dataListUser = useSelector(
+    (state: any) => state.admin.listUserResponse.response
+  );
+  console.log('DataListUser', dataListUser);
+  const rowRender = dataListUser.map((item: any) => {
+    const {
+      taiKhoan = '',
+      hoTen = '',
+      maLoaiNguoiDung = '',
+      email = '',
+    } = item;
+    return createData1(taiKhoan, hoTen, maLoaiNguoiDung, email);
+  });
+  console.log('rowRender', rowRender);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label='custom pagination table'>

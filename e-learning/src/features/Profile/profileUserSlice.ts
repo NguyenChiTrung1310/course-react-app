@@ -34,28 +34,28 @@ const ProfileSlice= createSlice({
                 response: payload.data, 
             }
 
-            // const {
-            //     taiKhoan,
-            //     matKhau,
-            //     hoTen,
-            //     soDt,
-            //     maLoaiNguoiDung,
-            //     maNhom,
-            //     email
-            // }= payload;
+            const {
+                taiKhoan,
+                matKhau,
+                hoTen,
+                soDt,
+                maLoaiNguoiDung,
+                maNhom,
+                email
+            }= payload;
 
-            // state.infoUserResponse={
-            //     status:200,
-            //     response:{
-            //         taiKhoan:taiKhoan,
-            //         matKhau:matKhau,
-            //         hoTen:hoTen,
-            //         soDt:soDt,
-            //         maLoaiNguoiDung:maLoaiNguoiDung,
-            //         maNhom:maNhom,
-            //         email:email,
-            //     }
-            // }
+            state.infoUserResponse={
+                status:200,
+                response:{
+                    taiKhoan,
+                    matKhau,
+                    hoTen,
+                    soDt,
+                    maLoaiNguoiDung,
+                    maNhom,
+                    email,
+                }
+            }
 
         },
         updateProfileFail: (state, { payload }) => {

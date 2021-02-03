@@ -50,7 +50,7 @@ function ViewComponent(props: any) {
 
   useEffect(() => {
     dispatch(ProfileAction(getToken));
-  }, []);
+  }, [dispatch, getToken]);
 
   const handleClickEditButton = () => {
     // console.log('Click');

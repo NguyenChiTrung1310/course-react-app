@@ -22,12 +22,16 @@ import {
   LOCAL_STORAGE_COURSE_ID,
 } from './constants';
 import { toast } from 'react-toastify';
-import { getDataFromCredentials } from './utils/LocalStorage/LocalStorage';
+import {
+  getDataFromCredentials,
+  getDataFromLocalStorage,
+} from './utils/LocalStorage/LocalStorage';
 import { loginSucess } from './features/login/LoginSlice';
 import CourseCategory from './pages/CourseCategory';
 import CourseDetail from './pages/CourseCategory/Detail';
 import { addToCart, courseIDs } from './features/cart/CartSlice';
 import { isEmpty } from 'lodash';
+import { ProfileAction } from './features/Profile/profileUserAction';
 toast.configure({
   autoClose: 2000,
 });
@@ -77,9 +81,12 @@ function App() {
     });
   };
 
+  const getToken: any = getDataFromLocalStorage();
+
   useEffect(() => {
     if (newCredentials) {
       dispatch(action);
+      dispatch(ProfileAction(getToken));
     }
     if (newCart && newCourseID) {
       dispatchCart();

@@ -33,6 +33,30 @@ const ProfileSlice= createSlice({
                 status: payload.status,
                 response: payload.data, 
             }
+
+            const {
+                taiKhoan,
+                matKhau,
+                hoTen,
+                soDt,
+                maLoaiNguoiDung,
+                maNhom,
+                email
+            }= payload;
+
+            state.infoUserResponse={
+                status:200,
+                response:{
+                    taiKhoan,
+                    matKhau,
+                    hoTen,
+                    soDt,
+                    maLoaiNguoiDung,
+                    maNhom,
+                    email,
+                }
+            }
+
         },
         updateProfileFail: (state, { payload }) => {
             state.updateUserResponse = {

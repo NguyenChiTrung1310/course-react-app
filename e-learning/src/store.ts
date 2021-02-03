@@ -6,6 +6,7 @@ import registerReducer from './features/register/RegisterSlice';
 import courseReducer from './features/course/CourseSlice'; 
 import profileReducer from './features/Profile/profileUserSlice';
 import cartReducer from './features/cart/CartSlice'; 
+import adminReducer from './features/admin/adminSlice';
 
 const appReducer = combineReducers({
   // [13] here we will be adding reducers
@@ -13,7 +14,8 @@ const appReducer = combineReducers({
   register: registerReducer,
   course: courseReducer,
   profile:  profileReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  admin: adminReducer,
 })
 
 const rootReducer=( state:any, action: any)=>{

@@ -45,6 +45,6 @@ export const ProfileAction= (payload: object
         dispatch(editButtonReducer(payload));
     }
     catch (error) {
-        console.log(error);
+        // console.log(error);
     }
 }

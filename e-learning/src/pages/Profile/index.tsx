@@ -19,6 +19,10 @@ function Profile(props: any) {
     (state: any) => state.profile.stateEditButton
   );
 
+  // const loginStatus = useSelector(
+  //   (state: any) => state.login.loginResponse.status
+  // );
+
   useEffect(() => {
     return () => {
       dispatch(stateEditButtonAction(true));

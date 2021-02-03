@@ -1,13 +1,6 @@
-// import React from 'react';
-
-// function Admin(props: any) {
-//   return <div>ADMIN PAGE
-//       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam fugiat repellat est natus ipsum sit eius? Laudantium rem necessitatibus soluta repudiandae iure, incidunt voluptates nostrum vitae quod! Possimus, illo id!</p>
-//   </div>;
-// }
-// export default Admin;
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { adminAction } from '../../features/admin/adminAction';
 import {
   makeStyles,
   useTheme,
@@ -18,24 +11,32 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-import TableFooter from '@material-ui/core/TableFooter';
-import TablePagination from '@material-ui/core/TablePagination';
+import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import TableFooter from '@material-ui/core/TableFooter';
+import TablePagination from '@material-ui/core/TablePagination';
 import IconButton from '@material-ui/core/IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
+import { Grid, Typography } from '@material-ui/core';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+});
 
-const useStyles1 = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexShrink: 0,
-      marginLeft: theme.spacing(2.5),
-    },
-  })
-);
+function createData1(
+  account: string,
+  name: string,
+  typeUser: string,
+  email: string
+) {
+  return { account, name, typeUser, email };
+}
 
 interface TablePaginationActionsProps {
   count: number;
@@ -46,6 +47,15 @@ interface TablePaginationActionsProps {
     newPage: number
   ) => void;
 }
+
+const useStyles1 = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexShrink: 0,
+      marginLeft: theme.spacing(2.5),
+    },
+  })
+);
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
   const classes = useStyles1();
@@ -75,7 +85,6 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   ) => {
     onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
-
   return (
     <div className={classes.root}>
       <IconButton
@@ -114,99 +123,98 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-function createData(name: string, calories: number, fat: number) {
-  return { name, calories, fat };
-}
-
-const rows = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
-
-const useStyles2 = makeStyles({
-  table: {
-    minWidth: 500,
-  },
-});
-
 export default function Admin() {
-  const classes = useStyles2();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [page, setPage] = useState(0);
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  useEffect(() => {
+    dispatch(adminAction());
+  }, []);
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
+  const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
+  const dataListUser = useSelector(
+    (state: any) => state.admin.listUserResponse.response
+  );
+  console.log('DataListUser', dataListUser);
+  const rowRender = dataListUser.map((item: any) => {
+    const {
+      taiKhoan = '',
+      hoTen = '',
+      maLoaiNguoiDung = '',
+      email = '',
+    } = item;
+    return createData1(taiKhoan, hoTen, maLoaiNguoiDung, email);
+  });
+
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rowRender.length - page * rowsPerPage);
+
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label='custom pagination table'>
-        <TableBody>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component='th' scope='row'>
-                {row.name}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align='right'>
-                {row.calories}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align='right'>
-                {row.fat}
-              </TableCell>
-            </TableRow>
-          ))}
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: { 'aria-label': 'rows per page' },
-                native: true,
-              }}
-              onChangePage={handleChangePage}
-              onChangeRowsPerPage={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+    // style={{ width: '800px' }}
+    <div>
+      <Paper>
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label='simple table'>
+            <TableHead>
+              <TableRow>
+                <TableCell>Account</TableCell>
+                <TableCell align='right'>Name</TableCell>
+                <TableCell align='right'>Type User </TableCell>
+                <TableCell align='right'>Email</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {(rowsPerPage > 0
+                ? rowRender.slice(
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
+                : rowRender
+              ).map((row: any) => (
+                <TableRow key={row.account}>
+                  <TableCell component='th' scope='row'>
+                    {row.account}
+                  </TableCell>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.tyleUser}</TableCell>
+                </TableRow>
+              ))}
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 53 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            // colSpan={3}
+            component='div'
+            count={rowRender.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            // SelectProps={{
+            //   inputProps: { 'aria-label': 'rows per page' },
+            //   native: true,
+            // }}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+            ActionsComponent={TablePaginationActions}
+          />
+        </TableContainer>
+      </Paper>
+    </div>
   );
 }

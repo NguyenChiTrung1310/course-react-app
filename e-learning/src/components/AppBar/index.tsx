@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import { useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { ProfileAction } from './../../features/Profile/profileUserAction';
-import { adminAction } from './../../features/admin/adminAction';
+import { useTheme } from '@material-ui/core/styles';
 import { isEmpty } from 'lodash';
 import {
   COURSE_CATEGORY_PAGE,
@@ -94,13 +92,6 @@ export default function HideAppBar(props: Props) {
     (state: any) => state.cart.cartOrder.numberCarts
   );
 
-  const getToken = useSelector((state: any) => {
-    if (!isEmpty(state.login.loginResponse.response)) {
-      return state.login.loginResponse.response.accessToken;
-    } else {
-      return null;
-    }
-  });
   const typeUser = useSelector((state: any) => {
     if (!isEmpty(state.login.loginResponse.response)) {
       return state.login.loginResponse.response.maLoaiNguoiDung;
@@ -108,7 +99,7 @@ export default function HideAppBar(props: Props) {
       return null;
     }
   });
-  // console.log('TypeUser', typeUser);
+
   useEffect(() => {
     dispatch(fetchCourseCategory());
     if (!statusCategory) {
@@ -216,27 +207,6 @@ export default function HideAppBar(props: Props) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const handleGetInforUser = () => {
-    // dispatch(ProfileAction(getToken));
-  };
-
-  const handleGetListUser = () => {
-    // dispatch(adminAction());
-  };
-
-  const handleClickMenu = (id: any) => {
-    if (id === 'profile') {
-      handleGetInforUser();
-    } else if (id === 'courses') {
-      console.log('Click my course');
-    } else if (id === 'order') {
-      console.log('Click my order');
-    } else {
-      console.log('Click Admin');
-      handleGetListUser();
-    }
-  };
-
   const renderListTem = (text: any) => {
     return (
       <ListItem button key={text.name}>
@@ -244,10 +214,7 @@ export default function HideAppBar(props: Props) {
           {getIcon(text.icon)}
         </ListItemIcon>
 
-        <Link
-          className={classes.link}
-          to={text.link}
-          onClick={() => handleClickMenu(text.value)}>
+        <Link className={classes.link} to={text.link}>
           <ListItemText primary={text.name} />
         </Link>
       </ListItem>

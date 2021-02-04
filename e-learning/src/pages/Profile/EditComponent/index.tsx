@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import List from '@material-ui/core/List';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import EmailIcon from '@material-ui/icons/Email';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import GroupIcon from '@material-ui/icons/Group';
-import PhoneIcon from '@material-ui/icons/Phone';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import useStyles from './useStyles';
 import { useDispatch, useSelector } from 'react-redux';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import IconButton from '@material-ui/core/IconButton';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { Button, InputAdornment } from '@material-ui/core';
+import React, { useState } from 'react';
+import {
+  Grid,
+  TextField,
+  List,
+  Avatar,
+  IconButton,
+  Button,
+  InputAdornment,
+} from '@material-ui/core';
+import {
+  ImageIcon,
+  EmailIcon,
+  AccountBoxIcon,
+  GroupIcon,
+  PhoneIcon,
+  AccountCircleIcon,
+  VpnKeyIcon,
+  Visibility,
+  VisibilityOff,
+} from './icon';
+import useStyles from './useStyles';
 import {
   stateEditButtonAction,
   updateProfileAction,
@@ -28,7 +33,7 @@ function EditComponent() {
   const getERT = useSelector(
     (state: any) => state.profile.infoUserResponse.response
   );
-  // console.log('getERT', getERT);
+
   type FieldStates = {
     email: string;
     hoTen: string;
@@ -72,7 +77,6 @@ function EditComponent() {
 
     const handleSubmit = (e: any) => {
       e.preventDefault();
-      // console.log('WHEN SUBMIT', field);
       dispatch(updateProfileAction(field));
       dispatch(stateEditButtonAction(true));
     };
@@ -242,7 +246,8 @@ function EditComponent() {
                 type='submit'
                 variant='contained'
                 color='secondary'
-                className={classes.root2}>
+                className={classes.root2}
+                onClick={() => {}}>
                 Update
               </Button>
               <Button

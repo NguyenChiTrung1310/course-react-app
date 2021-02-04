@@ -1,27 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './_profileuser.scss';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import useStyles from './useStyles';
-import { IconButton } from '@material-ui/core';
+import { Grid, Box, Typography, IconButton } from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ViewComponent from './ViewComponent';
 import EditComponent from './EditComponent';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { stateEditButtonAction } from './../../features/Profile/profileUserAction';
+import useStyles from './useStyles';
+import './_profileuser.scss';
 
-function Profile(props: any) {
+function Profile() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const testEditButton = useSelector(
     (state: any) => state.profile.stateEditButton
   );
-
-  // const loginStatus = useSelector(
-  //   (state: any) => state.login.loginResponse.status
-  // );
 
   useEffect(() => {
     return () => {
@@ -33,7 +26,7 @@ function Profile(props: any) {
     return (
       <>
         <Grid item xs={12} sm={12}>
-          <IconButton className={classes.root1}>
+          <IconButton className={classes.root1} onClick={() => {}}>
             <ShoppingCartIcon />
           </IconButton>
           <Box className={classes.paper}>
@@ -111,11 +104,11 @@ function Profile(props: any) {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6} spacing={2}>
+        <Grid item xs={12} sm={6}>
           {testEditButton === true ? <ViewComponent /> : <EditComponent />}
         </Grid>
 
-        <Grid item xs={12} sm={6} spacing={2}>
+        <Grid item xs={12} sm={6}>
           <CoursePickup />
         </Grid>
       </Grid>

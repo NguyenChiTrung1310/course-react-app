@@ -2,8 +2,7 @@ import {
     makeStyles,  
     Theme,
     createStyles, 
-  } from '@material-ui/core/styles'; 
-  // import { green, blue, yellow } from '@material-ui/core/colors';
+  } from '@material-ui/core/styles';  
 
 
   const useStyles: () => Record<
@@ -18,28 +17,23 @@ import {
         position:'relative',
       },
       root1:{
-        position:'absolute',
-        // right: '0px',
+        position:'absolute', 
         backgroundColor: theme.palette.secondary.main,
         zIndex:100,
         color:'white',
-        [theme.breakpoints.down('sm')]:{
-          // backgroundColor:yellow[500],
+        [theme.breakpoints.down('sm')]:{ 
           right: '-20px',
         },
-        [theme.breakpoints.up('md')]:{
-          // backgroundColor:blue[500],
+        [theme.breakpoints.up('md')]:{ 
           right: '-10px',
         },
-        [theme.breakpoints.up('lg')]:{
-          // backgroundColor: green[500],
+        [theme.breakpoints.up('lg')]:{ 
           right: '20px',
         } 
       },
       paper: {
         padding: theme.spacing(2),
-        textAlign: 'left',
-        // fontWeight: 'fontWeightBold',
+        textAlign: 'left', 
         fontSize: '24px',
       }, 
       head: {

@@ -1,30 +1,33 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import './_viewProfile.scss';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import Divider from '@material-ui/core/Divider';
-import EmailIcon from '@material-ui/icons/Email';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import GroupIcon from '@material-ui/icons/Group';
-import PhoneIcon from '@material-ui/icons/Phone';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import {
+  Grid,
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  Divider,
+  IconButton,
+} from '@material-ui/core';
+import {
+  AccountBoxIcon,
+  EmailIcon,
+  GroupIcon,
+  PhoneIcon,
+  AccountCircleIcon,
+  EditIcon,
+  ImageIcon,
+} from './icon';
 import useStyles from './useStyles';
-import { IconButton } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
 import {
   ProfileAction,
   stateEditButtonAction,
 } from '../../../features/Profile/profileUserAction';
 import Loading from './../../../components/Loading';
 import { isEmpty } from 'lodash';
-function ViewComponent(props: any) {
+function ViewComponent() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -35,10 +38,6 @@ function ViewComponent(props: any) {
   const stateGetProfileUser = useSelector(
     (state: any) => state.profile.infoUserResponse.status
   );
-
-  // const getToken = useSelector(
-  //   (state: any) => state.login.loginResponse.response.accessToken
-  // );
 
   const getToken = useSelector((state: any) => {
     if (!isEmpty(state.login.loginResponse.response)) {
@@ -53,7 +52,6 @@ function ViewComponent(props: any) {
   }, [dispatch, getToken]);
 
   const handleClickEditButton = () => {
-    // console.log('Click');
     dispatch(stateEditButtonAction(false));
   };
 
@@ -120,7 +118,7 @@ function ViewComponent(props: any) {
     return (
       <>
         <Grid item xs={12} sm={12}>
-          <IconButton className={classes.root1}>
+          <IconButton className={classes.root1} onClick={() => {}}>
             <EditIcon onClick={handleClickEditButton} />
           </IconButton>
           <Box className={classes.paper}>

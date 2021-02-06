@@ -1,6 +1,4 @@
- 
-import React from 'react'
-import { Dispatch } from '@reduxjs/toolkit';
+ import { Dispatch } from '@reduxjs/toolkit';
 import {getProfileSuccess, getProfileFail, updateProfileSuccess, editButtonReducer} from './profileUserSlice';
 import {infoUserService, updateinforUserService} from '../../services/user'
 import { toast } from 'react-toastify'; 

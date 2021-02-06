@@ -1,4 +1,3 @@
-import React from 'react'
 import {Dispatch} from '@reduxjs/toolkit'
 import {getListUserService} from './../../services/admin'
 import { getListUserSuccess } from './adminSlice';

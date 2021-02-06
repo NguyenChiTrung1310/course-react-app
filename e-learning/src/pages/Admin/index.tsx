@@ -14,15 +14,15 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import TableFooter from '@material-ui/core/TableFooter';
+// import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import IconButton from '@material-ui/core/IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import { Grid, Typography } from '@material-ui/core';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+// import { Grid, Typography } from '@material-ui/core';
+// import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -90,13 +90,15 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label='first page'>
+        aria-label='first page'
+      >
         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
-        aria-label='previous page'>
+        aria-label='previous page'
+      >
         {theme.direction === 'rtl' ? (
           <KeyboardArrowRight />
         ) : (
@@ -106,7 +108,8 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label='next page'>
+        aria-label='next page'
+      >
         {theme.direction === 'rtl' ? (
           <KeyboardArrowLeft />
         ) : (
@@ -116,7 +119,8 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label='last page'>
+        aria-label='last page'
+      >
         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </div>

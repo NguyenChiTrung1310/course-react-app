@@ -101,7 +101,7 @@ function App() {
           {loginStatus === '' ? <RegisterPage /> : <Redirect to={HOME_PAGE} />}
         </Route>
         <Route component={Profile} exact path={PROFILE_USER}>
-          {loginStatusGetRedux === 0 ? <ErrorPage /> : <Profile />}
+          {loginStatusGetRedux === 200 ? <Profile /> : <ErrorPage />}
         </Route>
         <Route component={Admin} exact path={ADMIN_PAGE}>
           {loginStatusGetRedux === 0 ? (

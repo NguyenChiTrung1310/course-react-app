@@ -21,7 +21,7 @@ const appReducer = combineReducers({
 const rootReducer=( state:any, action: any)=>{
   if(action.type==='CLEAR_STORE'){
     clearStoreFromlocalStorage();
-    state= undefined; 
+    state= undefined;  
   }
   return appReducer(state,action);
 }

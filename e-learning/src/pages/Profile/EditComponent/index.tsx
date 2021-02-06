@@ -98,6 +98,7 @@ function EditComponent() {
         icon: 'emailIcon',
         key: 'email',
         placeholder: 'Your Email',
+        autoFocus: true,
       },
       {
         label: 'Name',
@@ -105,6 +106,7 @@ function EditComponent() {
         icon: 'nameIcon',
         key: 'hoTen',
         placeholder: 'Your Name',
+        autoFocus: false,
       },
       {
         label: 'Type User',
@@ -112,6 +114,7 @@ function EditComponent() {
         icon: 'typeUserIcon',
         key: 'maLoaiNguoiDung',
         placeholder: 'Your Type User',
+        autoFocus: false,
       },
       {
         label: 'Type Group',
@@ -119,6 +122,7 @@ function EditComponent() {
         icon: 'typeGroupIcon',
         key: 'maNhom',
         placeholder: 'Your Type Group',
+        autoFocus: false,
       },
       {
         label: 'Passowrd',
@@ -126,6 +130,7 @@ function EditComponent() {
         icon: 'typeGroupIcon',
         key: 'matKhau',
         placeholder: 'Your Password',
+        autoFocus: false,
       },
       {
         label: 'Phone Number',
@@ -133,6 +138,7 @@ function EditComponent() {
         icon: 'phomeNumberIcon',
         key: 'soDT',
         placeholder: 'Your Phone Number',
+        autoFocus: false,
       },
       {
         label: 'Account',
@@ -140,6 +146,7 @@ function EditComponent() {
         icon: 'accountIcon',
         key: 'taiKhoan',
         placeholder: 'Your Accpunt',
+        autoFocus: false,
       },
     ];
     const renderIcon = (iconType: any) => {
@@ -167,7 +174,7 @@ function EditComponent() {
             <Grid className={classes.paper}>
               <List className={classes.root}>
                 {dataProfileUser.map((item) => {
-                  const { label, content, key, placeholder } = item;
+                  const { label, content, key, placeholder, autoFocus } = item;
                   return (
                     <Grid key={label}>
                       <TextField
@@ -189,7 +196,7 @@ function EditComponent() {
                         placeholder={placeholder}
                         name={key}
                         autoComplete={key}
-                        autoFocus
+                        autoFocus={autoFocus}
                         type={
                           key === 'matKhau'
                             ? field.showPassword

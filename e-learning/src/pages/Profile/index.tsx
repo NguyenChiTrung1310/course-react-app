@@ -20,7 +20,7 @@ function Profile() {
     return () => {
       dispatch(stateEditButtonAction(true));
     };
-  }, []);
+  }, [dispatch]);
 
   function CoursePickup() {
     return (
@@ -35,7 +35,8 @@ function Profile() {
                 variant='h3'
                 color='primary'
                 component='p'
-                className={classes.head}>
+                className={classes.head}
+              >
                 MY COURESE IS REGISTER
               </Typography>
             </Box>
@@ -67,7 +68,8 @@ function Profile() {
                 variant='h3'
                 color='primary'
                 component='p'
-                className={classes.head}>
+                className={classes.head}
+              >
                 WHAT CAN I DO{' '}
               </Typography>
 

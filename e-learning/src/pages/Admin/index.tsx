@@ -135,7 +135,7 @@ export default function Admin() {
 
   useEffect(() => {
     dispatch(adminAction());
-  }, []);
+  }, [dispatch]);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);

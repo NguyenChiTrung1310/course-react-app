@@ -47,7 +47,7 @@ function EditComponent() {
 
   function EditComponentChild() {
     const {
-      chiTietKhoaHocGhiDanh = '',
+      // chiTietKhoaHocGhiDanh = '',
       email = '',
       hoTen = '',
       maLoaiNguoiDung = '',
@@ -247,7 +247,8 @@ function EditComponent() {
                 variant='contained'
                 color='secondary'
                 className={classes.root2}
-                onClick={() => {}}>
+                onClick={() => {}}
+              >
                 Update
               </Button>
               <Button
@@ -256,7 +257,8 @@ function EditComponent() {
                 onClick={() => {
                   dispatch(stateEditButtonAction(true));
                 }}
-                className={classes.root1}>
+                className={classes.root1}
+              >
                 Cancel
               </Button>
             </div>

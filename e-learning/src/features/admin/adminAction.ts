@@ -1,6 +1,6 @@
 import {Dispatch} from '@reduxjs/toolkit'
-import {getListUserService} from './../../services/admin'
-import { getListUserSuccess } from './adminSlice';
+import {getListUserService, getListPaginatedUserService} from './../../services/admin'
+import { getListUserSuccess, fetchListPaginationUserSuccess } from './adminSlice';
 
 export const adminAction=()=> async( dispatch: Dispatch)=>{
     try{
@@ -13,5 +13,18 @@ export const adminAction=()=> async( dispatch: Dispatch)=>{
 
     }catch(e){
         // console.log(e);
+    }
+}
+
+export const fetchListPaginationUser=(numberPage: any)=> async(dispatch: Dispatch)=>{
+    try{
+        const response= await getListPaginatedUserService(numberPage); 
+        const {data= {}, status= ''}= response;
+        // console.log(response);
+        if(status===200){
+            dispatch(fetchListPaginationUserSuccess({data, status}));
+        }
+    }catch(err){
+        console.log(err);
     }
 }

@@ -124,7 +124,7 @@ function TableListUser(props: any) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  console.log('props', props);
+
   const rowRender = props.item.map((item: any) => {
     const {
       taiKhoan = '',

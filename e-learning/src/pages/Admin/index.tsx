@@ -11,6 +11,14 @@ export default function Admin() {
   const dataPaginationListUser = useSelector(
     (state: any) => state.admin.listUserPaginatedResponse.response
   );
+  // console.log(dataPaginationListUser);
+  const dataPaginationListUserStatus = useSelector(
+    (state: any) => state.admin.listUserPaginatedResponse.status
+  );
+
+  // const callBackFunction = (chillData: any) => {
+  //   console.log(chillData);
+  // };
 
   return (
     <div>
@@ -21,7 +29,11 @@ export default function Admin() {
       <Grid container item xs={12}>
         <Typography color='secondary'>LIST USER PAGINATION</Typography>{' '}
       </Grid>
-      <ListPaginatedUser item={dataPaginationListUser} />
+      <ListPaginatedUser
+        dataPaginationListUser={dataPaginationListUser}
+        dataPaginationListUserStatus={dataPaginationListUserStatus}
+        // parentCallBack={callBackFunction}
+      />
     </div>
   );
 }

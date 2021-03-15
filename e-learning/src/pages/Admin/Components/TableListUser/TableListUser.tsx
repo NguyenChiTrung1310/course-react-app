@@ -18,7 +18,6 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import { adminAction } from '../../../../features/admin/adminAction';
 import { useTheme } from '@material-ui/core/styles';
 import useStyles from './useStyles';
-
 function createData1(
   account: string,
   name: string,

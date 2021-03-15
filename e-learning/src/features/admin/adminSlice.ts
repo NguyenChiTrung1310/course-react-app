@@ -11,6 +11,10 @@ const AdminSlice=createSlice({
         listUserPaginatedResponse:{
             status:0,
             response:[],
+        },
+        listUserSearchResponse:{
+            status: 0,
+            response:[],
         }
     },
     reducers:{
@@ -25,12 +29,18 @@ const AdminSlice=createSlice({
                 status: payload.status,
                 response: payload.data,
             }
+        },
+        fetchListSearchUserSuccess:(state, {payload})=>{
+            state.listUserSearchResponse={
+                status: payload.status,
+                response: payload 
+            }
         }
     }
 })
 
 const {actions, reducer}= AdminSlice;
-const {getListUserSuccess, fetchListPaginationUserSuccess}= actions;
+const {getListUserSuccess, fetchListPaginationUserSuccess, fetchListSearchUserSuccess}= actions;
 
-export {getListUserSuccess, fetchListPaginationUserSuccess};
+export {getListUserSuccess, fetchListPaginationUserSuccess, fetchListSearchUserSuccess};
 export default reducer;

@@ -18,6 +18,7 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import { adminAction } from '../../../../features/admin/adminAction';
 import { useTheme } from '@material-ui/core/styles';
 import useStyles from './useStyles';
+import Searchbar from '../Searchbar/Searchbar';
 function createData1(
   account: string,
   name: string,
@@ -133,13 +134,14 @@ function TableListUser(props: any) {
     } = item;
     return createData1(taiKhoan, hoTen, maLoaiNguoiDung, email);
   });
-
+  console.log('Data', rowRender);
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rowRender.length - page * rowsPerPage);
 
   return (
     <>
       <Paper>
+        <Searchbar />
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label='simple table'>
             <TableHead>

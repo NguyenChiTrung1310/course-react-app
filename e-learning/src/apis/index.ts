@@ -16,7 +16,8 @@ const REGISTER_COURSE_API = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKh
 
 //ADMIN 
 const LIST_USER_API='https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP05'; 
-const LIST_PAGINATED_USER_API='https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung_PhanTrang?MaNhom=GP03&pageSize=4&page=' 
+const LIST_PAGINATED_USER_API='https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung_PhanTrang?MaNhom=GP03&pageSize=4&page='; 
+const SEARCH_USER_API='https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/MaNhom=GP01?TimKiemNguoiDung=';
 
 export {
     LOGIN_API, 
@@ -30,5 +31,6 @@ export {
     UPDATE_PROFILE_API,
     REGISTER_COURSE_API,
     LIST_USER_API,
-    LIST_PAGINATED_USER_API
+    LIST_PAGINATED_USER_API,
+    SEARCH_USER_API
 }

@@ -19,6 +19,7 @@ import { adminAction } from '../../../../features/admin/adminAction';
 import { useTheme } from '@material-ui/core/styles';
 import useStyles from './useStyles';
 import Searchbar from '../Searchbar/Searchbar';
+import { columnsTotalWidthSelector } from '@material-ui/data-grid';
 function createData1(
   account: string,
   name: string,
@@ -107,6 +108,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 function TableListUser(props: any) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [view, setView] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [page, setPage] = useState(0);
 
@@ -134,7 +136,28 @@ function TableListUser(props: any) {
     } = item;
     return createData1(taiKhoan, hoTen, maLoaiNguoiDung, email);
   });
-  console.log('Data', rowRender);
+  // console.log('Data', rowRender);
+
+  const resultFilter = rowRender.map((item: any) => {
+    const newObj = Object.keys(item);
+
+    return newObj;
+  });
+  console.log('resultFilter', resultFilter);
+
+  let results = [];
+
+  let toSearch = 'hai';
+
+  for (let i = 0; i < rowRender.length; i++) {
+    for (let key in rowRender[i]) {
+      if (rowRender[i][key].indexOf(toSearch) !== -1) {
+        results.push(rowRender[i]);
+      }
+    }
+  }
+  console.log(results);
+
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rowRender.length - page * rowsPerPage);
 
@@ -154,10 +177,17 @@ function TableListUser(props: any) {
             </TableHead>
             <TableBody>
               {(rowsPerPage > 0
-                ? rowRender.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
+                ? view
+                  ? results.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : rowRender.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                : view
+                ? results
                 : rowRender
               ).map((row: any) => (
                 <TableRow key={row.account}>
